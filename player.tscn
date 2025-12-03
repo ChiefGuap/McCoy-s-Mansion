@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dclgm7cgnsf30"]
+[gd_scene load_steps=56 format=3 uid="uid://dclgm7cgnsf30"]
 
 [ext_resource type="Texture2D" uid="uid://bajqsq06r1doh" path="res://assets/HoodedPlayer/AnimationSheet_Character.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://lod3ca17vmye" path="res://scripts/player.gd" id="1_onrkg"]
@@ -392,8 +392,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(18, 7)
 
+[sub_resource type="Gradient" id="Gradient_onrkg"]
+colors = PackedColorArray(0.8367553, 0.8367553, 0.8367551, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i3pqv"]
+gradient = SubResource("Gradient_onrkg")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.50233644, 0.4906542)
+fill_to = Vector2(0.64252335, 0.66588783)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
+
+[node name="TileHighlight" type="Sprite2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
@@ -402,3 +415,6 @@ sprite_frames = SubResource("SpriteFrames_1jxqw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_i3pqv")

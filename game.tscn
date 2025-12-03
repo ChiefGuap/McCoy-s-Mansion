@@ -13,6 +13,7 @@ texture = ExtResource("1_e2o6t")
 2:2/0 = 0
 4:2/size_in_atlas = Vector2i(2, 2)
 4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -12, 8, -12, 8.012705, 12.167442, -8, 12)
 6:1/size_in_atlas = Vector2i(2, 3)
 6:1/0 = 0
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -27,11 +28,6 @@ texture = ExtResource("1_e2o6t")
 16:1/0 = 0
 20:0/size_in_atlas = Vector2i(2, 4)
 20:0/0 = 0
-22:1/size_in_atlas = Vector2i(2, 3)
-22:1/0 = 0
-24:2/size_in_atlas = Vector2i(2, 2)
-24:2/0 = 0
-24:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:4/size_in_atlas = Vector2i(1, 2)
 0:4/0 = 0
 2:4/size_in_atlas = Vector2i(1, 2)
@@ -132,12 +128,14 @@ texture = ExtResource("1_e2o6t")
 0:15/size_in_atlas = Vector2i(3, 5)
 0:15/0 = 0
 0:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -28, 20, -28, 20, 40, -20, 40)
+0:15/0/custom_data_0 = true
 0:20/size_in_atlas = Vector2i(2, 4)
 0:20/0 = 0
 0:20/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -26, 10, -26, 10, 30, -10, 30)
 2:21/size_in_atlas = Vector2i(2, 3)
 2:21/0 = 0
 2:21/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 0, -16, 12, -12, 16, -4, 12, 20, 0, 24, -12, 20, -16, -4)
+2:21/0/custom_data_0 = true
 4:20/size_in_atlas = Vector2i(2, 4)
 4:20/0 = 0
 6:21/0 = 0
@@ -156,6 +154,7 @@ texture = ExtResource("1_e2o6t")
 16:21/size_in_atlas = Vector2i(3, 3)
 16:21/0 = 0
 16:21/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, -16, 20, -16, 20, 24, -20, 24)
+16:21/0/custom_data_0 = true
 24:28/size_in_atlas = Vector2i(2, 2)
 24:28/0 = 0
 22:26/size_in_atlas = Vector2i(2, 4)
@@ -192,9 +191,25 @@ texture = ExtResource("1_e2o6t")
 4:25/0 = 0
 0:25/size_in_atlas = Vector2i(4, 5)
 0:25/0 = 0
+24:2/0 = 0
+24:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+25:2/0 = 0
+25:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+24:3/0 = 0
+24:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4, -8, 4)
+25:3/0 = 0
+25:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4, -8, 4)
+22:1/0 = 0
+23:1/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+23:3/0 = 0
+22:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_fc0e3"]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "is_interactable"
+custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_feb5d")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
@@ -388,12 +403,12 @@ script = ExtResource("1_fc0e3")
 [node name="FurnitureLayer2" type="TileMapLayer" parent="."]
 z_index = 6
 position = Vector2(-4, 0)
-tile_map_data = PackedByteArray("AAAYAAcAAQAEAAQAAAAKAAgAAQAIAAIAAAAMAAgAAQAEAAIAAAAOAAgAAQAIAAIAAAA=")
+tile_map_data = PackedByteArray("AAAKAAgAAQAIAAIAAAAPAAgAAQAIAAIAAAANAAgAAQAZAAMAAAAMAAgAAQAYAAMAAAAMAAcAAQAYAAIAAAANAAcAAQAZAAIAAAAYAAgAAQAWABAAAAA=")
 tile_set = SubResource("TileSet_fc0e3")
 
 [node name="FurnitureLayer1" type="TileMapLayer" parent="."]
 z_index = 1
-tile_map_data = PackedByteArray("AAABAAIAAQAAAA8AAAAEAAEAAQAMAAQAAAAGAAEAAQAOAAQAAAAMAAEAAQAMAAQAAAAMAAMAAQAQABUAAAATAAEAAQAQAAQAAAAVAAEAAQASAAQAAAAYAAIAAQAAAA8AAAAYAAgAAQAYAAIAAAAIAAgAAQASABsAAAAIAAkAAQASABwAAAAIAAoAAQASAB0AAAAJAAgAAQAUABsAAAAJAAkAAQATABwAAAAJAAoAAQATAB0AAAAKAAgAAQAUABsAAAAKAAkAAQAUABwAAAAKAAoAAQATAB0AAAALAAgAAQAUABsAAAALAAkAAQAUABwAAAALAAoAAQATAB0AAAAMAAgAAQAUABsAAAAMAAkAAQAUABwAAAAMAAoAAQATAB0AAAANAAgAAQAUABsAAAANAAkAAQAUABwAAAANAAoAAQATAB0AAAAOAAgAAQAUABsAAAAOAAkAAQAUABwAAAAOAAoAAQATAB0AAAAPAAgAAQAUABsAAAAPAAkAAQAUABwAAAAPAAoAAQAUAB0AAAAQAAgAAQAVABoAAAAQAAkAAQAVABwAAAAQAAoAAQAVAB0AAAAIAAYAAQASABgAAAAIAAcAAQASABkAAAAJAAYAAQATABgAAAAJAAcAAQATABkAAAAKAAYAAQAUABgAAAAKAAcAAQATABkAAAALAAYAAQAUABgAAAALAAcAAQATABkAAAAMAAYAAQAUABgAAAAMAAcAAQATABkAAAANAAYAAQAUABgAAAANAAcAAQATABkAAAAOAAYAAQAUABgAAAAOAAcAAQATABkAAAAPAAYAAQAUABgAAAAPAAcAAQAUABkAAAAQAAYAAQAVABgAAAAQAAcAAQAVABkAAAAYAA0AAQAAABQAAAABAA0AAQACABUAAAA=")
+tile_map_data = PackedByteArray("AAABAAIAAQAAAA8AAAAEAAEAAQAMAAQAAAAGAAEAAQAOAAQAAAAMAAEAAQAMAAQAAAAMAAMAAQAQABUAAAATAAEAAQAQAAQAAAAVAAEAAQASAAQAAAAYAAIAAQAAAA8AAAAIAAgAAQASABsAAAAIAAkAAQASABwAAAAIAAoAAQASAB0AAAAJAAgAAQAUABsAAAAJAAkAAQATABwAAAAJAAoAAQATAB0AAAAKAAgAAQAUABsAAAAKAAkAAQAUABwAAAAKAAoAAQATAB0AAAALAAgAAQAUABsAAAALAAkAAQAUABwAAAALAAoAAQATAB0AAAAMAAgAAQAUABsAAAAMAAkAAQAUABwAAAAMAAoAAQATAB0AAAANAAgAAQAUABsAAAANAAkAAQAUABwAAAANAAoAAQATAB0AAAAOAAgAAQAUABsAAAAOAAkAAQAUABwAAAAOAAoAAQATAB0AAAAPAAgAAQAUABsAAAAPAAkAAQAUABwAAAAPAAoAAQAUAB0AAAAQAAgAAQAVABoAAAAQAAkAAQAVABwAAAAQAAoAAQAVAB0AAAAIAAYAAQASABgAAAAIAAcAAQASABkAAAAJAAYAAQATABgAAAAJAAcAAQATABkAAAAKAAYAAQAUABgAAAAKAAcAAQATABkAAAALAAYAAQAUABgAAAALAAcAAQATABkAAAAMAAYAAQAUABgAAAAMAAcAAQATABkAAAANAAYAAQAUABgAAAANAAcAAQATABkAAAAOAAYAAQAUABgAAAAOAAcAAQATABkAAAAPAAYAAQAUABgAAAAPAAcAAQAUABkAAAAQAAYAAQAVABgAAAAQAAcAAQAVABkAAAAYAA0AAQAAABQAAAABAA0AAQACABUAAAAXAAkAAQAYAAMAAAAYAAkAAQAZAAMAAAAXAAgAAQAYAAIAAAAYAAgAAQAZAAIAAAA=")
 tile_set = SubResource("TileSet_fc0e3")
 
 [node name="Wall" type="TileMapLayer" parent="."]
@@ -427,5 +442,9 @@ offset_bottom = 27.0
 
 [node name="Timer" type="Timer" parent="UI_Layer"]
 autostart = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.045312412, 0.04531242, 0.04531242, 1)
 
 [connection signal="timeout" from="UI_Layer/Timer" to="." method="_on_timer_timeout"]
