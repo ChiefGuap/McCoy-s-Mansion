@@ -5,12 +5,6 @@ var remaining_time_in_seconds = 180  # (3 minutes * 60 seconds)
 
 # This function is called when the scene first loads
 func _ready():
-	# By Pranshu J - Test if SoundManager autoload works:
-	print("SoundManager test: ", SoundManager) # By Pranshu J
-	
-	# Play the background ambience
-	SoundManager.play_ambient("res://assets/audio/ambience/main_ambience.ogg")
-  
 	# Make sure your Timer node is set to "Autostart" in the Inspector
 	# Set the label's text when the game first starts
 	update_timer_label()
@@ -35,29 +29,10 @@ func _on_timer_timeout():
 
 # This function formats the time to look nice
 func update_timer_label():
-	# Convert total seconds into minutes and seconds
+	# This math converts total seconds into minutes and seconds
 	var minutes = remaining_time_in_seconds / 60
 	var seconds = remaining_time_in_seconds % 60
 	
+	# The "%02d" part ensures it's "0:05" instead of "0:5"
+	# This line finds the Label node inside the UI_Layer
 	$UI_Layer/TimerLabel.text = "%d:%02d" % [minutes, seconds]
-
-	if remaining_time_in_seconds <= 10:
-		$UI_Layer/TimerLabel.modulate = Color(1, 0, 0)
-			
-	elif remaining_time_in_seconds <= 20:
-		$UI_Layer/TimerLabel.modulate = Color(1, 0.5, 0)  
-		 
-	elif remaining_time_in_seconds <= 40:
-		$UI_Layer/TimerLabel.modulate = Color(1, 1, 0)  
-		
-	else:
-		$UI_Layer/TimerLabel.modulate = Color(1, 1, 1)
-
-
-func _go_to_level_2():
-	get_tree().change_scene_to_file("res://Level2.tscn")
-
-
-func _on_door_to_level_2_body_entered(body):
-	if body.name == "Player":
-		call_deferred("_go_to_level_2")

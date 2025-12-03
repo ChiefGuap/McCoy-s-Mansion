@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cxtto0t64w1nr"]
+[gd_scene load_steps=9 format=4 uid="uid://cxtto0t64w1nr"]
 
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_e2o6t"]
@@ -277,7 +277,7 @@ texture_region_size = Vector2i(32, 32)
 13:4/0 = 0
 13:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, 12, 16, 12, -12, -16, -12)
 14:4/0 = 0
-14:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -12.9683, -13.3188, -13.1435, -13.1435, 16, -16, 16)
+14:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -12.968273, -13.318766, -13.14352, -13.14352, 16, -16, 16)
 15:4/0 = 0
 15:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 16:4/0 = 0
@@ -376,22 +376,11 @@ texture_region_size = Vector2i(32, 32)
 3:9/0 = 0
 4:9/size_in_atlas = Vector2i(1, 2)
 4:9/0 = 0
-7:10/0 = 0
-6:10/0 = 0
-8:10/0 = 0
-8:9/0 = 0
-7:9/0 = 0
-6:9/0 = 0
-7:11/0 = 0
-8:11/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_feb5d"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_e2o6t")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
-size = Vector2(39, 51)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fc0e3")
@@ -409,8 +398,8 @@ tile_set = SubResource("TileSet_fc0e3")
 
 [node name="Wall" type="TileMapLayer" parent="."]
 z_index = 5
-position = Vector2(0, 4)
-tile_map_data = PackedByteArray("AAAMAAAAAAANAAQAAAAAAAAAAAAOAAQAAAABAAAAAAALAAIAAAACAAAAAAALAAIAAAADAAAAAAALAAIAAAAEAAAAAAALAAIAAAAFAAAAAAALAAIAAAAGAAAAAAALAAIAAAAHAAAAAAALAAIAAAAIAAAAAAALAAIAAAAJAAAAAAALAAIAAAAKAAAAAAALAAIAAAALAAAAAAALAAIAAAAMAAEAAAAOAAcAAAAMAAIAAAAOAAcAAAAMAAMAAAAOAAcAAAAMAAQAAAAOAAcAAAAMAAUAAAAOAAcAAAAMAAYAAAAOAAcAAAALAAcAAAALAAEAAAAKAAcAAAALAAEAAAAJAAcAAAALAAEAAAAIAAcAAAALAAEAAAADAAcAAAALAAEAAAACAAcAAAALAAEAAAABAAcAAAALAAEAAAAMAAcAAAANAAMAAAAAAAYAAAANAAUAAAAAAAUAAAANAAUAAAAAAAQAAAANAAUAAAAAAAMAAAANAAUAAAAAAAIAAAANAAUAAAAAAAEAAAANAAUAAAAAAAcAAAAOAAMAAAA=")
+position = Vector2(-1, 0)
+tile_map_data = PackedByteArray("AAAMAAAAAAANAAQAAAAAAAAAAAAOAAQAAAABAAAAAAALAAIAAAACAAAAAAALAAIAAAADAAAAAAALAAIAAAAEAAAAAAALAAIAAAAFAAAAAAALAAIAAAAGAAAAAAALAAIAAAAHAAAAAAALAAIAAAAIAAAAAAALAAIAAAAJAAAAAAALAAIAAAAKAAAAAAALAAIAAAALAAAAAAALAAIAAAAMAAEAAAAOAAcAAAAMAAIAAAAOAAcAAAAMAAMAAAAOAAcAAAAMAAQAAAAOAAcAAAAMAAUAAAAOAAcAAAAMAAYAAAAOAAcAAAALAAcAAAALAAEAAAAKAAcAAAALAAEAAAAJAAcAAAALAAEAAAAIAAcAAAALAAEAAAAHAAcAAAALAAEAAAAGAAcAAAALAAEAAAAFAAcAAAALAAEAAAAEAAcAAAALAAEAAAADAAcAAAALAAEAAAACAAcAAAALAAEAAAABAAcAAAALAAEAAAAMAAcAAAANAAMAAAAAAAYAAAANAAUAAAAAAAUAAAANAAUAAAAAAAQAAAANAAUAAAAAAAMAAAANAAUAAAAAAAIAAAANAAUAAAAAAAEAAAANAAUAAAAAAAcAAAAOAAMAAAA=")
 tile_set = SubResource("TileSet_feb5d")
 
 [node name="Floor" type="TileMapLayer" parent="."]
@@ -422,15 +411,11 @@ tile_set = SubResource("TileSet_feb5d")
 z_index = 50
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-visible = false
 zoom = Vector2(5, 5)
 limit_left = 0
 limit_top = 0
 limit_right = 415
 limit_bottom = 260
-
-[node name="StepTimer" type="Timer" parent="Player"]
-wait_time = 0.35
 
 [node name="UI_Layer" type="CanvasLayer" parent="."]
 
@@ -443,19 +428,4 @@ offset_bottom = 27.0
 [node name="Timer" type="Timer" parent="UI_Layer"]
 autostart = true
 
-[node name="DoorToLevel2" type="Area2D" parent="."]
-position = Vector2(243, 236)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToLevel2"]
-position = Vector2(-29, -7)
-shape = SubResource("RectangleShape2D_fc0e3")
-
-[node name="DoorSprite" type="Sprite2D" parent="."]
-position = Vector2(214, 229)
-scale = Vector2(0.6, 1)
-texture = ExtResource("1_80nbo")
-region_enabled = true
-region_rect = Rect2(210, 294.041, 70, 52)
-
 [connection signal="timeout" from="UI_Layer/Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="DoorToLevel2" to="." method="_on_door_to_level_2_body_entered"]

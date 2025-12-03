@@ -11,17 +11,9 @@ config_version=5
 [application]
 
 config/name="MccoysMansion"
-run/main_scene="res://game.tscn"
+run/main_scene="uid://cxtto0t64w1nr"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[autoload]
-
-SoundManager="*res://scripts/SoundManager.gd"
-
-[editor]
-
-version_control/autoload_on_startup=true
 
 [input]
 
@@ -48,4 +40,5 @@ move_down={
 
 [rendering]
 
-renderer/rendering_method.mobile="forward_plus"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
