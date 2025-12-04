@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="5_ryrav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eow3j"]
-size = Vector2(9, 32.5)
+size = Vector2(7, 32.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
 size = Vector2(5, 32)
@@ -17,13 +17,12 @@ size = Vector2(5, 32)
 script = ExtResource("1_fc0e3")
 
 [node name="Level1" parent="." instance=ExtResource("2_7jktm")]
-position = Vector2(0, -1)
+position = Vector2(-1, -4)
 
 [node name="Level2" parent="." instance=ExtResource("5_7jktm")]
 position = Vector2(1, 0)
 
 [node name="Level3" parent="." instance=ExtResource("4_ryrav")]
-position = Vector2(0, 3)
 
 [node name="Player" parent="." instance=ExtResource("3_feb5d")]
 z_index = 50
@@ -50,13 +49,13 @@ autostart = true
 [node name="Door_to_Level2" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door_to_Level2"]
-position = Vector2(416, 181.25)
+position = Vector2(415.5, 176)
 shape = SubResource("RectangleShape2D_eow3j")
 
 [node name="Door_to_Level3" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door_to_Level3"]
-position = Vector2(0.5, 179)
+position = Vector2(0, 176)
 shape = SubResource("RectangleShape2D_ryrav")
 
 [connection signal="timeout" from="UI_Layer/Timer" to="." method="_on_timer_timeout"]
