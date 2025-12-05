@@ -1,11 +1,129 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxtto0t64w1nr"]
+[gd_scene load_steps=17 format=3 uid="uid://cxtto0t64w1nr"]
 
 [ext_resource type="Script" uid="uid://b4433purhoief" path="res://scripts/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dmq6nvcat2li" path="res://scenes/level_1.tscn" id="2_7jktm"]
 [ext_resource type="PackedScene" uid="uid://dclgm7cgnsf30" path="res://scenes/player.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://ciuide3jybsyu" path="res://scenes/level_3.tscn" id="4_ryrav"]
 [ext_resource type="PackedScene" uid="uid://b7s4msybe76uy" path="res://scenes/level_2.tscn" id="5_7jktm"]
-[ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="5_ryrav"]
+[ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="6_cam_ctrl"]
+[ext_resource type="Texture2D" uid="uid://xvbe8ls8genm" path="res://assets/world_scene/hotbar.png" id="7_hotbar"]
+[ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="8_txtbox"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eow3j"]
+texture = ExtResource("8_txtbox")
+texture_margin_left = 5.0
+texture_margin_top = 10.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="Animation" id="Animation_ryrav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI_Layer/BlackScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player/DialougeBox/DialougeText:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/DialougeBox:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7jktm"]
+resource_name = "intro_cutscene"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI_Layer/BlackScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player/DialougeBox/DialougeText:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 6.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/DialougeBox:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 6.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eow3j"]
+_data = {
+&"RESET": SubResource("Animation_ryrav"),
+&"intro_cutscene": SubResource("Animation_7jktm")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eow3j"]
 size = Vector2(7, 32.5)
@@ -26,6 +144,33 @@ position = Vector2(1, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_feb5d")]
 z_index = 50
+scale = Vector2(1e-05, 1e-05)
+
+[node name="DialougeBox" type="Panel" parent="Player"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = -54.0
+offset_right = 39.0
+offset_bottom = -31.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_eow3j")
+
+[node name="DialougeText" type="Label" parent="Player/DialougeBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.0
+offset_top = 2.0
+offset_right = 90.0
+offset_bottom = 25.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "Where am I..?"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
@@ -33,7 +178,7 @@ limit_left = 0
 limit_top = 0
 limit_right = 415
 limit_bottom = 256
-script = ExtResource("5_ryrav")
+script = ExtResource("6_cam_ctrl")
 
 [node name="UI_Layer" type="CanvasLayer" parent="."]
 
@@ -45,6 +190,29 @@ offset_bottom = 27.0
 
 [node name="Timer" type="Timer" parent="UI_Layer"]
 autostart = true
+
+[node name="Hotbar" type="TextureRect" parent="UI_Layer"]
+offset_left = -2.0
+offset_top = 135.0
+offset_right = 623.0
+offset_bottom = 535.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_hotbar")
+
+[node name="BlackScreen" type="ColorRect" parent="UI_Layer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012645884, 0.012645883, 0.012645883, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eow3j")
+}
 
 [node name="Door_to_Level2" type="Area2D" parent="."]
 
