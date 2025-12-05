@@ -5,17 +5,10 @@ var remaining_time_in_seconds = 180
 
 # This function is called when the scene first loads
 func _ready():
-	# 1. Freeze the player so they can't move during the cutscene
-	$Player.set_physics_process(false)
-	
-	# 2. Start the cutscene animation
-	$AnimationPlayer.play("intro_cutscene")
-	
-	# 3. Wait for the animation to finish
-	await $AnimationPlayer.animation_finished
-	
-	# 4. Unfreeze the player
-	$Player.set_physics_process(true)
+	# This triggers your CutsceneManager script.
+	# It will play the Animation FIRST, wait for it to end, 
+	# and THEN run the extra movement code you wrote.
+	$CutsceneManager.play_intro_cutscene()
 	
 	# Start your timer
 	update_timer_label()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxtto0t64w1nr"]
+[gd_scene load_steps=16 format=3 uid="uid://cxtto0t64w1nr"]
 
 [ext_resource type="Script" uid="uid://b4433purhoief" path="res://scripts/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dmq6nvcat2li" path="res://scenes/level_1.tscn" id="2_7jktm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="6_cam_ctrl"]
 [ext_resource type="Texture2D" uid="uid://xvbe8ls8genm" path="res://assets/world_scene/hotbar.png" id="7_hotbar"]
 [ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="8_txtbox"]
+[ext_resource type="Script" uid="uid://cy16rhrbhu81y" path="res://scripts/cutscene.gd" id="9_vef74"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eow3j"]
 texture = ExtResource("8_txtbox")
@@ -171,6 +172,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 9
 text = "Where am I..?"
+autowrap_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
@@ -225,6 +227,13 @@ shape = SubResource("RectangleShape2D_eow3j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door_to_Level3"]
 position = Vector2(0, 176)
 shape = SubResource("RectangleShape2D_ryrav")
+
+[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("player", "animation_player", "dialogue_box", "dialogue_label")]
+script = ExtResource("9_vef74")
+player = NodePath("../Player")
+animation_player = NodePath("../AnimationPlayer")
+dialogue_box = NodePath("../Player/DialougeBox")
+dialogue_label = NodePath("../Player/DialougeBox/DialougeText")
 
 [connection signal="timeout" from="UI_Layer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Door_to_Level2" to="Player/Camera2D" method="_on_diningRoomDoor_body_entered"]
