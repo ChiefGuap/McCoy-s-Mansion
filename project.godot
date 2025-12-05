@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MccoysMansion"
-run/main_scene="uid://cxtto0t64w1nr"
+run/main_scene="uid://doo8y4es3kghu"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
