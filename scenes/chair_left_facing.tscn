@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://wi5noggrui2y"]
+
+[ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="1_7hbps"]
+[ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="2_mldx5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wo48x"]
+shader = ExtResource("1_7hbps")
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.30000006175
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y0kc7"]
+shader = ExtResource("1_7hbps")
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.30000006175
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqxsl"]
+size = Vector2(16, 22)
+
+[node name="ChairLeftFacing" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 6
+z_as_relative = false
+material = SubResource("ShaderMaterial_wo48x")
+position = Vector2(-1.75, 20)
+texture = ExtResource("2_mldx5")
+region_enabled = true
+region_rect = Rect2(288, 137.61867, 24, 22.381332)
+
+[node name="Sprite2DZUp" type="Sprite2D" parent="."]
+z_index = 52
+z_as_relative = false
+material = SubResource("ShaderMaterial_y0kc7")
+position = Vector2(-1.75, 1)
+texture = ExtResource("2_mldx5")
+region_enabled = true
+region_rect = Rect2(288, 120, 24, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_eqxsl")

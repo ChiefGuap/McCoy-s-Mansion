@@ -390,7 +390,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(18, 7)
+size = Vector2(14, 9)
 
 [sub_resource type="Gradient" id="Gradient_g2els"]
 colors = PackedColorArray(0.5330367, 0.5330367, 0.5330367, 1, 0, 0, 0, 1)
@@ -412,7 +412,7 @@ position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_1jxqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
+position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
