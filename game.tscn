@@ -185,10 +185,10 @@ script = ExtResource("6_cam_ctrl")
 [node name="UI_Layer" type="CanvasLayer" parent="."]
 
 [node name="TimerLabel" type="Label" parent="UI_Layer"]
-offset_left = 179.0
-offset_top = 4.0
-offset_right = 225.0
-offset_bottom = 27.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 62.0
+offset_bottom = 33.0
 
 [node name="Timer" type="Timer" parent="UI_Layer"]
 autostart = true

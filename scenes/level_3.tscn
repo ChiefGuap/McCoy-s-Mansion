@@ -1,7 +1,15 @@
-[gd_scene load_steps=12 format=4 uid="uid://ciuide3jybsyu"]
+[gd_scene load_steps=22 format=4 uid="uid://ciuide3jybsyu"]
 
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="1_h23n6"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="2_uwxec"]
+[ext_resource type="Script" uid="uid://qf10fuw5ufoa" path="res://scripts/level1_candle_light_1.gd" id="3_uwxec"]
+[ext_resource type="PackedScene" uid="uid://c1xspvmlmtvcd" path="res://scenes/bedroom_objects/paper.tscn" id="4_ha73p"]
+[ext_resource type="PackedScene" uid="uid://crw051q3ubdig" path="res://scenes/bedroom_objects/bottle.tscn" id="5_vcx5n"]
+[ext_resource type="PackedScene" uid="uid://dgu3lgen43e1b" path="res://scenes/bedroom_objects/clock.tscn" id="6_56dhn"]
+[ext_resource type="PackedScene" uid="uid://d2bjqufc0qvhp" path="res://scenes/bedroom_objects/torch.tscn" id="7_ha73p"]
+[ext_resource type="PackedScene" uid="uid://dxtoud36rk7b6" path="res://scenes/bedroom_objects/bed.tscn" id="8_vcx5n"]
+[ext_resource type="PackedScene" uid="uid://dhowlyny5qljd" path="res://scenes/bedroom_objects/vase.tscn" id="9_56dhn"]
+[ext_resource type="PackedScene" uid="uid://dfai6ujtxibqq" path="res://scenes/bedroom_objects/bottom_red_couch.tscn" id="10_ax3dk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eow3j"]
 texture = ExtResource("1_h23n6")
@@ -1114,6 +1122,18 @@ texture = ExtResource("2_uwxec")
 [sub_resource type="TileSet" id="TileSet_iotsf"]
 sources/0 = SubResource("TileSetAtlasSource_mfdv2")
 
+[sub_resource type="Gradient" id="Gradient_5xbjy"]
+colors = PackedColorArray(0.9411765, 0.7254902, 0.015686275, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1pn4d"]
+gradient = SubResource("Gradient_5xbjy")
+width = 75
+height = 75
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
 [node name="Level3" type="Node2D"]
 
 [node name="Wall" type="TileMapLayer" parent="."]
@@ -1130,11 +1150,41 @@ tile_set = SubResource("TileSet_hve3p")
 [node name="FurnitureLayer2" type="TileMapLayer" parent="."]
 z_index = 6
 position = Vector2(415, 62)
-tile_map_data = PackedByteArray("AADZ/wMAAQAIABkAAADX//7/AQAXAAoAABDX/wgAAQAXAAoAABDj//r/AQAQAAEAAADj//z/AQAWAAgAAADa//j/AQAKAAQAAADX//n/AQAAABQAAADf//r/AQAYAAIAAADj/wwAAQAUABIAABDf/wIAAQASABoAAADg/wIAAQAUABoAAADh/wIAAQAUABoAAADi/wIAAQAUABoAAADi/wMAAQAUABoAAADh/wMAAQAUABoAAADg/wMAAQAUABoAAADf/wMAAQASABoAAADf/wQAAQASABoAAADg/wQAAQAUABoAAADh/wQAAQAUABoAAADi/wQAAQAUABoAAADf/wUAAQASABoAAADg/wUAAQAUABoAAADh/wUAAQAUABoAAADi/wUAAQAUABoAAADf/wEAAQASABkAAADg/wEAAQATABkAAADh/wEAAQATABkAAADi/wEAAQATABkAAADj/wEAAQATABkAAADj/wIAAQAUABoAAADj/wMAAQAUABoAAADj/wQAAQAUABoAAADj/wUAAQAUABoAAADj/wYAAQAUABwAAADj/wcAAQAUAB0AAADi/wcAAQAUAB0AAADh/wcAAQAUAB0AAADg/wcAAQAUAB0AAADf/wcAAQASAB0AAADf/wYAAQASABwAAADg/wYAAQATABwAAADh/wYAAQATABwAAADi/wYAAQAUABwAAADX/wcAAQACAAQAAADk/wEAAQAVABkAAADk/wIAAQAVABsAAADk/wMAAQAVABsAAADk/wQAAQAVABsAAADk/wUAAQAVABsAAADk/wYAAQAVABwAAADk/wcAAQAVAB0AAADf/wAAAQASABgAAADg/wAAAQATABgAAADh/wAAAQATABgAAADi/wAAAQATABgAAADj/wAAAQATABgAAADk/wAAAQAVABgAAAA=")
+tile_map_data = PackedByteArray("AADX//7/AQAXAAoAABDX/wgAAQAXAAoAABDj//r/AQAQAAEAAADj//z/AQAWAAgAAADa//j/AQAKAAQAAADf//r/AQAYAAIAAADf/wIAAQASABoAAADg/wIAAQAUABoAAADh/wIAAQAUABoAAADi/wIAAQAUABoAAADi/wMAAQAUABoAAADh/wMAAQAUABoAAADg/wMAAQAUABoAAADf/wMAAQASABoAAADf/wQAAQASABoAAADg/wQAAQAUABoAAADh/wQAAQAUABoAAADi/wQAAQAUABoAAADf/wUAAQASABoAAADg/wUAAQAUABoAAADh/wUAAQAUABoAAADi/wUAAQAUABoAAADf/wEAAQASABkAAADg/wEAAQATABkAAADh/wEAAQATABkAAADi/wEAAQATABkAAADj/wEAAQATABkAAADj/wIAAQAUABoAAADj/wMAAQAUABoAAADj/wQAAQAUABoAAADj/wUAAQAUABoAAADj/wYAAQAUABwAAADj/wcAAQAUAB0AAADi/wcAAQAUAB0AAADh/wcAAQAUAB0AAADg/wcAAQAUAB0AAADf/wcAAQASAB0AAADf/wYAAQASABwAAADg/wYAAQATABwAAADh/wYAAQATABwAAADi/wYAAQAUABwAAADX/wcAAQACAAQAAADk/wEAAQAVABkAAADk/wIAAQAVABsAAADk/wMAAQAVABsAAADk/wQAAQAVABsAAADk/wUAAQAVABsAAADk/wYAAQAVABwAAADk/wcAAQAVAB0AAADf/wAAAQASABgAAADg/wAAAQATABgAAADh/wAAAQATABgAAADi/wAAAQATABgAAADj/wAAAQATABgAAADk/wAAAQAVABgAAAA=")
 tile_set = SubResource("TileSet_mfdv2")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = 7
 position = Vector2(-257, -94)
-tile_map_data = PackedByteArray("AAABAAcAAAAYAAUAAAAJAAQAAAAYAA8AAAAJAAMAAAAYAA4AAAANAAMAAAAMAAcAAAAMAAMAAAAGABUAAAAOAAMAAAALABUAAAAGAAwAAAAYABUAAAAGAAsAAAAYABQAAAAHAAsAAAAZABQAAAAHAAwAAAAZABUAAAAGAA8AAAAYABMAAAAHAA8AAAAZABMAAAAGAA4AAAAYABIAAAAHAA4AAAAZABIAAAAHAA0AAAAZABIAAAAGAA0AAAAYABIAAAABABEAAAACAAUAAAALABYAAAANAAcAAAA=")
+tile_map_data = PackedByteArray("AAAOAAMAAAALABUAAAAGAAwAAAAYABUAAAAGAAsAAAAYABQAAAAHAAsAAAAZABQAAAAHAAwAAAAZABUAAAAGAA8AAAAYABMAAAAHAA8AAAAZABMAAAAGAA4AAAAYABIAAAAHAA4AAAAZABIAAAAHAA0AAAAZABIAAAAGAA0AAAAYABIAAAALABYAAAANAAcAAAA=")
 tile_set = SubResource("TileSet_iotsf")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.049776644, 0.049776644, 0.049776636, 1)
+
+[node name="Paper" parent="." instance=ExtResource("4_ha73p")]
+position = Vector2(-375, -82)
+
+[node name="Bottle" parent="." instance=ExtResource("5_vcx5n")]
+position = Vector2(-280, 64)
+
+[node name="Clock" parent="." instance=ExtResource("6_56dhn")]
+position = Vector2(-281, -8)
+
+[node name="Torch" parent="." instance=ExtResource("7_ha73p")]
+position = Vector2(-280, 226)
+
+[node name="CandleLight1" type="PointLight2D" parent="Torch"]
+position = Vector2(46, -47)
+texture = SubResource("GradientTexture2D_1pn4d")
+script = ExtResource("3_uwxec")
+
+[node name="Bed" parent="." instance=ExtResource("8_vcx5n")]
+position = Vector2(-310, 85)
+
+[node name="Vase" parent="." instance=ExtResource("9_56dhn")]
+position = Vector2(-209, -75)
+
+[node name="BottomRedCouch" parent="." instance=ExtResource("10_ax3dk")]
+position = Vector2(-138, 225)

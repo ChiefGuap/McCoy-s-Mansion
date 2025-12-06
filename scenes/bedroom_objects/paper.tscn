@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1xspvmlmtvcd"]
+
+[ext_resource type="Script" uid="uid://c2sq2uq1fii65" path="res://scripts/bedroom/paper.gd" id="1_cbjgq"]
+[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://scenes/level_1_painting.gdshader" id="2_jhmja"]
+[ext_resource type="Texture2D" uid="uid://bqdarpnpmlbu6" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset.png" id="3_g4oad"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhfj6"]
+shader = ExtResource("2_jhmja")
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.322000062795
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfj6"]
+size = Vector2(16, 45)
+
+[node name="Paper" type="Node2D"]
+z_index = 50
+script = ExtResource("1_cbjgq")
+
+[node name="PaperSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hhfj6")
+position = Vector2(326, 36)
+texture = ExtResource("3_g4oad")
+centered = false
+region_enabled = true
+region_rect = Rect2(192, 110, 17, 18)
+
+[node name="PaperArea" type="Area2D" parent="."]
+position = Vector2(-41, -17)
+
+[node name="PaperCollision" type="CollisionShape2D" parent="PaperArea"]
+position = Vector2(375, 74.5)
+shape = SubResource("RectangleShape2D_hhfj6")
+
+[connection signal="body_entered" from="PaperArea" to="." method="_on_paper_entered"]
+[connection signal="body_exited" from="PaperArea" to="." method="_on_paper_exited"]

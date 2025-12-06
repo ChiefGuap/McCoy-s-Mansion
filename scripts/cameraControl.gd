@@ -12,7 +12,7 @@ func _on_diningRoomDoor_body_entered(body: PhysicsBody2D) -> void:
 	if (currCameraPos == 1):
 		limit_left = 416
 		limit_top = 64
-		limit_right = 735
+		limit_right = 736
 		limit_bottom = 256
 		currCameraPos = 2
 		parent.position = Vector2(450, 176)

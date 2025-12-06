@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgu3lgen43e1b"]
+
+[ext_resource type="Script" uid="uid://dlgqsnjrv1mp1" path="res://scripts/bedroom/clock.gd" id="1_y58p0"]
+[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://scenes/level_1_painting.gdshader" id="2_eptq3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ha73p"]
+shader = ExtResource("2_eptq3")
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.322000062795
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vcx5n"]
+load_path = "res://.godot/imported/fancy_mansion_furnitureset.png-d23b050a7caff2f4379cc297a38e3e1a.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha73p"]
+size = Vector2(23.5, 66.5)
+
+[node name="Clock" type="Node2D"]
+z_index = 50
+script = ExtResource("1_y58p0")
+
+[node name="ClockSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ha73p")
+position = Vector2(47, -35)
+texture = SubResource("CompressedTexture2D_vcx5n")
+region_enabled = true
+region_rect = Rect2(4, 320.973, 24, 65)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(47, -31.25)
+shape = SubResource("RectangleShape2D_ha73p")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_clock_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_clock_exited"]

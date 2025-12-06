@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://crw051q3ubdig"]
+
+[ext_resource type="Script" uid="uid://kckkkcondk64" path="res://scripts/bedroom/bottle.gd" id="1_emwc0"]
+[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://scenes/level_1_painting.gdshader" id="2_137t8"]
+[ext_resource type="Texture2D" uid="uid://bqdarpnpmlbu6" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset.png" id="3_q2db8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wae8j"]
+shader = ExtResource("2_137t8")
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.322000062795
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wae8j"]
+size = Vector2(29, 25)
+
+[node name="Bottle" type="Node2D"]
+z_index = 50
+script = ExtResource("1_emwc0")
+
+[node name="BottleSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wae8j")
+position = Vector2(47, -35)
+texture = ExtResource("3_q2db8")
+region_enabled = true
+region_rect = Rect2(94, 333.5, 14, 19)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(53.5, -35.5)
+shape = SubResource("RectangleShape2D_wae8j")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_bottlearea_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_bottlearea_exited"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhowlyny5qljd"]
+
+[ext_resource type="Script" uid="uid://b3ae2gbhwk8ak" path="res://scripts/bedroom/vase.gd" id="1_y00i2"]
+[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://scenes/level_1_painting.gdshader" id="2_kh40d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_56dhn"]
+shader = ExtResource("2_kh40d")
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.322000062795
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ax3dk"]
+load_path = "res://.godot/imported/fancy_mansion_furnitureset.png-d23b050a7caff2f4379cc297a38e3e1a.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2dsb"]
+size = Vector2(20, 41)
+
+[node name="Vase" type="Node2D"]
+z_index = 50
+script = ExtResource("1_y00i2")
+
+[node name="VaseSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_56dhn")
+position = Vector2(104, 37)
+texture = SubResource("CompressedTexture2D_ax3dk")
+region_enabled = true
+region_rect = Rect2(385, 225.5, 15, 26.929993)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(103, 39.5)
+shape = SubResource("RectangleShape2D_q2dsb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_vase_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_vase_exited"]
