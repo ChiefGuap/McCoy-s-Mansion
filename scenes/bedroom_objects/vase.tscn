@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhowlyny5qljd"]
 
 [ext_resource type="Script" uid="uid://b3ae2gbhwk8ak" path="res://scripts/bedroom/vase.gd" id="1_y00i2"]
-[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://scenes/level_1_painting.gdshader" id="2_kh40d"]
+[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_kh40d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_56dhn"]
 shader = ExtResource("2_kh40d")

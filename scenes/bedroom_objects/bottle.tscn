@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://crw051q3ubdig"]
 
 [ext_resource type="Script" uid="uid://kckkkcondk64" path="res://scripts/bedroom/bottle.gd" id="1_emwc0"]
-[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://scenes/level_1_painting.gdshader" id="2_137t8"]
+[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_137t8"]
 [ext_resource type="Texture2D" uid="uid://bqdarpnpmlbu6" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset.png" id="3_q2db8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wae8j"]

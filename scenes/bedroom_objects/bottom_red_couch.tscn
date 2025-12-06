@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfai6ujtxibqq"]
 
 [ext_resource type="Script" uid="uid://c15rupbmvqnqu" path="res://scripts/bedroom/bottom_red_couch.gd" id="1_kfl6e"]
-[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://scenes/level_1_painting.gdshader" id="2_abgw7"]
+[ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_abgw7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ax3dk"]
 shader = ExtResource("2_abgw7")
