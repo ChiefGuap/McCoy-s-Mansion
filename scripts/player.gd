@@ -85,9 +85,10 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	
 	collisions.erase(body)
 	body.turn_off_outline()
+	print("Removing outline to ", body, " len ", collisions.size())
 	
 	# ensure target gets passed if the current one was just removed
-	if (collisions.size() > 1):
+	if (collisions.size() > 0):
 		var target = collisions[collision_idx]
 		target.turn_on_outline()
 	
