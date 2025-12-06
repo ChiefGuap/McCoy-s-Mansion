@@ -18,6 +18,7 @@ func _on_clock_exited(body):
 	if body.name == "Player":
 		# Turn outline off
 		(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
+		player_in_area = false
 
 func _process(delta):
 	# Only check for E press when player is inside the area
