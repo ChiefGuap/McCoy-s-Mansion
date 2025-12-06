@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv4y4gw6l7hk7"]
+
+[ext_resource type="Script" path="res://scripts/level_1_painting.gd" id="1_16esy"]
+[ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_gfwov"]
+[ext_resource type="Shader" path="res://scenes/level_1_painting.gdshader" id="1_ra2xy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16esy"]
+shader = ExtResource("1_ra2xy")
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.322000062795
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ra2xy"]
+radius = 43.0
+
+[node name="Painting" type="Node2D"]
+script = ExtResource("1_16esy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_16esy")
+texture = ExtResource("1_gfwov")
+region_enabled = true
+region_rect = Rect2(288, 64, 32, 32)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ra2xy")
+disabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

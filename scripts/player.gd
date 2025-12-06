@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 const DEFAULT_MOVE_VELOCITY = 150
 var movement_speed = DEFAULT_MOVE_VELOCITY
+var collisions: Array[Node] = []
+var collision_idx: int = 0
+
 
 
 func _ready() -> void:
@@ -31,9 +34,55 @@ func _process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.animation = "default"
 	
+	if Input.is_action_just_pressed("interact"):
+		print("PRESSED E")
+		if (collisions.size() > 1):
+			var prev_body = collisions[collision_idx]
+			prev_body.turn_off_outline()
+			
+			collision_idx += 1
+			if (collision_idx >= collisions.size()):
+				collision_idx = 0
+			var body = collisions[collision_idx]
+			
+			body.turn_on_outline()
+	
 	_apply_movement()
 
 
 func _apply_movement() -> void:
 	move_and_slide()
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	var body: Node2D = area.get_parent()
+	
+	# outline this new target, clear prev outlines
+	if body.has_method("turn_on_outline") and body.has_method("turn_off_outline"):
+		collisions.append(body)
+		
+		if (collisions.size() > 1):
+			var prev_body = collisions[collision_idx]
+			prev_body.turn_off_outline()
+			print("Removing outline to ", prev_body, " len ", collisions.size())
+		
+		body.turn_on_outline()
+		collision_idx = collisions.size() - 1 
+		print("Adding outline to ", body, " len ", collisions.size())
+		
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	var body = area.get_parent()
+	var idx = collisions.find(body)
+	
+	if idx == -1:
+		return
+
+	if idx <= collision_idx:
+		collision_idx -= 1
+	
+	if collision_idx < 0:
+		collision_idx = 0
+	
+	collisions.erase(body)
+	body.turn_off_outline()
 	

@@ -1,12 +1,13 @@
-[gd_scene load_steps=39 format=4 uid="uid://b7s4msybe76uy"]
+[gd_scene load_steps=41 format=4 uid="uid://b7s4msybe76uy"]
 
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_nmjpi"]
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="2_xdadj"]
 [ext_resource type="PackedScene" uid="uid://wi5noggrui2y" path="res://scenes/dining_room_objects/chair_left_facing.tscn" id="3_b4j7a"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="3_eqxsl"]
 [ext_resource type="Texture2D" uid="uid://bqdarpnpmlbu6" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset.png" id="3_xdadj"]
-[ext_resource type="PackedScene" uid="uid://bhj6icavqbywv" path="res://scenes/dining_room_objects/chair_front_facing.tscn" id="4_y0kc7"]
-[ext_resource type="PackedScene" uid="uid://fdr40ahsurjo" path="res://scenes/dining_room_objects/chair_up_facing.tscn" id="5_ne2mo"]
+[ext_resource type="PackedScene" uid="uid://bhj6icavqbywv" path="res://scenes/chair_front_facing.tscn" id="4_y0kc7"]
+[ext_resource type="PackedScene" uid="uid://fdr40ahsurjo" path="res://scenes/chair_up_facing.tscn" id="5_ne2mo"]
+[ext_resource type="Script" uid="uid://bl6chguikgvgm" path="res://scripts/highlights.gd" id="6_6cvei"]
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="8_ne2mo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7j8ne"]
@@ -2178,7 +2179,7 @@ shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
 shader_parameter/line_thickness = 1.30000006175
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_que50"]
-radius = 28.713346
+radius = 25.693583
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_172wr"]
 shader = ExtResource("8_ne2mo")
@@ -2195,6 +2196,9 @@ shader_parameter/line_thickness = 1.30000006175
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ne2mo"]
 size = Vector2(20, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ne2mo"]
+radius = 20.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2hoc"]
 shader = ExtResource("8_ne2mo")
@@ -2283,6 +2287,7 @@ position = Vector2(615, 211)
 
 [node name="VaseGolden" type="Node2D" parent="."]
 position = Vector2(415, 64)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="VaseGolden"]
 z_index = 6
@@ -2303,6 +2308,7 @@ shape = SubResource("CircleShape2D_pbc48")
 [node name="VaseWhite" type="Node2D" parent="."]
 position = Vector2(684.9484, 215.10652)
 scale = Vector2(0.8174626, 0.67554355)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="VaseWhite"]
 z_index = 53
@@ -2321,6 +2327,7 @@ shape = SubResource("CapsuleShape2D_ne2mo")
 [node name="VaseYellow" type="Node2D" parent="."]
 position = Vector2(718, 120.5)
 scale = Vector2(0.7, 0.6)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="VaseYellow"]
 z_index = 6
@@ -2338,6 +2345,7 @@ shape = SubResource("CircleShape2D_6cvei")
 [node name="VaseBlue" type="Node2D" parent="."]
 position = Vector2(438.99997, 123.00001)
 scale = Vector2(0.81000245, 0.70361215)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="VaseBlue"]
 z_index = 6
@@ -2355,6 +2363,7 @@ shape = SubResource("CircleShape2D_que50")
 [node name="VaseFlowery" type="Node2D" parent="."]
 position = Vector2(439, 221)
 scale = Vector2(0.90000135, 0.8388159)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="VaseFlowery"]
 z_index = 53
@@ -2370,6 +2379,7 @@ shape = SubResource("CircleShape2D_hey2k")
 
 [node name="Drawer" type="Node2D" parent="."]
 position = Vector2(439, 235)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="Drawer"]
 z_index = 52
@@ -2385,8 +2395,14 @@ region_rect = Rect2(165, 358, 22, 26)
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_ne2mo")
 
+[node name="Area2D" type="Area2D" parent="Drawer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drawer/Area2D"]
+shape = SubResource("CircleShape2D_ne2mo")
+
 [node name="Table1" type="Node2D" parent="."]
 position = Vector2(439, 135)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="Table1"]
 z_index = 5
@@ -2402,8 +2418,14 @@ region_rect = Rect2(70, 34, 20, 28)
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_6cvei")
 
+[node name="Area2D" type="Area2D" parent="Table1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table1/Area2D"]
+shape = SubResource("CircleShape2D_ne2mo")
+
 [node name="Table2" type="Node2D" parent="."]
 position = Vector2(711, 136)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="Table2"]
 z_index = 5
@@ -2419,8 +2441,14 @@ region_rect = Rect2(320, 352, 48, 32)
 position = Vector2(-1, -3)
 shape = SubResource("RectangleShape2D_que50")
 
+[node name="Area2D" type="Area2D" parent="Table2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table2/Area2D"]
+shape = SubResource("CircleShape2D_ne2mo")
+
 [node name="Table3" type="Node2D" parent="."]
 position = Vector2(695, 232)
+script = ExtResource("6_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="Table3"]
 z_index = 52
@@ -2436,3 +2464,8 @@ position = Vector2(-695, -232)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table3/StaticBody2D"]
 position = Vector2(695, 235.5)
 shape = SubResource("RectangleShape2D_hey2k")
+
+[node name="Area2D" type="Area2D" parent="Table3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table3/Area2D"]
+shape = SubResource("CircleShape2D_ne2mo")
