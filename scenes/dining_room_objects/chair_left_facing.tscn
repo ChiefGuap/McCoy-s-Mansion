@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://wi5noggrui2y"]
+[gd_scene load_steps=8 format=3 uid="uid://cyaxxarxf271r"]
 
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="1_7hbps"]
-[ext_resource type="Script" uid="uid://pt36a2kmligg" path="res://scripts/highlightsChairLeftFacing.gd" id="1_mldx5"]
+[ext_resource type="Script" uid="uid://pt36a2kmligg" path="res://scripts/dining_room/highlightsChairLeftFacing.gd" id="1_mldx5"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="2_mldx5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wo48x"]
