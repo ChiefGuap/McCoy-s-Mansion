@@ -202,7 +202,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("7_hotbar")
 
 [node name="BlackScreen" type="ColorRect" parent="UI_Layer"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
