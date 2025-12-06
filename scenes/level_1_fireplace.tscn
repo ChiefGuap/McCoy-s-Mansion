@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://xpoqhrg7wk6t"]
+
+[ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_n5gcm"]
+[ext_resource type="Script" uid="uid://wqcxq7oxqwwg" path="res://scripts/fireplace_light_2d.gd" id="2_7ara4"]
+
+[sub_resource type="Gradient" id="Gradient_7ara4"]
+colors = PackedColorArray(1, 0.23529412, 0.003921569, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_11sdf"]
+gradient = SubResource("Gradient_7ara4")
+fill = 1
+fill_from = Vector2(0.5, 0.6)
+fill_to = Vector2(0.8, 0.3)
+metadata/_snap_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1dkb"]
+radius = 55.0
+
+[node name="Level1Fireplace" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n5gcm")
+region_enabled = true
+region_rect = Rect2(256, 336, 48, 48)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_11sdf")
+texture_scale = 1.73
+script = ExtResource("2_7ara4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_k1dkb")
