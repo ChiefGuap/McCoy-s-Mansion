@@ -65,6 +65,24 @@ func add_to_hotbar(item: Node2D) -> void:
 		slots[idx].get_child(0).texture = tex
 	regenerate_hotbar_label()
 
+func add_to_hotbarv2(item: Node2D, sprite_name: String) -> void:
+	var idx: int = 0;
+	for i in range(maxItems):
+		if items[i] == null:
+			idx = i
+			break
+	var sprite: Sprite2D = item.get_node(sprite_name)
+	items[idx] = item
+	var tex := sprite.texture
+	if sprite.region_enabled:
+		var atlas_tex = AtlasTexture.new()
+		atlas_tex.atlas = tex
+		atlas_tex.region = sprite.region_rect
+		slots[idx].get_child(0).texture = atlas_tex
+	else:
+		slots[idx].get_child(0).texture = tex
+	regenerate_hotbar_label()
+
 func get_held_item() -> Node2D:
 	return items[holding]
 

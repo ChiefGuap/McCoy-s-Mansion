@@ -39,8 +39,8 @@ func handle_interaction():
 	# PHASE 2: Take the drinks
 	elif is_open and not drinks_taken:
 		drinks_taken = true
-		#player_body.add_to_inventory("Vintage Spirits")
-		
+		var hotbar = get_tree().root.find_child("Hotbar", true, false)
+		hotbar.add_to_hotbarv2(self, "DrinksSprite")
 		# SWITCH TO THE NEW SEPARATE TEXTURE
 		# 1. Turn off region_enabled because this new PNG is a standalone image, not a sheet
 		sprite.region_enabled = false
