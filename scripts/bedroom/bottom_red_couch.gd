@@ -1,5 +1,7 @@
 extends Interactable
 
+@onready var box = $"../../Player/DialougeBox"
+@onready var label = $"../../Player/DialougeBox/DialougeText"
 var player_in_area = false  # Tracks if player is inside the interaction zone
 
 func _ready():
@@ -23,5 +25,15 @@ func _on_bottomredcouch_exited(body):
 func _process(delta):
 	# Only check for E press when player is inside the area
 	if player_in_area and Input.is_action_just_pressed("interact"):
-		#jumpscare
-		pass
+		if randf() < .60:
+			box.visible = true
+			label.visible = true
+			label.text = "Fancy couch!"
+			await get_tree().create_timer(2.0).timeout 
+			box.visible = false
+			label.visible = false
+			return
+		else:
+			#jumpscare
+			print("Add jumpscare here")
+			return

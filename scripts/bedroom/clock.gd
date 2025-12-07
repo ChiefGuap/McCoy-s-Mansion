@@ -46,8 +46,18 @@ func _process(delta: float):
 	# Check for E press only when player is in area
 	if player_in_area and Input.is_action_just_pressed("interact"):
 		if !Level3.paper_done:
-			#jumpscare
-			return
+			if randf() < .60:
+				box.visible = true
+				label.visible = true
+				label.text = "The time's wrong"
+				await get_tree().create_timer(2.0).timeout 
+				box.visible = false
+				label.visible = false
+				return
+			else:
+				#jumpscare
+				print("Add jumpscare here")
+				return
 		
 		# 1. If the note is already unlocked, hitting E toggles the note
 		if note_unlocked:

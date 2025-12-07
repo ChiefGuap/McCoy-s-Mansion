@@ -45,8 +45,18 @@ func _process(delta):
 		# 1. HANDLE TOGGLE (Priority 1: If item is already found)
 		# -----------------------------------------------
 		if !Level3.clock_done:
-			#jumpscare
-			return
+			if randf() < .60:
+				box.visible = true
+				label.visible = true
+				label.text = "Looks Comfy"
+				await get_tree().create_timer(2.0).timeout 
+				box.visible = false
+				label.visible = false
+				return
+			else:
+				#jumpscare
+				print("Add jumpscare here")
+				return
 		
 		if popup_available:
 			toggle_popup_display()

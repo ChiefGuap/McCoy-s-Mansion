@@ -59,9 +59,12 @@ func start_cutscene():
 	
 	await show_text("I sense someone...", mccoy)
 	await get_tree().create_timer(2.0).timeout
-	dialogue_box.size = Vector2(70, 25)
-	await show_text("I need hostages for my final plan!", mccoy)
-	await get_tree().create_timer(3.0).timeout
+	
+	await show_text("I need hostages", mccoy)
+	await get_tree().create_timer(2.5).timeout
+	
+	await show_text("for my final plan!", mccoy)
+	await get_tree().create_timer(2.5).timeout
 	
 	hide_text()
 	

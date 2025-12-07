@@ -25,9 +25,6 @@ func _input(event):
 	# Check if the "interact" key (E) was pressed
 	if event.is_action_pressed("interact") and player_in_area:
 		# If player is near, toggle the popup
-		if checked && randf() < 0.4:
-			#jumpscare
-			return
 		
 		var item = hotbar.get_held_item()
 		print(item)

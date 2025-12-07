@@ -48,8 +48,23 @@ func _process(delta):
 		# 1. HANDLE CLUE TOGGLE (Priority 1: If the vase is already broken)
 		# -----------------------------------------------
 		if !Level3.bed_done:
-			#jumpscare
-			return
+			if randf() < .60:
+				box.visible = true
+				label.visible = true
+				player.lock_player()
+				label.text = "What's inside?"
+				await get_tree().create_timer(2.0).timeout 
+				
+				label.text = "Hands won't fit"
+				await get_tree().create_timer(2.0).timeout 
+				player.unlock_player()
+				box.visible = false
+				label.visible = false
+				return
+			else:
+				#jumpscare
+				print("Add jumpscare here")
+				return
 			
 		if vase_broken:
 			toggle_clue_display()

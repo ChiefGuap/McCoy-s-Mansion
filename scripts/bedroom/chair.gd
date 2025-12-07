@@ -36,8 +36,18 @@ func _process(delta):
 	# Only check for E press when player is inside the area
 	if player_in_area and Input.is_action_just_pressed("interact"):
 		if !Level3.vase_done:
-			#jumpscare
-			return
+			if randf() < .60:
+				box.visible = true
+				label.visible = true
+				label.text = "Who sat here?"
+				await get_tree().create_timer(2.0).timeout 
+				box.visible = false
+				label.visible = false
+				return
+			else:
+				#jumpscare
+				print("Add jumpscare here")
+				return
 			
 		# If the chair is already pushed in, do nothing (or show a simple message)
 		if chair_pushed_in:
