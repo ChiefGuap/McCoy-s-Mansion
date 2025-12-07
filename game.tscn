@@ -445,6 +445,7 @@ z_index = 50
 scale = Vector2(1e-05, 1e-05)
 
 [node name="DialougeBox" parent="Player" instance=ExtResource("6_vef74")]
+unique_name_in_owner = true
 
 [node name="DialougeText" parent="Player/DialougeBox" index="0"]
 theme_override_fonts/font = SubResource("FontVariation_iotsf")
