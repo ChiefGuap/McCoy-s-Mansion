@@ -2,8 +2,7 @@ extends Control
 
 func _ready() -> void:
 	$VBoxContainer/RetryButton.pressed.connect(_on_retry_pressed)
-	# If you added a quit button:
-	# $VBoxContainer/QuitButton.pressed.connect(_on_quit_pressed)
+	$VBoxContainer/QuitButton.pressed.connect(_on_quit_pressed)
 
 
 func _on_retry_pressed() -> void:

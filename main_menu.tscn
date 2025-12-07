@@ -40,26 +40,26 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_fu7sn")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 59
 text = "McCoy's Mansion
 "
 
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jix8l")
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 30
 text = "Start Game"
 
 [node name="HowToPlay" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jix8l")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "How to Play"
 
 [node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jix8l")
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 30
 text = "Settings
 "
 
