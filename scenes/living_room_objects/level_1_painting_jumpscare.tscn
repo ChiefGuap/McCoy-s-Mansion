@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dit53tr38kodc"]
+
+[ext_resource type="Script" uid="uid://fdcdo1pf44ii" path="res://scripts/living_room/level1_painting_jumpscare.gd" id="1_sq60k"]
+[ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="2_sq60k"]
+[ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="3_jjq7i"]
+[ext_resource type="Texture2D" uid="uid://c7e1mmsi2lc50" path="res://assets/jumpscares/jumpscare.png" id="4_oslob"]
+[ext_resource type="AudioStream" uid="uid://okb451g3tvx" path="res://assets/jumpscares/jumpscare.mp3" id="5_fr80h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16esy"]
+shader = ExtResource("2_sq60k")
+shader_parameter/outline_enabled = true
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.322000062795
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ra2xy"]
+radius = 45.0
+
+[node name="Painting2" type="Node2D"]
+script = ExtResource("1_sq60k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_16esy")
+texture = ExtResource("3_jjq7i")
+region_enabled = true
+region_rect = Rect2(258, 63, 28, 35)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ra2xy")
+
+[node name="JumpscareLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ScaryFace" type="TextureRect" parent="JumpscareLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_oslob")
+
+[node name="ScreamSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fr80h")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
