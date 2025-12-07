@@ -15,6 +15,10 @@ run/main_scene="uid://doo8y4es3kghu"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Level3="*res://scenes/level_3.gd"
+
 [input]
 
 move_right={

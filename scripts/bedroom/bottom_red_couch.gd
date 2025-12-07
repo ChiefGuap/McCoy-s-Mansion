@@ -23,4 +23,5 @@ func _on_bottomredcouch_exited(body):
 func _process(delta):
 	# Only check for E press when player is inside the area
 	if player_in_area and Input.is_action_just_pressed("interact"):
-		print("E was pressed while in area!")
+		#jumpscare
+		pass

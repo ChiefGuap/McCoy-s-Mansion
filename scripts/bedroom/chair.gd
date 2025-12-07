@@ -35,7 +35,10 @@ func _on_chair_exited(body):
 func _process(delta):
 	# Only check for E press when player is inside the area
 	if player_in_area and Input.is_action_just_pressed("interact"):
-		
+		if !Level3.vase_done:
+			#jumpscare
+			return
+			
 		# If the chair is already pushed in, do nothing (or show a simple message)
 		if chair_pushed_in:
 			return 
@@ -58,6 +61,7 @@ func _process(delta):
 		label.text = "Pushed the chair!"
 		
 		# --- PERFORM THE PUSH ACTION ---
+		Level3.chair_done = true
 		chair_pushed_in = true
 		self.position += PUSHED_IN_POSITION # Move the entire Chair node (and its children)
 		

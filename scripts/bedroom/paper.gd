@@ -9,6 +9,8 @@ var player_in_area = false  # Tracks if player is inside the interaction zone
 @onready var dirty = $Original/ColorRect
 @onready var blue = $Original/Blue
 
+var checked = false
+
 
 func _ready():
 	# Ensure the outline is invisible (thickness 0) when the game starts
@@ -23,6 +25,10 @@ func _input(event):
 	# Check if the "interact" key (E) was pressed
 	if event.is_action_pressed("interact"):
 		# If player is near, toggle the popup
+		if checked && randf() < 0.4:
+			#jumpscare
+			return
+		
 		var item = hotbar.get_held_item()
 		print(item)
 		if item == bottle:
@@ -30,7 +36,8 @@ func _input(event):
 			dirty.visible = false
 		if item == torch:
 			blue.visible = false
-			
+			checked = true
+			Level3.paper_done = true
 		
 		if player_in_area:
 			popup_layer.visible = not popup_layer.visible

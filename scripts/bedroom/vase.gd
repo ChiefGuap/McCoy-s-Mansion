@@ -47,6 +47,10 @@ func _process(delta):
 		# -----------------------------------------------
 		# 1. HANDLE CLUE TOGGLE (Priority 1: If the vase is already broken)
 		# -----------------------------------------------
+		if !Level3.bed_done:
+			#jumpscare
+			return
+			
 		if vase_broken:
 			toggle_clue_display()
 			return # Stop processing other logic
@@ -70,6 +74,7 @@ func _process(delta):
 		
 		# VASE BREAKS
 		vase_broken = true
+		Level3.vase_done = true
 		# If you have an Area2D, uncomment the line below to disable collision:
 		# get_node("Area2D").set_deferred("monitoring", false) 
 		

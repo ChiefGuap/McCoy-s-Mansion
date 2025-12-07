@@ -44,6 +44,10 @@ func _process(delta):
 		# -----------------------------------------------
 		# 1. HANDLE TOGGLE (Priority 1: If item is already found)
 		# -----------------------------------------------
+		if !Level3.clock_done:
+			#jumpscare
+			return
+		
 		if popup_available:
 			toggle_popup_display()
 			return # Stop processing other logic
@@ -74,6 +78,7 @@ func _process(delta):
 			
 			# --- Reveal Popup ---
 			popup_available = true # Item is now found and available
+			Level3.bed_done = true
 			toggle_popup_display() # Show the popup immediately
 			
 			# NOTE: Player remains locked until they press 'E' again to close the popup.

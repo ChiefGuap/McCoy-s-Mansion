@@ -1,7 +1,7 @@
 extends Node2D
 
 # --- TIMER STATE -------------------------------------------------
-const START_TIME := 60                # 6 minutes
+const START_TIME := 360                # 6 minutes
 const LOW_TIME_THRESHOLD := 30         # 3 minute
 const CRITICAL_TIME_THRESHOLD := 10    # last 60 seconds
 

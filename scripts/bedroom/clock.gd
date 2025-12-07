@@ -45,6 +45,9 @@ func _process(delta: float):
 
 	# Check for E press only when player is in area
 	if player_in_area and Input.is_action_just_pressed("interact"):
+		if !Level3.paper_done:
+			#jumpscare
+			return
 		
 		# 1. If the note is already unlocked, hitting E toggles the note
 		if note_unlocked:
@@ -140,6 +143,7 @@ func _on_time_input_submitted(submitted_text: String):
 	if current_time == "06:07":
 		label.text = "The clock chimes an odd tune. A note has appeared!"
 		note_unlocked = true # Note is now available for toggling
+		Level3.clock_done = true
 	
 	# Final cleanup
 	await get_tree().create_timer(0.5).timeout

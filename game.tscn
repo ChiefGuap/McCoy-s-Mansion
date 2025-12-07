@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7s4msybe76uy" path="res://scenes/level_2.tscn" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="6_cam_ctrl"]
 [ext_resource type="PackedScene" uid="uid://c32asmo0ve12k" path="res://scenes/DialogueBox.tscn" id="6_vef74"]
-[ext_resource type="PackedScene" uid="uid://btgyqt25ysr0x" path="res://ui_layer.tscn" id="8_mfdv2"]
+[ext_resource type="PackedScene" path="res://ui_layer.tscn" id="8_mfdv2"]
 [ext_resource type="Script" uid="uid://cy16rhrbhu81y" path="res://scripts/cutscene.gd" id="9_vef74"]
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="10_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://c136y2m87miip" path="res://assets/IntroWoods/McCoySprite/Assets.png" id="11_iotsf"]

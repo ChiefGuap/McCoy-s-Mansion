@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=4 uid="uid://ciuide3jybsyu"]
+[gd_scene load_steps=28 format=4 uid="uid://ciuide3jybsyu"]
 
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="1_h23n6"]
+[ext_resource type="Script" uid="uid://bqoqfrv2gbf20" path="res://scenes/level_3.gd" id="1_q2dsb"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="2_uwxec"]
 [ext_resource type="Script" uid="uid://qf10fuw5ufoa" path="res://scripts/living_room/level1_candle_light_1.gd" id="3_uwxec"]
 [ext_resource type="PackedScene" uid="uid://c1xspvmlmtvcd" path="res://scenes/bedroom_objects/paper.tscn" id="4_ha73p"]
@@ -1148,6 +1149,7 @@ load_path = "res://.godot/imported/fancy_mansion_furnitureset.png-d23b050a7caff2
 size = Vector2(57, 40)
 
 [node name="Level3" type="Node2D"]
+script = ExtResource("1_q2dsb")
 
 [node name="Wall" type="TileMapLayer" parent="."]
 z_index = 5
