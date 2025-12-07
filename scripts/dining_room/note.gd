@@ -9,6 +9,10 @@ func _ready() -> void:
 
 func make_visible() -> void:
 	popup_layer.visible = true
+	var hotbar = get_tree().root.find_child("Hotbar", true, false)
+	hotbar.visible = false
 
 func make_invisible() -> void:
 	popup_layer.visible = false
+	var hotbar = get_tree().root.find_child("Hotbar", true, false)
+	hotbar.visible = true
