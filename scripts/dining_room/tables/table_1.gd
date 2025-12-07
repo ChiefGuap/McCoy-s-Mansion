@@ -9,7 +9,6 @@ func _process(delta: float) -> void:
 	pass
 
 func interact() -> void:
-	print("Interacted with ")
 	var hotbar = get_tree().root.find_child("Hotbar", true, false)
 	var item: Node2D = hotbar.get_held_item()
 	if (item != null):
