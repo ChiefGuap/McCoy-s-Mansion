@@ -500,9 +500,12 @@ shape = SubResource("RectangleShape2D_eow3j")
 position = Vector2(0, 176)
 shape = SubResource("RectangleShape2D_ryrav")
 
-[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("animation_player")]
+[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("player", "animation_player", "dialogue_box", "dialogue_label")]
 script = ExtResource("9_vef74")
+player = NodePath("../Player")
 animation_player = NodePath("../AnimationPlayer")
+dialogue_box = NodePath("../Player/DialougeBox")
+dialogue_label = NodePath("../Player/DialougeBox/DialougeText")
 
 [node name="Node2D" type="Node2D" parent="."]
 
