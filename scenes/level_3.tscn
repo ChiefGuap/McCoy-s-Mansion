@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d2bjqufc0qvhp" path="res://scenes/bedroom_objects/torch.tscn" id="7_ha73p"]
 [ext_resource type="PackedScene" uid="uid://dxtoud36rk7b6" path="res://scenes/bedroom_objects/bed.tscn" id="8_vcx5n"]
 [ext_resource type="PackedScene" uid="uid://dhowlyny5qljd" path="res://scenes/bedroom_objects/vase.tscn" id="9_56dhn"]
-[ext_resource type="PackedScene" uid="uid://dfai6ujtxibqq" path="res://scenes/bedroom_objects/chair.tscn" id="10_ax3dk"]
+[ext_resource type="PackedScene" uid="uid://luo0ou7epray" path="res://scenes/bedroom_objects/chair.tscn" id="10_ax3dk"]
 [ext_resource type="Script" uid="uid://8co5q80loyyg" path="res://scripts/bedroom/bottom_red_couch.gd" id="11_ax3dk"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="12_q2dsb"]
 

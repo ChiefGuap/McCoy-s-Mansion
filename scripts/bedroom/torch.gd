@@ -1,26 +1,20 @@
-extends Node2D
+extends Interactable
 
-@onready var sprite = $TorchSprite
-var player_in_area = false  # Tracks if player is inside the interaction zone
+func _ready() -> void:
+	turn_on_interactable()
+	pass # Replace with function body.
 
-func _ready():
-	# Ensure the outline is invisible (thickness 0) when the game starts
-	(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
+func _process(delta: float) -> void:
+	pass
 
-func _on_torch_entered(body):
-	if body.name == "Player":
-		# Turn outline on by setting thickness to 1.0
-		(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 1.0)
-		player_in_area = true
-		
+func interact() -> void:
+	turn_off_interactable()
+	var hotbar = get_tree().root.find_child("Hotbar", true, false)
+	hotbar.add_to_hotbar(self)
+	global_position = Vector2(1000, 1000)
+	self.visible = false
 
-func _on_torch_exited(body):
-	if body.name == "Player":
-		# Turn outline off
-		(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
-		player_in_area = false
-
-func _process(delta):
-	# Only check for E press when player is inside the area
-	if player_in_area and Input.is_action_just_pressed("interact"):
-		print("E was pressed while in area!")
+func use_item() -> void:
+	turn_on_interactable()
+	self.visible = true
+	

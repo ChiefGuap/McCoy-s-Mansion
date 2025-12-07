@@ -35,8 +35,13 @@ func _ready():
 
 func _process(delta: float):
 	# Only allow a new interaction when the player is in the area and NOT waiting for input
+		
 	if player_in_area and Input.is_action_just_pressed("interact") and not waiting_for_input:
 		start_time_prompt()
+		if current_time == "06:07":
+			popup_layer = $note
+		
+		
 
 
 func start_time_prompt():

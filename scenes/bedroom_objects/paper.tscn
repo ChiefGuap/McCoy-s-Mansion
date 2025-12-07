@@ -17,7 +17,7 @@ size = Vector2(16, 37)
 z_index = 50
 script = ExtResource("1_cbjgq")
 
-[node name="PaperSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_hhfj6")
 position = Vector2(326, 36)
 texture = ExtResource("3_g4oad")
@@ -32,9 +32,9 @@ position = Vector2(-41, -17)
 position = Vector2(375, 70.5)
 shape = SubResource("RectangleShape2D_hhfj6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Original" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="Original"]
 modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="Original"]
 offset_left = 320.0
 offset_top = 44.0
 offset_right = 820.0
@@ -53,7 +53,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Label" type="Label" parent="CanvasLayer/NinePatchRect"]
+[node name="Label" type="Label" parent="Original/NinePatchRect"]
 z_index = 5
 layout_mode = 1
 anchors_preset = 8
@@ -80,7 +80,7 @@ foundation of the chime."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer/NinePatchRect"]
+[node name="Label2" type="Label" parent="Original/NinePatchRect"]
 z_index = 5
 layout_mode = 1
 anchors_preset = 8
@@ -101,7 +101,7 @@ text = "Your Friend
 McCoy"
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="CanvasLayer/NinePatchRect"]
+[node name="Label3" type="Label" parent="Original/NinePatchRect"]
 z_index = 5
 layout_mode = 1
 anchors_preset = 8
@@ -118,6 +118,64 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "My Dear,"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Original"]
+z_index = 50
+offset_left = 410.0
+offset_top = 137.0
+offset_right = 763.0
+offset_bottom = 585.0
+color = Color(0.5882353, 0.29411766, 0, 1)
+
+[node name="Label" type="Label" parent="Original/ColorRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -143.5
+offset_right = 226.0
+offset_bottom = 101.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Too dirty to read
+Try to clean it"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blue" type="ColorRect" parent="Original"]
+z_index = 40
+offset_left = 446.0
+offset_top = 205.0
+offset_right = 707.0
+offset_bottom = 566.0
+color = Color(6.738305e-07, 0.7479761, 0.7485045, 1)
+
+[node name="Label" type="Label" parent="Original/Blue"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -143.5
+offset_right = 226.0
+offset_bottom = 101.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Too wet to read
+Try to warm it up"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="body_entered" from="PaperArea" to="." method="_on_paper_entered"]

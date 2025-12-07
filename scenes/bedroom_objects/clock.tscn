@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgu3lgen43e1b"]
+[gd_scene load_steps=8 format=3 uid="uid://dgu3lgen43e1b"]
 
 [ext_resource type="Script" uid="uid://dlgqsnjrv1mp1" path="res://scripts/bedroom/clock.gd" id="1_y58p0"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_eptq3"]
+[ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="3_6omhm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ha73p"]
 shader = ExtResource("2_eptq3")
@@ -124,6 +125,94 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 text = "Press ENTER to set it"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="note" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="note"]
+modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="note"]
+offset_left = 320.0
+offset_top = 44.0
+offset_right = 820.0
+offset_bottom = 614.0
+texture = ExtResource("3_6omhm")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="note/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -108.0
+offset_right = 230.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Seek the next instruction near the
+throne of slumber,
+the widest, softest foundation
+that measures the
+night with its gentle, quiet
+stillness.
+The clue rests by the
+head of the dreamer."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="note/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 58.0
+offset_top = 165.0
+offset_right = 556.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Your Friend
+McCoy"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="note/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -232.0
+offset_right = 306.0
+offset_bottom = -131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "My Dear,"
 vertical_alignment = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_clock_entered"]

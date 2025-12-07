@@ -1,20 +1,36 @@
-extends Node2D
+extends Interactable
 
 @onready var paper = $PaperSprite
 var player_in_area = false  # Tracks if player is inside the interaction zone
-@onready var popup_layer = $CanvasLayer
+@onready var popup_layer = $Original
 @onready var hotbar = $"../../UI_Layer/Hotbar"
+@onready var bottle = $"../Bottle"
+@onready var torch = $"../Torch"
+@onready var dirty = $Original/ColorRect
+@onready var blue = $Original/Blue
 
 
 func _ready():
 	# Ensure the outline is invisible (thickness 0) when the game starts
-	(paper.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
 	popup_layer.visible = false
+	turn_on_interactable()
+	
+
+func interact() -> void:
+	pass
 
 func _input(event):
 	# Check if the "interact" key (E) was pressed
 	if event.is_action_pressed("interact"):
 		# If player is near, toggle the popup
+		var item = hotbar.get_held_item()
+		print(item)
+		if item == bottle:
+			dirty.visible = false
+		if item == torch:
+			blue.visible = false
+			
+		
 		if player_in_area:
 			popup_layer.visible = not popup_layer.visible
 			if (popup_layer.visible):
@@ -25,15 +41,11 @@ func _input(event):
 
 func _on_paper_entered(body):
 	if body.name == "Player":
-		# Turn outline on by setting thickness to 1.0
-		(paper.material as ShaderMaterial).set_shader_parameter("line_thickness", 1.0)
 		player_in_area = true
 		
 
 func _on_paper_exited(body):
 	if body.name == "Player":
-		# Turn outline off
-		(paper.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
 		player_in_area = false
 		popup_layer.visible = false
-		hotbar.visible = false
+		hotbar.visible = true

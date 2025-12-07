@@ -18,7 +18,7 @@ size = Vector2(26, 30)
 z_index = 50
 script = ExtResource("1_my26j")
 
-[node name="TorchSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_vcx5n")
 position = Vector2(47, -35)
 texture = SubResource("CompressedTexture2D_56dhn")
