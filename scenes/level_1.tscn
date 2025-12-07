@@ -440,7 +440,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAMAAcAAAAAAAEAAAAMAAgAAAAAAAIAAAAFAAg
 tile_set = SubResource("TileSet_feb5d")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.049776644, 0.049776644, 0.049776636, 1)
 
 [node name="McCoyPainting" parent="." instance=ExtResource("3_rus8k")]

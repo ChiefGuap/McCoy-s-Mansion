@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-
 const DEFAULT_MOVE_VELOCITY = 150
 var movement_speed = DEFAULT_MOVE_VELOCITY
 var collisions: Array[Node] = []
 var collision_idx: int = 0
-
+# 🔒 Control flag to lock movement
+var is_locked: bool = false 
 
 
 func _ready() -> void:
@@ -15,25 +15,35 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	velocity = Vector2.ZERO
 	
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-		$AnimatedSprite2D.flip_h = false
-	if Input.is_action_pressed("move_left"):
-		velocity.x += -1
-		$AnimatedSprite2D.flip_h = true
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y += -1
+	# 🌟 Only allow movement input processing if the player is NOT locked
+	if not is_locked:
+		velocity = Vector2.ZERO
+		
+		if Input.is_action_pressed("move_right"):
+			velocity.x += 1
+			$AnimatedSprite2D.flip_h = false
+		if Input.is_action_pressed("move_left"):
+			velocity.x += -1
+			$AnimatedSprite2D.flip_h = true
+		if Input.is_action_pressed("move_down"):
+			velocity.y += 1
+		if Input.is_action_pressed("move_up"):
+			velocity.y += -1
+		
+		if velocity.length() > 0:
+			velocity = velocity.normalized() * movement_speed
+			$AnimatedSprite2D.animation = "run"
+		else:
+			# Ensure animation is "default" if input is released and player is not locked
+			$AnimatedSprite2D.animation = "default"
 	
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * movement_speed
-		$AnimatedSprite2D.animation = "run"
+	# 🛑 If locked, ensure velocity is zero and set to idle animation
 	else:
+		velocity = Vector2.ZERO
 		$AnimatedSprite2D.animation = "default"
-	
+
+	# The 'interact' logic remains active regardless of the lock state
 	if Input.is_action_just_pressed("interact"):
 		print("PRESSED E")
 		if (collisions.size() > 1):
@@ -52,6 +62,25 @@ func _process(delta: float) -> void:
 
 func _apply_movement() -> void:
 	move_and_slide()
+
+# -----------------
+# LOCK/UNLOCK FUNCTIONS
+# -----------------
+
+func lock_player() -> void:
+	is_locked = true
+	# Immediately stop any current movement
+	velocity = Vector2.ZERO
+	$AnimatedSprite2D.animation = "default"
+	print("Player locked.")
+
+func unlock_player() -> void:
+	is_locked = false
+	print("Player unlocked.")
+
+# -----------------
+# INTERACTABLE COLLISION FUNCTIONS
+# -----------------
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var body: Node2D = area.get_parent()
@@ -91,4 +120,3 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	if (collisions.size() > 0):
 		var target = collisions[collision_idx]
 		target.turn_on_outline()
-	

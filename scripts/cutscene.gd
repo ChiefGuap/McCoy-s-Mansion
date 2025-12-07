@@ -7,12 +7,13 @@ extends Node
 @export var dialogue_box: Control 
 @export var dialogue_label: Label 
 
+
 func play_intro_cutscene():
 	print("🎬 CUTSCENE STARTED")
 	
 	# 1. LOCK PLAYER
 	if player:
-		player.set_physics_process(false)
+		player.lock_player()
 	
 	# 2. PLAY ANIMATION (0s -> 7s)
 	if animation_player:
@@ -33,9 +34,11 @@ func play_intro_cutscene():
 		dialogue_label.add_theme_font_size_override("font_size", 7)
 		dialogue_label.text = "I need to escape"
 		# This is the secret sauce: Force it visible in case the animation hid it
+		dialogue_label.position.y += 3
 		dialogue_label.visible = true 
 		# Ensure the color is white (or readable) just in case
 		dialogue_label.modulate = Color(1, 1, 1, 1) 
+		
 	
 	# Wait 3 seconds for reading
 	await get_tree().create_timer(3.0).timeout
@@ -47,6 +50,6 @@ func play_intro_cutscene():
 	
 	# 6. UNLOCK PLAYER
 	if player:
-		player.set_physics_process(true)
+		player.unlock_player()
 	
 	print("🏁 CUTSCENE FINISHED")
