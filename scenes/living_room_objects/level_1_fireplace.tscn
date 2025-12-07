@@ -1,11 +1,48 @@
-[gd_scene load_steps=10 format=3 uid="uid://xpoqhrg7wk6t"]
+[gd_scene load_steps=17 format=3 uid="uid://xpoqhrg7wk6t"]
 
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="1_11sdf"]
 [ext_resource type="Script" uid="uid://de65o5v1d2j6g" path="res://scripts/living_room/level_1_fireplace.gd" id="1_k1dkb"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_n5gcm"]
 [ext_resource type="Script" uid="uid://wqcxq7oxqwwg" path="res://scripts/living_room/fireplace_light_2d.gd" id="2_7ara4"]
+[ext_resource type="Texture2D" uid="uid://bwh0dx70enxh3" path="res://assets/FancyMansion_Furniture/fireplace_animation.png" id="5_3at8b"]
+[ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="6_l5tqr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1dkb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3at8b"]
+shader = ExtResource("1_11sdf")
+shader_parameter/outline_enabled = true
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 1.322000062795
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5tqr"]
+atlas = ExtResource("5_3at8b")
+region = Rect2(0, 0, 46, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyyo8"]
+atlas = ExtResource("5_3at8b")
+region = Rect2(46, 0, 46, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rucxy"]
+atlas = ExtResource("5_3at8b")
+region = Rect2(0, 44, 46, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nuq57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5tqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyyo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rucxy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5tqr"]
 shader = ExtResource("1_11sdf")
 shader_parameter/outline_enabled = true
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
@@ -30,11 +67,21 @@ size = Vector2(42, 40)
 [node name="Level1Fireplace" type="Node2D"]
 script = ExtResource("1_k1dkb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_k1dkb")
+[node name="BaseFireplace" type="AnimatedSprite2D" parent="."]
+z_index = 5
+material = SubResource("ShaderMaterial_3at8b")
+position = Vector2(6.1035156e-05, 3.0517578e-05)
+sprite_frames = SubResource("SpriteFrames_nuq57")
+autoplay = "default"
+frame_progress = 0.18707639
+
+[node name="BaseExtinguishedSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+material = SubResource("ShaderMaterial_l5tqr")
 texture = ExtResource("1_n5gcm")
 region_enabled = true
-region_rect = Rect2(256, 336, 48, 48)
+region_rect = Rect2(193, 341, 46, 44)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = SubResource("GradientTexture2D_11sdf")
@@ -51,6 +98,63 @@ shape = SubResource("CircleShape2D_k1dkb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_7ara4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 5
+position = Vector2(576.00006, 248)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_nuq57")
+autoplay = "default"
+frame_progress = 0.43548927
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer"]
+offset_left = 320.0
+offset_top = 464.0
+offset_right = 820.0
+offset_bottom = 614.0
+texture = ExtResource("6_l5tqr")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="CanvasLayer/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.5
+offset_top = -50.5
+offset_right = 228.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExtinguishedSprite" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+z_index = 5
+position = Vector2(576.00006, 248)
+scale = Vector2(10, 10)
+texture = ExtResource("1_n5gcm")
+region_enabled = true
+region_rect = Rect2(193, 341, 46, 44)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

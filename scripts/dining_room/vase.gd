@@ -1,6 +1,7 @@
 extends Interactable
 class_name Vase
 
+signal remove_vase(vase_node)
 
 func _ready() -> void:
 	turn_on_interactable()
@@ -15,8 +16,8 @@ func interact() -> void:
 	hotbar.add_to_hotbar(self)
 	global_position = Vector2(1000, 1000)
 	self.visible = false
+	emit_signal("remove_vase", self)
 
 func use_item() -> void:
 	turn_on_interactable()
 	self.visible = true
-	
