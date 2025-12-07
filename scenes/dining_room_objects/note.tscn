@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://d28dvof80y8wo"]
+
+[ext_resource type="Script" uid="uid://n6wql0ddlp4l" path="res://scripts/dining_room/note.gd" id="1_bafk3"]
+[ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="1_efprq"]
+
+[node name="Note" type="Node2D"]
+visible = false
+script = ExtResource("1_bafk3")
+
+[node name="Original" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Original"]
+modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Original"]
+offset_left = 320.0
+offset_top = 44.0
+offset_right = 820.0
+offset_bottom = 614.0
+texture = ExtResource("1_efprq")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="Original/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.5
+offset_top = -222.0
+offset_right = 364.5
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "If you are reading this, my
+vases need your care.
+
+The first loves the company of a flower  
+that will never wilt.  
+
+Then seek the pair who stand together,
+one bright as the sun, the other pale as dawn.
+
+Finally, find the quiet watcher
+near where refreshments gather,
+a lone pale vessel guarding the corner."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Original/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 58.0
+offset_top = 184.0
+offset_right = 556.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Your Friend
+6:07, November 7, 1892
+McCoy"
+vertical_alignment = 1

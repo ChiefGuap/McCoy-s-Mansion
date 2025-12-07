@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://b7s4msybe76uy"]
+[gd_scene load_steps=52 format=4 uid="uid://b7s4msybe76uy"]
 
 [ext_resource type="Script" uid="uid://i55ovgbe3hmp" path="res://scripts/level_2.gd" id="1_guvtl"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_nmjpi"]
@@ -6,16 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://cyaxxarxf271r" path="res://scenes/dining_room_objects/chair_left_facing.tscn" id="3_b4j7a"]
 [ext_resource type="Texture2D" uid="uid://bqdarpnpmlbu6" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset.png" id="3_xdadj"]
 [ext_resource type="PackedScene" uid="uid://cgglxgt3ij7v5" path="res://scenes/dining_room_objects/chair_front_facing.tscn" id="4_y0kc7"]
+[ext_resource type="Script" uid="uid://c8pt6oracujoi" path="res://scripts/dining_room/mccoys_chair.gd" id="5_k22d5"]
 [ext_resource type="PackedScene" uid="uid://dv3v810rj770b" path="res://scenes/dining_room_objects/chair_up_facing.tscn" id="5_ne2mo"]
 [ext_resource type="Script" uid="uid://bvjexhxt464em" path="res://scripts/dining_room/tables/drawer.gd" id="6_172wr"]
 [ext_resource type="Script" uid="uid://cryo8misl74v1" path="res://scripts/dining_room/jumpscare_chair.gd" id="6_wdtqu"]
 [ext_resource type="Script" uid="uid://30pjna0pqy70" path="res://scripts/dining_room/vase.gd" id="7_6cvei"]
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="8_ne2mo"]
 [ext_resource type="Script" uid="uid://di3i7uoc6cks7" path="res://scripts/dining_room/tables/table_1.gd" id="10_g2hoc"]
+[ext_resource type="PackedScene" uid="uid://d28dvof80y8wo" path="res://scenes/dining_room_objects/note.tscn" id="11_bv48q"]
 [ext_resource type="Script" uid="uid://c5j7umtb4gq5j" path="res://scripts/dining_room/tables/table_2.gd" id="11_fldb1"]
 [ext_resource type="Script" uid="uid://ff6l5og5q8gw" path="res://scripts/dining_room/tables/table_3.gd" id="12_guvtl"]
 [ext_resource type="Texture2D" uid="uid://clx1bsa30ijpd" path="res://assets/jumpscares/jumpscare3.png" id="15_igmy8"]
+[ext_resource type="Script" uid="uid://8tmoou7gpfwg" path="res://scripts/dining_room/key.gd" id="16_k22d5"]
 [ext_resource type="AudioStream" uid="uid://c63aw7myakebx" path="res://assets/jumpscares/jumpscare3.wav" id="16_wdtqu"]
+[ext_resource type="Texture2D" uid="uid://b876xe2i4wv0j" path="res://assets/LineAcross2dMegaAssetsPack/key.png" id="17_k6a82"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7j8ne"]
 texture = ExtResource("1_nmjpi")
@@ -2288,6 +2292,7 @@ tile_set = SubResource("TileSet_eoq84")
 
 [node name="ChairLeftFacing" parent="." instance=ExtResource("3_b4j7a")]
 position = Vector2(663, 165)
+script = ExtResource("5_k22d5")
 
 [node name="ChairLeftFacing2" parent="." instance=ExtResource("3_b4j7a")]
 position = Vector2(711, 205)
@@ -2350,6 +2355,8 @@ material = SubResource("ShaderMaterial_172wr")
 texture = ExtResource("3_xdadj")
 region_enabled = true
 region_rect = Rect2(320.084, 224.834, 15.5, 23.25)
+
+[node name="Note" parent="Drawer" instance=ExtResource("11_bv48q")]
 
 [node name="Table1" type="Node2D" parent="."]
 position = Vector2(439, 135)
@@ -2490,6 +2497,16 @@ scale = Vector2(1.151, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VaseWhite/Area2D"]
 shape = SubResource("CapsuleShape2D_ne2mo")
+
+[node name="Key" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(615, 211)
+script = ExtResource("16_k22d5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Key"]
+z_index = 57
+position = Vector2(1000, 1000)
+texture = ExtResource("17_k6a82")
 
 [node name="JumpscareLayer" type="CanvasLayer" parent="."]
 visible = false
