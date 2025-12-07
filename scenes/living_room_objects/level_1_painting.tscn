@@ -32,6 +32,7 @@ shape = SubResource("CircleShape2D_ra2xy")
 visible = false
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+z_index = 5
 offset_left = 368.0
 offset_right = 784.0
 offset_bottom = 480.0
