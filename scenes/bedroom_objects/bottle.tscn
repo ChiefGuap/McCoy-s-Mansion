@@ -16,7 +16,7 @@ size = Vector2(22.25, 34)
 z_index = 50
 script = ExtResource("1_emwc0")
 
-[node name="BottleSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_wae8j")
 position = Vector2(47, -35)
 texture = ExtResource("3_q2db8")

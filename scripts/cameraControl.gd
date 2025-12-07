@@ -31,7 +31,7 @@ func _on_bedRoom_body_entered(body: PhysicsBody2D) -> void:
 
 	if currCameraPos == 1:
 		# Switch to Bedroom (Room 3)
-		limit_left = -255
+		limit_left = -270
 		limit_top = -96
 		limit_right = 1
 		limit_bottom = 313
