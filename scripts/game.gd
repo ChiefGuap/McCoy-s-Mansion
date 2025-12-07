@@ -45,6 +45,9 @@ func _on_timer_timeout():
 		$UI_Layer/Timer.stop()
 		update_timer_label()
 		# Add code here for what happens when time is up
+		# Go to Game Over scene
+		get_tree().change_scene_to_file("res://GameOver.tscn")
+
 	else:
 		# Update the label's text
 		update_timer_label()
@@ -52,7 +55,7 @@ func _on_timer_timeout():
 
 # This function formats the time to look nice
 func update_timer_label():
-	var minutes = remaining_time_in_seconds / 60
+	var minutes = remaining_time_in_seconds / 60.0
 	var seconds = remaining_time_in_seconds % 60
 	
 	# Basic "mm:ss"
