@@ -26,6 +26,7 @@ func _input(event):
 		var item = hotbar.get_held_item()
 		print(item)
 		if item == bottle:
+			hotbar.remove_from_hotbar(item)
 			dirty.visible = false
 		if item == torch:
 			blue.visible = false

@@ -22,7 +22,7 @@ load_path = "res://.godot/imported/text-box.png-81613166858c95bc029821cb60ff3c73
 z_index = 50
 script = ExtResource("1_y58p0")
 
-[node name="ClockSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ha73p")
 position = Vector2(47, -35)
 texture = SubResource("CompressedTexture2D_vcx5n")

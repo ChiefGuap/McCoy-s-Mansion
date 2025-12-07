@@ -1,32 +1,39 @@
-extends Node2D
+extends Interactable
 
-@onready var sprite = $ClockSprite
 var player_in_area: bool = false # Tracks if player is inside the interaction zone
 
 # Dialogue/UI References
 @onready var label = $"../../Player/DialougeBox/DialougeText"
 @onready var box = $"../../Player/DialougeBox"
-@onready var popup_layer = $CanvasLayer
+@onready var input_popup_layer = $CanvasLayer # Renamed for clarity (Time Input Layer)
 @onready var hotbar = $"../../UI_Layer/Hotbar"
 
 # Player Reference
 @onready var player = $"../../Player"
 
-# Input Field Reference (Assuming it's inside a NinePatchRect, which is inside CanvasLayer)
+# Input Field Reference
 @onready var input_field: LineEdit = $CanvasLayer/NinePatchRect2/LineEdit
 
+# 🌟 NEW: Reference to your separate note UI element
+# You must ensure you have a node named 'NoteCanvasLayer' in your scene hierarchy,
+# placed at the same level as the $CanvasLayer used for input.
+@onready var note_popup_layer: CanvasLayer = $note
+
 # Time/State Variables
-var current_time: String = "06:09" # Use a more descriptive name than 'time'
-var waiting_for_input: bool = false # Flag to manage if the LineEdit is active
+var current_time: String = "06:09" 
+var waiting_for_input: bool = false # Flag for time entry interaction state
+var note_unlocked: bool = false # Flag that determines if the note is available
 
-
+func interact() -> void:
+	pass
+	
 func _ready():
 	# Ensure the outline is invisible (thickness 0) when the game starts
-	(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
-	popup_layer.visible = false
-	# 🌟 NEW: Ensure the input field is set to be editable and handles submission
+	input_popup_layer.visible = false
+	note_popup_layer.visible = false # Ensure note is hidden initially
 	input_field.editable = true
 	input_field.text_submitted.connect(_on_time_input_submitted)
+	turn_on_interactable()
 
 
 # -------------------------------------------------------------
@@ -34,14 +41,37 @@ func _ready():
 # -------------------------------------------------------------
 
 func _process(delta: float):
-	# Only allow a new interaction when the player is in the area and NOT waiting for input
+	# Logic for interaction depends on state:
+
+	# Check for E press only when player is in area
+	if player_in_area and Input.is_action_just_pressed("interact"):
 		
-	if player_in_area and Input.is_action_just_pressed("interact") and not waiting_for_input:
-		start_time_prompt()
-		if current_time == "06:07":
-			popup_layer = $note
+		# 1. If the note is already unlocked, hitting E toggles the note
+		if note_unlocked:
+			toggle_note_display()
+			return # Skip the time prompt logic
 		
-		
+		# 2. If the note is NOT unlocked AND not waiting for input, start the time prompt
+		if not waiting_for_input:
+			start_time_prompt()
+
+
+func toggle_note_display():
+	# This function handles showing/hiding the note once it is unlocked
+	
+	# Toggle the note's visibility
+	note_popup_layer.visible = not note_popup_layer.visible
+	
+	if note_popup_layer.visible:
+		# Show the note: Lock player, hide hotbar
+		player.lock_player()
+		hotbar.visible = false
+		print("Note displayed. Player locked.")
+	else:
+		# Hide the note: Unlock player, show hotbar
+		player.unlock_player()
+		hotbar.visible = true
+		print("Note dismissed. Player unlocked.")
 
 
 func start_time_prompt():
@@ -61,12 +91,12 @@ func start_time_prompt():
 	label.text = "The time is " + current_time
 	
 	# 4. Wait for initial message to pass
-	await get_tree().create_timer(2.0).timeout # Reduced delay for better feel
+	await get_tree().create_timer(2.0).timeout
 
 	# 5. Show Input Prompt and Field
-	label.text = "Enter new time"
+	label.text = "Enter new time (HHMM):"
 	
-	popup_layer.visible = true
+	input_popup_layer.visible = true
 	input_field.text = "" # Clear old input
 	input_field.grab_focus() # Allow the user to start typing immediately
 
@@ -95,45 +125,60 @@ func _on_time_input_submitted(submitted_text: String):
 	var hours = input_time_int / 100
 	var minutes = input_time_int % 100
 	
+	if hours > 23 or minutes > 59:
+		label.text = "Time must be 0000-2359."
+		input_field.clear()
+		await get_tree().create_timer(1.5).timeout
+		input_field.grab_focus()
+		return
 
 	# 3. Success: Change Time and Conclude Interaction
 	current_time = "%02d:%02d" % [hours, minutes]
 	label.text = "Time set to " + current_time + "."
 	
+	# 🌟 CHECK WINNING CONDITION
+	if current_time == "06:07":
+		label.text = "The clock chimes an odd tune. A note has appeared!"
+		note_unlocked = true # Note is now available for toggling
+	
 	# Final cleanup
-	await get_tree().create_timer(1.5).timeout
-	end_interaction()
+	await get_tree().create_timer(0.5).timeout
+	end_input_interaction()
 
 
-func end_interaction():
-	# 1. Hide all UI elements
-	popup_layer.visible = false
+func end_input_interaction():
+	# 1. Hide all time input UI elements
+	input_popup_layer.visible = false
 	box.visible = false
 	label.visible = false
 	
-	# 2. Unlock Player and Restore Hotbar
+	# 2. Unlock Player and Restore Hotbar (ONLY if the note hasn't been unlocked)
+	
 	player.unlock_player()
 	hotbar.visible = true
+	# If the note IS unlocked, the player stays locked until they interact again to view/dismiss the note.
 	
 	# 3. Reset state flag
 	waiting_for_input = false
 
 
 # -------------------------------------------------------------
-# AREA COLLISION FUNCTIONS (No major changes needed here)
+# AREA COLLISION FUNCTIONS
 # -------------------------------------------------------------
 
 func _on_clock_entered(body):
 	if body.name == "Player":
-		(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 1.0)
 		player_in_area = true
 		
 
 func _on_clock_exited(body):
 	if body.name == "Player":
-		(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
 		player_in_area = false
 		
-		# 🌟 NEW: End interaction if player leaves while it's active
+		# End any active time input
 		if waiting_for_input:
-			end_interaction()
+			end_input_interaction()
+		
+		# If the note is open and the player leaves the area, close it
+		if note_popup_layer.visible:
+			toggle_note_display()

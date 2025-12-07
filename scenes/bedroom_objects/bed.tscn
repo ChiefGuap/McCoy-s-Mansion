@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxtoud36rk7b6"]
+[gd_scene load_steps=7 format=3 uid="uid://dxtoud36rk7b6"]
 
 [ext_resource type="Script" uid="uid://dbk7t3n1wnxrd" path="res://scripts/bedroom/bed.gd" id="1_1rye4"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_6hmn3"]
+[ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="3_6hmn3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q2dsb"]
 shader = ExtResource("2_6hmn3")
@@ -12,13 +13,13 @@ shader_parameter/line_thickness = 1.322000062795
 load_path = "res://.godot/imported/fancy_mansion_furnitureset.png-d23b050a7caff2f4379cc297a38e3e1a.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xqnf"]
-size = Vector2(76.5, 75)
+size = Vector2(83, 77)
 
 [node name="Bed" type="Node2D"]
 z_index = 50
 script = ExtResource("1_1rye4")
 
-[node name="BedSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_q2dsb")
 position = Vector2(104, 37)
 texture = SubResource("CompressedTexture2D_p3r0x")
@@ -28,8 +29,98 @@ region_rect = Rect2(127, 407.963, 79, 73)
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(103.75, 38.5)
+position = Vector2(104.5, 39.5)
 shape = SubResource("RectangleShape2D_5xqnf")
+
+[node name="Original" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="Original"]
+modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Original"]
+offset_left = 320.0
+offset_top = 44.0
+offset_right = 820.0
+offset_bottom = 614.0
+texture = ExtResource("3_6hmn3")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="Original/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -108.0
+offset_right = 230.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Your journey ends when the
+delicate facade
+is no longer whole.
+The contents are only released
+when the vessel is silenced
+and its porcelain stillness
+is completely
+shattered.
+The key lies within
+the vessel's broken shell."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Original/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 87.0
+offset_top = 161.0
+offset_right = 585.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Love,
+McCoy"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Original/NinePatchRect"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -232.0
+offset_right = 306.0
+offset_bottom = -131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "My Dear,"
+vertical_alignment = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_bed_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_bed_exited"]
