@@ -21,7 +21,7 @@ script = ExtResource("1_6qy10")
 material = SubResource("ShaderMaterial_16esy")
 texture = ExtResource("3_jtrwg")
 region_enabled = true
-region_rect = Rect2(288, 64, 32, 32)
+region_rect = Rect2(288, 63, 32, 34)
 
 [node name="Area2D" type="Area2D" parent="."]
 
