@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var sprite = $Sprite2D
 @onready var popup_layer = $CanvasLayer # Reference to the UI we just made
+@onready var hotbar = $"../../UI_Layer/Hotbar"
+
 
 var player_in_range = false
 
@@ -18,6 +20,10 @@ func _input(event):
 		# If player is near, toggle the popup
 		if player_in_range:
 			popup_layer.visible = not popup_layer.visible
+			if (popup_layer.visible):
+				hotbar.visible = false
+			else:
+				hotbar.visible = true
 		
 		# Optional: If the popup is open and we press E again, close it (handled by toggle above)
 		# But if you want 'Esc' to close it too, you can add that logic here.
@@ -36,3 +42,4 @@ func _on_area_2d_body_exited(body):
 		
 		# Force close the popup if the player walks away
 		popup_layer.visible = false
+		hotbar.visible = true
