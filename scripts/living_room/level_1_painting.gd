@@ -9,6 +9,7 @@ func _ready():
 	# Ensure the outline is invisible (thickness 0) when the game starts
 	(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
 	# Ensure popup is hidden
+	# hey
 	popup_layer.visible = false
 
 func _input(event):
