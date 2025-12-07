@@ -8,7 +8,8 @@ extends Node2D
 # Visual References
 @onready var anim_sprite = $CanvasLayer/AnimatedSprite2D
 @onready var extinguished_sprite = $CanvasLayer/ExtinguishedSprite
-@onready var world_extinguished_sprite = $BaseExtinguishedSprite # The new node you added
+@onready var world_extinguished_sprite = $BaseExtinguishedSprite
+@onready var label = $CanvasLayer/NinePatchRect/Label # Reference to the text label
 
 var player_in_range = false
 var is_fire_lit = true
@@ -28,6 +29,7 @@ func _input(event):
 		if not popup_layer.visible:
 			popup_layer.visible = true
 			hotbar.visible = false
+			update_label() # Update text immediately when opening
 			
 		# 2. If popup is open, handle interaction
 		else:
@@ -36,7 +38,8 @@ func _input(event):
 				if has_drinks():
 					extinguish_fire()
 				else:
-					# Optional: Add feedback like a label or print
+					# Provide feedback if they try to click without drinks
+					# (The label already tells them they can't, but this is a failsafe)
 					print("You need something to extinguish the fire!") 
 			else:
 				close_popup()
@@ -54,6 +57,7 @@ func extinguish_fire():
 	# Update Popup Visuals
 	anim_sprite.visible = false
 	extinguished_sprite.visible = true
+	update_label() # Update the text to the "Door clicks open" message
 	
 	# Update World Visuals
 	sprite.visible = false
@@ -62,6 +66,17 @@ func extinguish_fire():
 	
 	# Apply outline to the new visible sprite if player is still looking at it
 	(world_extinguished_sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 1.0)
+	
+	# TODO: Add your logic here to actually open the physical door node!
+
+func update_label():
+	if is_fire_lit:
+		if has_drinks():
+			label.text = "Extinguish? Press 'E'"
+		else:
+			label.text = "The fire is too hot, have to find something to extinguish it..."
+	else:
+		label.text = "The living room door clicks open..."
 
 func close_popup():
 	popup_layer.visible = false
