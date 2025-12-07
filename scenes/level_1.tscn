@@ -214,7 +214,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
 metadata/_snap_enabled = true
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwpf4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_15mv3"]
 texture = ExtResource("2_m7ahb")
 texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
@@ -397,7 +397,7 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_feb5d"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_wwpf4")
+sources/0 = SubResource("TileSetAtlasSource_15mv3")
 
 [node name="Level1" type="Node2D"]
 

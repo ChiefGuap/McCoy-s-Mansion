@@ -13,16 +13,16 @@ func _on_diningRoomDoor_body_entered(body: PhysicsBody2D) -> void:
 		limit_left = 416
 		limit_top = 64
 		limit_right = 736
-		limit_bottom = 256
+		limit_bottom = 280
 		currCameraPos = 2
-		parent.position = Vector2(450, 165)
+		parent.position = Vector2(450, 170)
 	else:
 		limit_left = 0
 		limit_top = 0
 		limit_right = 415
-		limit_bottom = 280
+		limit_bottom = 276
 		currCameraPos = 1
-		parent.position = Vector2(380, 165)
+		parent.position = Vector2(380, 170)
 		
 
 
@@ -34,15 +34,15 @@ func _on_bedRoom_body_entered(body: PhysicsBody2D) -> void:
 		limit_left = -255
 		limit_top = -96
 		limit_right = 1
-		limit_bottom = 288
+		limit_bottom = 313
 		currCameraPos = 3
-		parent.position = Vector2(-30, 165)
+		parent.position = Vector2(-30, 170)
 
 	else:
 		# Switch back to Room 1
 		limit_left = 0
 		limit_top = 0
 		limit_right = 415
-		limit_bottom = 280
+		limit_bottom = 276
 		currCameraPos = 1
-		parent.position = Vector2(30, 165)
+		parent.position = Vector2(30, 170)

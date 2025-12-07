@@ -419,6 +419,7 @@ position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 2.0
 texture = SubResource("GradientTexture2D_qhqgy")
 
 [node name="Area2D" type="Area2D" parent="."]
