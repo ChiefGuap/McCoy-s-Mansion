@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cxtto0t64w1nr"]
+[gd_scene load_steps=21 format=4 uid="uid://cxtto0t64w1nr"]
 
 [ext_resource type="Script" uid="uid://b4433purhoief" path="res://scripts/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dmq6nvcat2li" path="res://scenes/level_1.tscn" id="2_7jktm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="6_cam_ctrl"]
 [ext_resource type="PackedScene" uid="uid://c32asmo0ve12k" path="res://scenes/DialogueBox.tscn" id="6_vef74"]
 [ext_resource type="Texture2D" uid="uid://xvbe8ls8genm" path="res://assets/world_scene/hotbar.png" id="7_hotbar"]
+[ext_resource type="FontFile" uid="uid://tnqspq8suf2l" path="res://assets/world_scene/shadow_of_the_deads/Shadow of the Deads.ttf" id="8_iotsf"]
 [ext_resource type="Script" uid="uid://cy16rhrbhu81y" path="res://scripts/cutscene.gd" id="9_vef74"]
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="10_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://c136y2m87miip" path="res://assets/IntroWoods/McCoySprite/Assets.png" id="11_iotsf"]
@@ -459,6 +460,8 @@ offset_left = 16.0
 offset_top = 10.0
 offset_right = 62.0
 offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("8_iotsf")
+theme_override_font_sizes/font_size = 24
 
 [node name="Timer" type="Timer" parent="UI_Layer"]
 autostart = true
