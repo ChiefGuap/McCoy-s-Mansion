@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Level3="*res://scenes/level_3.gd"
+Level3="*res://scripts/level_3.gd"
 
 [input]
 
