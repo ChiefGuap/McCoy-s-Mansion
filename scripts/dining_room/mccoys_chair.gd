@@ -1,4 +1,4 @@
-extends Interactable
+extends InteractableV2
 
 
 func _ready() -> void:

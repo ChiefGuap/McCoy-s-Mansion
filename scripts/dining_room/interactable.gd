@@ -1,9 +1,9 @@
 @abstract class_name Interactable
 extends Node2D
 
-@onready var sprite = $Sprite2D
+@onready var sprite := $Sprite2D
 
-var _interactable = false
+var _interactable := false
 
 func turn_on_interactable() -> void:
 	_interactable = true

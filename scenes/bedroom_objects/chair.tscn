@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfai6ujtxibqq"]
+[gd_scene load_steps=6 format=3 uid="uid://luo0ou7epray"]
 
-[ext_resource type="Script" uid="uid://c15rupbmvqnqu" path="res://scripts/bedroom/chair.gd" id="1_kfl6e"]
+[ext_resource type="Script" path="res://scripts/bedroom/chair.gd" id="1_tg4xm"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_abgw7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ax3dk"]
@@ -16,7 +16,7 @@ size = Vector2(26.5, 38)
 
 [node name="Chair" type="Node2D"]
 z_index = 50
-script = ExtResource("1_kfl6e")
+script = ExtResource("1_tg4xm")
 
 [node name="ChairSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ax3dk")

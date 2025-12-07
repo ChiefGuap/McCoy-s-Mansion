@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cxtto0t64w1nr"]
+[gd_scene load_steps=22 format=4 uid="uid://cxtto0t64w1nr"]
 
 [ext_resource type="Script" uid="uid://b4433purhoief" path="res://scripts/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dmq6nvcat2li" path="res://scenes/level_1.tscn" id="2_7jktm"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b7s4msybe76uy" path="res://scenes/level_2.tscn" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="6_cam_ctrl"]
 [ext_resource type="PackedScene" uid="uid://c32asmo0ve12k" path="res://scenes/DialogueBox.tscn" id="6_vef74"]
-[ext_resource type="PackedScene" uid="uid://btgyqt25ysr0x" path="res://ui_layer.tscn" id="8_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://xvbe8ls8genm" path="res://assets/world_scene/hotbar.png" id="7_hotbar"]
+[ext_resource type="FontFile" uid="uid://tnqspq8suf2l" path="res://assets/world_scene/shadow_of_the_deads/Shadow of the Deads.ttf" id="8_iotsf"]
 [ext_resource type="Script" uid="uid://cy16rhrbhu81y" path="res://scripts/cutscene.gd" id="9_vef74"]
+[ext_resource type="Script" uid="uid://bm6j7e4lxusrk" path="res://scripts/hotbar.gd" id="10_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="10_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://c136y2m87miip" path="res://assets/IntroWoods/McCoySprite/Assets.png" id="11_iotsf"]
 
@@ -445,7 +447,6 @@ scale = Vector2(1e-05, 1e-05)
 [node name="DialougeBox" parent="Player" instance=ExtResource("6_vef74")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-unique_name_in_owner = true
 zoom = Vector2(5, 5)
 limit_left = 0
 limit_top = 0
@@ -453,8 +454,46 @@ limit_right = 415
 limit_bottom = 276
 script = ExtResource("6_cam_ctrl")
 
-[node name="UI_Layer" parent="." instance=ExtResource("8_mfdv2")]
+[node name="UI_Layer" type="CanvasLayer" parent="."]
+
+[node name="TimerLabel" type="Label" parent="UI_Layer"]
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 62.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("8_iotsf")
+theme_override_font_sizes/font_size = 24
+
+[node name="Timer" type="Timer" parent="UI_Layer"]
+autostart = true
+
+[node name="Hotbar" type="TextureRect" parent="UI_Layer"]
 unique_name_in_owner = true
+offset_left = -2.0
+offset_top = 135.0
+offset_right = 623.0
+offset_bottom = 535.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_hotbar")
+script = ExtResource("10_lc2xo")
+
+[node name="BlackScreen" type="ColorRect" parent="UI_Layer"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012645884, 0.012645883, 0.012645883, 1)
+
+[node name="InteractLabel" type="Label" parent="UI_Layer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -473,12 +512,9 @@ shape = SubResource("RectangleShape2D_eow3j")
 position = Vector2(0, 176)
 shape = SubResource("RectangleShape2D_ryrav")
 
-[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("player", "animation_player", "dialogue_box", "dialogue_label")]
+[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("animation_player")]
 script = ExtResource("9_vef74")
-player = NodePath("../Player")
 animation_player = NodePath("../AnimationPlayer")
-dialogue_box = NodePath("../Player/DialougeBox")
-dialogue_label = NodePath("../Player/DialougeBox/DialougeText")
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -488,6 +524,7 @@ position = Vector2(1, 250)
 tile_map_data = PackedByteArray("AAAAAAAAAQABAAgAAAABAAAAAQABAAgAAAACAAAAAQABAAgAAAADAAAAAQABAAgAAAAEAAAAAQABAAgAAAAFAAAAAQABAAgAAAAGAAAAAQABAAgAAAAHAAAAAQABAAgAAAAIAAAAAQABAAgAAAAJAAAAAQABAAgAAAAKAAAAAQABAAgAAAALAAAAAQABAAgAAAAMAAAAAQABAAgAAAANAAAAAQABAAgAAAAOAAAAAQABAAgAAAAPAAAAAQABAAgAAAAQAAAAAQABAAgAAAARAAAAAQABAAgAAAASAAAAAQABAAgAAAATAAAAAQABAAgAAAAUAAAAAQABAAgAAAAVAAAAAQABAAgAAAAWAAAAAQABAAgAAAD//wEAAQABAAgAAAD+/wEAAQABAAgAAAD9/wEAAQABAAgAAAD8/wEAAQABAAgAAAD7/wEAAQABAAgAAAD6/wEAAQABAAgAAAD5/wEAAQABAAgAAAD4/wEAAQABAAgAAAAAAAEAAQABAAgAAAA=")
 tile_set = SubResource("TileSet_7sc4i")
 
+[connection signal="timeout" from="UI_Layer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Door_to_Level2" to="Player/Camera2D" method="_on_diningRoomDoor_body_entered"]
 [connection signal="body_entered" from="Door_to_Level3" to="Player/Camera2D" method="_on_bedRoom_body_entered"]
 
