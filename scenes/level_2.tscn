@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://b7s4msybe76uy"]
+[gd_scene load_steps=48 format=4 uid="uid://b7s4msybe76uy"]
 
 [ext_resource type="Script" uid="uid://i55ovgbe3hmp" path="res://scripts/level_2.gd" id="1_guvtl"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_nmjpi"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://di3i7uoc6cks7" path="res://scripts/dining_room/tables/table_1.gd" id="10_g2hoc"]
 [ext_resource type="Script" uid="uid://c5j7umtb4gq5j" path="res://scripts/dining_room/tables/table_2.gd" id="11_fldb1"]
 [ext_resource type="Script" uid="uid://ff6l5og5q8gw" path="res://scripts/dining_room/tables/table_3.gd" id="12_guvtl"]
+[ext_resource type="Texture2D" uid="uid://clx1bsa30ijpd" path="res://assets/jumpscares/jumpscare3.png" id="15_igmy8"]
+[ext_resource type="AudioStream" uid="uid://c63aw7myakebx" path="res://assets/jumpscares/jumpscare3.wav" id="16_wdtqu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7j8ne"]
 texture = ExtResource("1_nmjpi")
@@ -2488,5 +2490,19 @@ scale = Vector2(1.151, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VaseWhite/Area2D"]
 shape = SubResource("CapsuleShape2D_ne2mo")
+
+[node name="JumpscareLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ScaryFace" type="TextureRect" parent="JumpscareLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_igmy8")
+
+[node name="ScreamSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_wdtqu")
 
 [editable path="ChairLeftFacing2"]
