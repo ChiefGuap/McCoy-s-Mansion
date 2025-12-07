@@ -57,7 +57,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	var body: Node2D = area.get_parent()
 	
 	# outline this new target, clear prev outlines
-	if body.has_method("turn_on_outline") and body.has_method("turn_off_outline"):
+	if (body is Interactable or body is InteractableV2) and body._interactable:
 		collisions.append(body)
 		
 		if (collisions.size() > 1):
@@ -85,9 +85,10 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	
 	collisions.erase(body)
 	body.turn_off_outline()
+	print("Removing outline to ", body, " len ", collisions.size())
 	
 	# ensure target gets passed if the current one was just removed
-	if (collisions.size() > 1):
+	if (collisions.size() > 0):
 		var target = collisions[collision_idx]
 		target.turn_on_outline()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxtto0t64w1nr"]
+[gd_scene load_steps=15 format=3 uid="uid://cxtto0t64w1nr"]
 
 [ext_resource type="Script" uid="uid://b4433purhoief" path="res://scripts/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dmq6nvcat2li" path="res://scenes/level_1.tscn" id="2_7jktm"]
@@ -6,16 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://ciuide3jybsyu" path="res://scenes/level_3.tscn" id="4_ryrav"]
 [ext_resource type="PackedScene" uid="uid://b7s4msybe76uy" path="res://scenes/level_2.tscn" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="6_cam_ctrl"]
+[ext_resource type="PackedScene" uid="uid://c32asmo0ve12k" path="res://scenes/DialogueBox.tscn" id="6_vef74"]
 [ext_resource type="Texture2D" uid="uid://xvbe8ls8genm" path="res://assets/world_scene/hotbar.png" id="7_hotbar"]
-[ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="8_txtbox"]
 [ext_resource type="Script" uid="uid://cy16rhrbhu81y" path="res://scripts/cutscene.gd" id="9_vef74"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eow3j"]
-texture = ExtResource("8_txtbox")
-texture_margin_left = 5.0
-texture_margin_top = 10.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
 
 [sub_resource type="Animation" id="Animation_ryrav"]
 length = 0.001
@@ -147,32 +140,7 @@ position = Vector2(1, 0)
 z_index = 50
 scale = Vector2(1e-05, 1e-05)
 
-[node name="DialougeBox" type="Panel" parent="Player"]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -27.0
-offset_top = -54.0
-offset_right = 39.0
-offset_bottom = -31.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_eow3j")
-
-[node name="DialougeText" type="Label" parent="Player/DialougeBox"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -29.0
-offset_top = 2.0
-offset_right = 90.0
-offset_bottom = 25.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 9
-text = "Where am I..?"
-autowrap_mode = 3
+[node name="DialougeBox" parent="Player" instance=ExtResource("6_vef74")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
@@ -227,13 +195,14 @@ shape = SubResource("RectangleShape2D_eow3j")
 position = Vector2(0, 176)
 shape = SubResource("RectangleShape2D_ryrav")
 
-[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("player", "animation_player", "dialogue_box", "dialogue_label")]
+[node name="CutsceneManager" type="Node" parent="." node_paths=PackedStringArray("animation_player", "dialogue_box", "dialogue_label")]
 script = ExtResource("9_vef74")
-player = NodePath("../Player")
 animation_player = NodePath("../AnimationPlayer")
-dialogue_box = NodePath("../Player/DialougeBox")
-dialogue_label = NodePath("../Player/DialougeBox/DialougeText")
+dialogue_box = NodePath("")
+dialogue_label = NodePath("")
 
 [connection signal="timeout" from="UI_Layer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Door_to_Level2" to="Player/Camera2D" method="_on_diningRoomDoor_body_entered"]
 [connection signal="body_entered" from="Door_to_Level3" to="Player/Camera2D" method="_on_bedRoom_body_entered"]
+
+[editable path="Player/DialougeBox"]

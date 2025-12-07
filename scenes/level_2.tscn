@@ -1,14 +1,17 @@
-[gd_scene load_steps=41 format=4 uid="uid://b7s4msybe76uy"]
+[gd_scene load_steps=44 format=4 uid="uid://b7s4msybe76uy"]
 
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_nmjpi"]
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="2_xdadj"]
 [ext_resource type="PackedScene" uid="uid://cyaxxarxf271r" path="res://scenes/dining_room_objects/chair_left_facing.tscn" id="3_b4j7a"]
-[ext_resource type="Shader" path="res://shaders/level_1_painting.gdshader" id="3_eqxsl"]
 [ext_resource type="Texture2D" uid="uid://bqdarpnpmlbu6" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset.png" id="3_xdadj"]
 [ext_resource type="PackedScene" uid="uid://cgglxgt3ij7v5" path="res://scenes/dining_room_objects/chair_front_facing.tscn" id="4_y0kc7"]
 [ext_resource type="PackedScene" uid="uid://dv3v810rj770b" path="res://scenes/dining_room_objects/chair_up_facing.tscn" id="5_ne2mo"]
-[ext_resource type="Script" uid="uid://bl6chguikgvgm" path="res://scripts/dining_room/highlights.gd" id="6_6cvei"]
+[ext_resource type="Script" uid="uid://bvjexhxt464em" path="res://scripts/dining_room/tables/drawer.gd" id="6_172wr"]
+[ext_resource type="Script" uid="uid://30pjna0pqy70" path="res://scripts/dining_room/vase.gd" id="7_6cvei"]
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="8_ne2mo"]
+[ext_resource type="Script" uid="uid://di3i7uoc6cks7" path="res://scripts/dining_room/tables/table_1.gd" id="10_g2hoc"]
+[ext_resource type="Script" uid="uid://c5j7umtb4gq5j" path="res://scripts/dining_room/tables/table_2.gd" id="11_fldb1"]
+[ext_resource type="Script" uid="uid://ff6l5og5q8gw" path="res://scripts/dining_room/tables/table_3.gd" id="12_guvtl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7j8ne"]
 texture = ExtResource("1_nmjpi")
@@ -2148,51 +2151,11 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_15wb7")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4j7a"]
-shader = ExtResource("3_eqxsl")
-shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pbc48"]
-radius = 26.047443
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cvei"]
-shader = ExtResource("8_ne2mo")
-shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ne2mo"]
-radius = 20.566376
-height = 50.014465
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_que50"]
-shader = ExtResource("8_ne2mo")
-shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6cvei"]
-radius = 44.446316
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hey2k"]
-shader = ExtResource("8_ne2mo")
-shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_que50"]
-radius = 25.693583
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_172wr"]
-shader = ExtResource("8_ne2mo")
-shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hey2k"]
-radius = 19.99997
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ne2mo"]
 shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ne2mo"]
 size = Vector2(20, 19)
@@ -2200,29 +2163,78 @@ size = Vector2(20, 19)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ne2mo"]
 radius = 20.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_172wr"]
+shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hey2k"]
+radius = 19.99997
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2hoc"]
 shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6cvei"]
 size = Vector2(18, 16)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hey2k"]
+shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_que50"]
+radius = 25.693583
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fldb1"]
 shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_que50"]
 size = Vector2(36, 22)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4j7a"]
+shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pbc48"]
+radius = 26.047443
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_que50"]
+shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6cvei"]
+radius = 44.446316
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_guvtl"]
 shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hey2k"]
 size = Vector2(36, 23)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cvei"]
+shader = ExtResource("8_ne2mo")
+shader_parameter/outline_enabled = false
+shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ne2mo"]
+radius = 20.566376
+height = 50.014465
 
 [node name="DiningRoom" type="Node2D"]
 
@@ -2285,101 +2297,9 @@ position = Vector2(567, 211)
 [node name="ChairUpFacing3" parent="." instance=ExtResource("5_ne2mo")]
 position = Vector2(615, 211)
 
-[node name="VaseGolden" type="Node2D" parent="."]
-position = Vector2(415, 64)
-script = ExtResource("6_6cvei")
-
-[node name="Sprite2D" type="Sprite2D" parent="VaseGolden"]
-z_index = 6
-material = SubResource("ShaderMaterial_b4j7a")
-position = Vector2(289, 56)
-scale = Vector2(0.81000245, 0.70361215)
-texture = ExtResource("3_xdadj")
-region_enabled = true
-region_rect = Rect2(352, 225.175, 16, 23)
-
-[node name="Area2D" type="Area2D" parent="VaseGolden"]
-position = Vector2(289, 56)
-scale = Vector2(0.81000245, 0.70361215)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VaseGolden/Area2D"]
-shape = SubResource("CircleShape2D_pbc48")
-
-[node name="VaseWhite" type="Node2D" parent="."]
-position = Vector2(684.9484, 215.10652)
-scale = Vector2(0.8174626, 0.67554355)
-script = ExtResource("6_6cvei")
-
-[node name="Sprite2D" type="Sprite2D" parent="VaseWhite"]
-z_index = 53
-material = SubResource("ShaderMaterial_6cvei")
-scale = Vector2(0.99999994, 1)
-texture = ExtResource("3_xdadj")
-region_enabled = true
-region_rect = Rect2(384.25, 384, 17.5, 24.5)
-
-[node name="Area2D" type="Area2D" parent="VaseWhite"]
-scale = Vector2(1.151, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VaseWhite/Area2D"]
-shape = SubResource("CapsuleShape2D_ne2mo")
-
-[node name="VaseYellow" type="Node2D" parent="."]
-position = Vector2(718, 120.5)
-scale = Vector2(0.7, 0.6)
-script = ExtResource("6_6cvei")
-
-[node name="Sprite2D" type="Sprite2D" parent="VaseYellow"]
-z_index = 6
-material = SubResource("ShaderMaterial_que50")
-texture = ExtResource("3_xdadj")
-region_enabled = true
-region_rect = Rect2(384, 225.471, 16, 24.529)
-
-[node name="Area2D" type="Area2D" parent="VaseYellow"]
-scale = Vector2(0.81000245, 0.70361215)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VaseYellow/Area2D"]
-shape = SubResource("CircleShape2D_6cvei")
-
-[node name="VaseBlue" type="Node2D" parent="."]
-position = Vector2(438.99997, 123.00001)
-scale = Vector2(0.81000245, 0.70361215)
-script = ExtResource("6_6cvei")
-
-[node name="Sprite2D" type="Sprite2D" parent="VaseBlue"]
-z_index = 6
-material = SubResource("ShaderMaterial_hey2k")
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("3_xdadj")
-region_enabled = true
-region_rect = Rect2(352, 256, 16, 24)
-
-[node name="Area2D" type="Area2D" parent="VaseBlue"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VaseBlue/Area2D"]
-shape = SubResource("CircleShape2D_que50")
-
-[node name="VaseFlowery" type="Node2D" parent="."]
-position = Vector2(439, 221)
-scale = Vector2(0.90000135, 0.8388159)
-script = ExtResource("6_6cvei")
-
-[node name="Sprite2D" type="Sprite2D" parent="VaseFlowery"]
-z_index = 53
-material = SubResource("ShaderMaterial_172wr")
-texture = ExtResource("3_xdadj")
-region_enabled = true
-region_rect = Rect2(320.084, 224.834, 15.5, 23.25)
-
-[node name="Area2D" type="Area2D" parent="VaseFlowery"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VaseFlowery/Area2D"]
-shape = SubResource("CircleShape2D_hey2k")
-
 [node name="Drawer" type="Node2D" parent="."]
 position = Vector2(439, 235)
-script = ExtResource("6_6cvei")
+script = ExtResource("6_172wr")
 
 [node name="Sprite2D" type="Sprite2D" parent="Drawer"]
 z_index = 52
@@ -2400,9 +2320,26 @@ shape = SubResource("RectangleShape2D_ne2mo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Drawer/Area2D"]
 shape = SubResource("CircleShape2D_ne2mo")
 
+[node name="VaseFlowery" type="Node2D" parent="Drawer"]
+position = Vector2(0, -14)
+scale = Vector2(0.90000135, 0.8388159)
+script = ExtResource("7_6cvei")
+
+[node name="Sprite2D" type="Sprite2D" parent="Drawer/VaseFlowery"]
+z_index = 53
+material = SubResource("ShaderMaterial_172wr")
+texture = ExtResource("3_xdadj")
+region_enabled = true
+region_rect = Rect2(320.084, 224.834, 15.5, 23.25)
+
+[node name="Area2D" type="Area2D" parent="Drawer/VaseFlowery"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drawer/VaseFlowery/Area2D"]
+shape = SubResource("CircleShape2D_hey2k")
+
 [node name="Table1" type="Node2D" parent="."]
 position = Vector2(439, 135)
-script = ExtResource("6_6cvei")
+script = ExtResource("10_g2hoc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Table1"]
 z_index = 5
@@ -2423,9 +2360,27 @@ shape = SubResource("RectangleShape2D_6cvei")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table1/Area2D"]
 shape = SubResource("CircleShape2D_ne2mo")
 
+[node name="VaseBlue" type="Node2D" parent="Table1"]
+position = Vector2(-3.0517578e-05, -11.999992)
+scale = Vector2(0.81000245, 0.70361215)
+script = ExtResource("7_6cvei")
+
+[node name="Sprite2D" type="Sprite2D" parent="Table1/VaseBlue"]
+z_index = 6
+material = SubResource("ShaderMaterial_hey2k")
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_xdadj")
+region_enabled = true
+region_rect = Rect2(352, 256, 16, 24)
+
+[node name="Area2D" type="Area2D" parent="Table1/VaseBlue"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table1/VaseBlue/Area2D"]
+shape = SubResource("CircleShape2D_que50")
+
 [node name="Table2" type="Node2D" parent="."]
 position = Vector2(711, 136)
-script = ExtResource("6_6cvei")
+script = ExtResource("11_fldb1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Table2"]
 z_index = 5
@@ -2446,9 +2401,47 @@ shape = SubResource("RectangleShape2D_que50")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table2/Area2D"]
 shape = SubResource("CircleShape2D_ne2mo")
 
+[node name="VaseGolden" type="Node2D" parent="Table2"]
+position = Vector2(-296, -72)
+script = ExtResource("7_6cvei")
+
+[node name="Sprite2D" type="Sprite2D" parent="Table2/VaseGolden"]
+z_index = 6
+material = SubResource("ShaderMaterial_b4j7a")
+position = Vector2(289, 56)
+scale = Vector2(0.81000245, 0.70361215)
+texture = ExtResource("3_xdadj")
+region_enabled = true
+region_rect = Rect2(352, 225.175, 16, 23)
+
+[node name="Area2D" type="Area2D" parent="Table2/VaseGolden"]
+position = Vector2(289, 56)
+scale = Vector2(0.81000245, 0.70361215)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table2/VaseGolden/Area2D"]
+shape = SubResource("CircleShape2D_pbc48")
+
+[node name="VaseYellow" type="Node2D" parent="Table2"]
+position = Vector2(7, -15.5)
+scale = Vector2(0.7, 0.6)
+script = ExtResource("7_6cvei")
+
+[node name="Sprite2D" type="Sprite2D" parent="Table2/VaseYellow"]
+z_index = 6
+material = SubResource("ShaderMaterial_que50")
+texture = ExtResource("3_xdadj")
+region_enabled = true
+region_rect = Rect2(384, 225.471, 16, 24.529)
+
+[node name="Area2D" type="Area2D" parent="Table2/VaseYellow"]
+scale = Vector2(0.81000245, 0.70361215)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table2/VaseYellow/Area2D"]
+shape = SubResource("CircleShape2D_6cvei")
+
 [node name="Table3" type="Node2D" parent="."]
 position = Vector2(695, 232)
-script = ExtResource("6_6cvei")
+script = ExtResource("12_guvtl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Table3"]
 z_index = 52
@@ -2469,3 +2462,22 @@ shape = SubResource("RectangleShape2D_hey2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table3/Area2D"]
 shape = SubResource("CircleShape2D_ne2mo")
+
+[node name="VaseWhite" type="Node2D" parent="Table3"]
+position = Vector2(-10.051575, -16.893478)
+scale = Vector2(0.8174626, 0.67554355)
+script = ExtResource("7_6cvei")
+
+[node name="Sprite2D" type="Sprite2D" parent="Table3/VaseWhite"]
+z_index = 53
+material = SubResource("ShaderMaterial_6cvei")
+scale = Vector2(0.99999994, 1)
+texture = ExtResource("3_xdadj")
+region_enabled = true
+region_rect = Rect2(384.25, 384, 17.5, 24.5)
+
+[node name="Area2D" type="Area2D" parent="Table3/VaseWhite"]
+scale = Vector2(1.151, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table3/VaseWhite/Area2D"]
+shape = SubResource("CapsuleShape2D_ne2mo")

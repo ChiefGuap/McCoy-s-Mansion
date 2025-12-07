@@ -1,20 +1,22 @@
 [gd_scene load_steps=8 format=3 uid="uid://cyaxxarxf271r"]
 
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="1_7hbps"]
-[ext_resource type="Script" uid="uid://pt36a2kmligg" path="res://scripts/dining_room/highlightsChairLeftFacing.gd" id="1_mldx5"]
+[ext_resource type="Script" uid="uid://c8pt6oracujoi" path="res://scripts/dining_room/chair_left_facing.gd" id="1_jcdck"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="2_mldx5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wo48x"]
 resource_local_to_scene = true
 shader = ExtResource("1_7hbps")
+shader_parameter/outline_enabled = false
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y0kc7"]
 resource_local_to_scene = true
 shader = ExtResource("1_7hbps")
+shader_parameter/outline_enabled = false
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
-shader_parameter/line_thickness = 1.30000006175
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqxsl"]
 size = Vector2(16, 22)
@@ -23,7 +25,7 @@ size = Vector2(16, 22)
 radius = 19.026299
 
 [node name="ChairLeftFacing" type="Node2D"]
-script = ExtResource("1_mldx5")
+script = ExtResource("1_jcdck")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 6
