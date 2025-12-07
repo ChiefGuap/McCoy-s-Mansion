@@ -1,7 +1,6 @@
 extends Node
 
 # --- CONNECTIONS ---
-# Make sure to drag these nodes into the Inspector slots!
 @export var player: Node2D
 @export var animation_player: AnimationPlayer
 @export var dialogue_box: Control 
@@ -45,22 +44,17 @@ func play_intro_cutscene():
 	if dialogue_box:
 		dialogue_box.visible = true
 	
-	# Force the text label to update AND be visible
 	# --- DIALOGUE LINE 1 ---
 	if dialogue_label:
 		dialogue_label.add_theme_font_size_override("font_size", 7)
 		dialogue_label.text = "I need to escape"
-		# This is the secret sauce: Force it visible in case the animation hid it
 		
 		# Position tweak
 		dialogue_label.position.y += 3
 		
 		dialogue_label.visible = true 
-		# Ensure the color is white (or readable) just in case
 		dialogue_label.modulate = Color(1, 1, 1, 1) 
-		
 	
-	# Wait 3 seconds for reading
 	# Wait 2 seconds for line 1
 	await get_tree().create_timer(2.0).timeout
 
@@ -71,7 +65,6 @@ func play_intro_cutscene():
 	# Wait 2 seconds for line 2
 	await get_tree().create_timer(3.0).timeout
 	
-	# 4. HIDE TEXT
 	if dialogue_label:
 		dialogue_label.text = "I should check"
 		
@@ -91,7 +84,6 @@ func play_intro_cutscene():
 	
 	if dialogue_box:
 		dialogue_box.visible = false
-	
 	
 	# 6. UNLOCK PLAYER
 <<<<<<< Updated upstream
