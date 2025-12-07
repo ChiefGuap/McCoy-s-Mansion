@@ -12,8 +12,8 @@ func play_intro_cutscene():
 	print("🎬 CUTSCENE STARTED")
 	
 	# 1. LOCK PLAYER
-	if player:
-		player.lock_player()
+	#if player:
+		#player.lock_player()
 	
 	# 2. PLAY ANIMATION (0s -> 7s)
 	if animation_player:
@@ -49,7 +49,7 @@ func play_intro_cutscene():
 	
 	
 	# 6. UNLOCK PLAYER
-	if player:
-		player.unlock_player()
+	#if player:
+		#player.unlock_player()
 	
 	print("🏁 CUTSCENE FINISHED")
