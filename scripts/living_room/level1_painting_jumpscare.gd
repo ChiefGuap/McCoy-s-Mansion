@@ -7,6 +7,7 @@ extends Node2D
 
 var player_in_range = false
 var is_scaring = false 
+var penalty_applied = false  # ✅ only subtract time once for this jumpscare
 
 func _ready():
 	# 1. Hide outline shader if it exists
@@ -25,6 +26,12 @@ func _input(event):
 func trigger_jumpscare():
 	is_scaring = true
 	print("😱 JUMPSCARE TRIGGERED!")
+	# ✅ Tell the game timer to subtract 30 seconds (only once)
+	if not penalty_applied:
+		var game = get_tree().current_scene
+		if game and game.has_method("apply_jumpscare_penalty"):
+			game.apply_jumpscare_penalty()
+		penalty_applied = true
 	
 	# 1. Play Sound
 	if scream_sound:

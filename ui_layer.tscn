@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://btgyqt25ysr0x"]
+
+[ext_resource type="FontFile" uid="uid://tnqspq8suf2l" path="res://assets/world_scene/shadow_of_the_deads/Shadow of the Deads.ttf" id="1_ibxbq"]
+[ext_resource type="Script" uid="uid://bm6j7e4lxusrk" path="res://scripts/hotbar.gd" id="3_dkc04"]
+
+[node name="UI_Layer" type="CanvasLayer"]
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 62.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("1_ibxbq")
+theme_override_font_sizes/font_size = 24
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Hotbar" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = -2.0
+offset_top = 135.0
+offset_right = 623.0
+offset_bottom = 535.0
+scale = Vector2(2, 2)
+script = ExtResource("3_dkc04")
+
+[node name="Slot1" type="TextureRect" parent="Hotbar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot2" type="TextureRect" parent="Hotbar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot3" type="TextureRect" parent="Hotbar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot4" type="TextureRect" parent="Hotbar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot5" type="TextureRect" parent="Hotbar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012645884, 0.012645883, 0.012645883, 1)
+
+[node name="InteractLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 1.0
+grow_vertical = 0
+
+[node name="HotbarLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+offset_right = 98.0
+grow_vertical = 0

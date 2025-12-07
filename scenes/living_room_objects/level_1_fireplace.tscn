@@ -7,6 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k1dkb"]
 shader = ExtResource("1_11sdf")
+shader_parameter/outline_enabled = true
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
 shader_parameter/line_thickness = 1.322000062795
 

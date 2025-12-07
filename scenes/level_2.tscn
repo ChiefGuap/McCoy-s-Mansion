@@ -1,12 +1,15 @@
-[gd_scene load_steps=44 format=4 uid="uid://b7s4msybe76uy"]
+[gd_scene load_steps=45 format=4 uid="uid://b7s4msybe76uy"]
 
+[ext_resource type="Script" uid="uid://i55ovgbe3hmp" path="res://scripts/level_2.gd" id="1_guvtl"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_nmjpi"]
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="2_xdadj"]
 [ext_resource type="PackedScene" uid="uid://cyaxxarxf271r" path="res://scenes/dining_room_objects/chair_left_facing.tscn" id="3_b4j7a"]
 [ext_resource type="Texture2D" uid="uid://bqdarpnpmlbu6" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset.png" id="3_xdadj"]
 [ext_resource type="PackedScene" uid="uid://cgglxgt3ij7v5" path="res://scenes/dining_room_objects/chair_front_facing.tscn" id="4_y0kc7"]
+[ext_resource type="Script" uid="uid://c8pt6oracujoi" path="res://scripts/dining_room/mccoys_chair.gd" id="5_igmy8"]
 [ext_resource type="PackedScene" uid="uid://dv3v810rj770b" path="res://scenes/dining_room_objects/chair_up_facing.tscn" id="5_ne2mo"]
 [ext_resource type="Script" uid="uid://bvjexhxt464em" path="res://scripts/dining_room/tables/drawer.gd" id="6_172wr"]
+[ext_resource type="Script" uid="uid://cryo8misl74v1" path="res://scripts/dining_room/jumpscare_chair.gd" id="6_wdtqu"]
 [ext_resource type="Script" uid="uid://30pjna0pqy70" path="res://scripts/dining_room/vase.gd" id="7_6cvei"]
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="8_ne2mo"]
 [ext_resource type="Script" uid="uid://di3i7uoc6cks7" path="res://scripts/dining_room/tables/table_1.gd" id="10_g2hoc"]
@@ -2169,9 +2172,6 @@ shader_parameter/outline_enabled = false
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
 shader_parameter/line_thickness = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hey2k"]
-radius = 19.99997
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2hoc"]
 shader = ExtResource("8_ne2mo")
 shader_parameter/outline_enabled = false
@@ -2208,14 +2208,11 @@ shader_parameter/line_thickness = 0.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_pbc48"]
 radius = 26.047443
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_que50"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_igmy8"]
 shader = ExtResource("8_ne2mo")
 shader_parameter/outline_enabled = false
-shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
+shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6cvei"]
-radius = 44.446316
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_guvtl"]
 shader = ExtResource("8_ne2mo")
@@ -2237,6 +2234,7 @@ radius = 20.566376
 height = 50.014465
 
 [node name="DiningRoom" type="Node2D"]
+script = ExtResource("1_guvtl")
 
 [node name="TableToppersZUp" type="TileMapLayer" parent="."]
 z_index = 53
@@ -2275,9 +2273,11 @@ tile_set = SubResource("TileSet_eoq84")
 
 [node name="ChairLeftFacing" parent="." instance=ExtResource("3_b4j7a")]
 position = Vector2(663, 165)
+script = ExtResource("5_igmy8")
 
 [node name="ChairLeftFacing2" parent="." instance=ExtResource("3_b4j7a")]
 position = Vector2(711, 205)
+script = ExtResource("6_wdtqu")
 
 [node name="ChairFrontFacing" parent="." instance=ExtResource("4_y0kc7")]
 position = Vector2(527, 150)
@@ -2323,7 +2323,6 @@ shape = SubResource("CircleShape2D_ne2mo")
 [node name="VaseFlowery" type="Node2D" parent="Drawer"]
 position = Vector2(0, -14)
 scale = Vector2(0.90000135, 0.8388159)
-script = ExtResource("7_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="Drawer/VaseFlowery"]
 z_index = 53
@@ -2331,11 +2330,6 @@ material = SubResource("ShaderMaterial_172wr")
 texture = ExtResource("3_xdadj")
 region_enabled = true
 region_rect = Rect2(320.084, 224.834, 15.5, 23.25)
-
-[node name="Area2D" type="Area2D" parent="Drawer/VaseFlowery"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Drawer/VaseFlowery/Area2D"]
-shape = SubResource("CircleShape2D_hey2k")
 
 [node name="Table1" type="Node2D" parent="."]
 position = Vector2(439, 135)
@@ -2402,42 +2396,34 @@ shape = SubResource("RectangleShape2D_que50")
 shape = SubResource("CircleShape2D_ne2mo")
 
 [node name="VaseGolden" type="Node2D" parent="Table2"]
-position = Vector2(-296, -72)
+position = Vector2(-6, -16)
 script = ExtResource("7_6cvei")
 
 [node name="Sprite2D" type="Sprite2D" parent="Table2/VaseGolden"]
 z_index = 6
 material = SubResource("ShaderMaterial_b4j7a")
-position = Vector2(289, 56)
 scale = Vector2(0.81000245, 0.70361215)
 texture = ExtResource("3_xdadj")
 region_enabled = true
-region_rect = Rect2(352, 225.175, 16, 23)
+region_rect = Rect2(352, 224.25, 16, 25)
 
 [node name="Area2D" type="Area2D" parent="Table2/VaseGolden"]
-position = Vector2(289, 56)
 scale = Vector2(0.81000245, 0.70361215)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table2/VaseGolden/Area2D"]
 shape = SubResource("CircleShape2D_pbc48")
 
-[node name="VaseYellow" type="Node2D" parent="Table2"]
+[node name="VaseWhite" type="Node2D" parent="Table2"]
+material = SubResource("ShaderMaterial_igmy8")
 position = Vector2(7, -15.5)
-scale = Vector2(0.7, 0.6)
-script = ExtResource("7_6cvei")
+scale = Vector2(0.8174626, 0.67554355)
 
-[node name="Sprite2D" type="Sprite2D" parent="Table2/VaseYellow"]
+[node name="Sprite2D" type="Sprite2D" parent="Table2/VaseWhite"]
 z_index = 6
-material = SubResource("ShaderMaterial_que50")
+scale = Vector2(0.99999994, 1)
 texture = ExtResource("3_xdadj")
 region_enabled = true
-region_rect = Rect2(384, 225.471, 16, 24.529)
-
-[node name="Area2D" type="Area2D" parent="Table2/VaseYellow"]
-scale = Vector2(0.81000245, 0.70361215)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table2/VaseYellow/Area2D"]
-shape = SubResource("CircleShape2D_6cvei")
+region_rect = Rect2(384.25, 384.5, 17.5, 24.5)
 
 [node name="Table3" type="Node2D" parent="."]
 position = Vector2(695, 232)
@@ -2464,7 +2450,7 @@ shape = SubResource("RectangleShape2D_hey2k")
 shape = SubResource("CircleShape2D_ne2mo")
 
 [node name="VaseWhite" type="Node2D" parent="Table3"]
-position = Vector2(-10.051575, -16.893478)
+position = Vector2(-10.052, -16.3)
 scale = Vector2(0.8174626, 0.67554355)
 script = ExtResource("7_6cvei")
 
@@ -2474,7 +2460,7 @@ material = SubResource("ShaderMaterial_6cvei")
 scale = Vector2(0.99999994, 1)
 texture = ExtResource("3_xdadj")
 region_enabled = true
-region_rect = Rect2(384.25, 384, 17.5, 24.5)
+region_rect = Rect2(384.25, 384.5, 17.5, 24.5)
 
 [node name="Area2D" type="Area2D" parent="Table3/VaseWhite"]
 scale = Vector2(1.151, 1)

@@ -12,6 +12,7 @@ var _pulse := 0.0
 # -----------------------------------------------------------------
 # This function is called when the scene first loads
 func _ready():
+	add_to_group("game_manager")  
 	# Cutscene (your old code – unchanged)
 	$CutsceneManager.play_intro_cutscene()
 	

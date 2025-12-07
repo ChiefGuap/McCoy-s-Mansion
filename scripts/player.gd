@@ -42,10 +42,8 @@ func _process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 		$AnimatedSprite2D.animation = "default"
-
-	# The 'interact' logic remains active regardless of the lock state
-	if Input.is_action_just_pressed("interact"):
-		print("PRESSED E")
+	
+	if Input.is_action_just_pressed("toggle_selection"):
 		if (collisions.size() > 1):
 			var prev_body = collisions[collision_idx]
 			prev_body.turn_off_outline()
@@ -56,6 +54,12 @@ func _process(delta: float) -> void:
 			var body = collisions[collision_idx]
 			
 			body.turn_on_outline()
+			regenerate_interact_label()
+	
+	if Input.is_action_just_pressed("interact"):
+		if (collisions.size() > 1):
+			var body = collisions[collision_idx]
+			body.interact()
 	
 	_apply_movement()
 
@@ -97,7 +101,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		body.turn_on_outline()
 		collision_idx = collisions.size() - 1 
 		print("Adding outline to ", body, " len ", collisions.size())
-		
+		regenerate_interact_label()
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	var body = area.get_parent()
@@ -120,3 +124,13 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	if (collisions.size() > 0):
 		var target = collisions[collision_idx]
 		target.turn_on_outline()
+	regenerate_interact_label()
+
+func regenerate_interact_label() -> void:
+	var label = get_tree().root.find_child("InteractLabel", true, false)
+	var text = ""
+	if (collisions.size() > 0):
+		text += "Press e to interact"
+	if (collisions.size() > 1):
+		text += "\nPress x to toggle selection <" + str(collision_idx+1) + "/" + str(collisions.size()) + ">"
+	label.text = text

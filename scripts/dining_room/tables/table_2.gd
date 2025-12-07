@@ -2,7 +2,7 @@ extends Interactable
 
 
 func _ready() -> void:
-	turn_off_interactable()
+	turn_on_interactable()
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
