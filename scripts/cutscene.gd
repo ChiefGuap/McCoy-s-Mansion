@@ -8,15 +8,12 @@ extends Node
 
 # Variable to hold the pacing animation so we can stop it later
 var pacing_tween: Tween 
+#test
 
 func play_intro_cutscene():
 	print("🎬 CUTSCENE STARTED")
 	
 	# 1. LOCK PLAYER
-<<<<<<< Updated upstream
-	#if player:
-		#player.lock_player()
-=======
 	# We use call_deferred or just call it directly depending on your setup
 	if player:
 		if player.has_method("lock_player"):
@@ -24,7 +21,6 @@ func play_intro_cutscene():
 		else:
 			# Fallback if lock_player function is missing
 			player.set_physics_process(false)
->>>>>>> Stashed changes
 	
 	# 2. PLAY ANIMATION (0s -> 7s)
 	if animation_player:
@@ -86,16 +82,11 @@ func play_intro_cutscene():
 		dialogue_box.visible = false
 	
 	# 6. UNLOCK PLAYER
-<<<<<<< Updated upstream
-	#if player:
-		#player.unlock_player()
-=======
 	if player:
 		if player.has_method("unlock_player"):
 			player.unlock_player()
 		else:
 			player.set_physics_process(true)
->>>>>>> Stashed changes
 	
 	print("🏁 CUTSCENE FINISHED")
 
