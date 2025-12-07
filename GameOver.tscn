@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf6rott6welvu"]
+
+[ext_resource type="FontFile" uid="uid://tnqspq8suf2l" path="res://assets/world_scene/shadow_of_the_deads/Shadow of the Deads.ttf" id="1_40baj"]
+[ext_resource type="Script" uid="uid://dxq7xhghe2wmv" path="res://game_over.gd" id="1_eksk4"]
+[ext_resource type="FontFile" uid="uid://b40lp7jroh8ux" path="res://assets/world_scene/Ithaca-LVB75.ttf" id="3_xl4ts"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eksk4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6666667)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 258.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.4650938, 4.0911138e-07, 2.1658838e-07, 1)
+theme_override_fonts/font = ExtResource("1_40baj")
+theme_override_font_sizes/font_size = 39
+text = "YOU RAN OUT OF TIME"
+
+[node name="RetryButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xl4ts")
+theme_override_font_sizes/font_size = 40
+text = "RETRY"
+
+[node name="Quitbutton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xl4ts")
+theme_override_font_sizes/font_size = 40
+text = "QUIT GAME"
