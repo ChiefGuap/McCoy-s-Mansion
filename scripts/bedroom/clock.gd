@@ -97,7 +97,7 @@ func start_time_prompt():
 	await get_tree().create_timer(2.0).timeout
 
 	# 5. Show Input Prompt and Field
-	label.text = "Enter new time (HHMM):"
+	label.text = "Enter new time:"
 	
 	input_popup_layer.visible = true
 	input_field.text = "" # Clear old input
@@ -141,7 +141,11 @@ func _on_time_input_submitted(submitted_text: String):
 	
 	# 🌟 CHECK WINNING CONDITION
 	if current_time == "06:07":
-		label.text = "The clock chimes an odd tune. A note has appeared!"
+		input_popup_layer.visible = false
+		await get_tree().create_timer(2).timeout
+		label.text = "The clock chimes"
+		await get_tree().create_timer(2).timeout
+		label.text = "A note appeared!"
 		note_unlocked = true # Note is now available for toggling
 		Level3.clock_done = true
 	
