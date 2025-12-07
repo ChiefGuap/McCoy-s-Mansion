@@ -17,7 +17,7 @@ size = Vector2(57, 40)
 [node name="BottomRedCouch" type="Node2D"]
 script = ExtResource("1_kfl6e")
 
-[node name="BottomRedCouchSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_p3r0x")
 position = Vector2(-34, 264)
 texture = SubResource("CompressedTexture2D_5xqnf")

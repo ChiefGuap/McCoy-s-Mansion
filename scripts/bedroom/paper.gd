@@ -23,7 +23,7 @@ func interact() -> void:
 
 func _input(event):
 	# Check if the "interact" key (E) was pressed
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and player_in_area:
 		# If player is near, toggle the popup
 		if checked && randf() < 0.4:
 			#jumpscare
@@ -34,7 +34,7 @@ func _input(event):
 		if item == bottle:
 			hotbar.remove_from_hotbar(item)
 			dirty.visible = false
-		if item == torch:
+		if item == torch and !dirty.visible:
 			blue.visible = false
 			checked = true
 			Level3.paper_done = true

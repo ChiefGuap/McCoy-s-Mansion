@@ -11,9 +11,10 @@ shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
 shader_parameter/line_thickness = 1.322000062795
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfj6"]
-size = Vector2(12, 37)
+size = Vector2(16, 37)
 
 [node name="Paper" type="Node2D"]
+modulate = Color(2.4325802, 2.4325802, 2.4325802, 0.5882353)
 z_index = 50
 script = ExtResource("1_cbjgq")
 
@@ -29,11 +30,10 @@ region_rect = Rect2(192, 110, 17, 18)
 position = Vector2(-41, -17)
 
 [node name="PaperCollision" type="CollisionShape2D" parent="PaperArea"]
-position = Vector2(377, 70.5)
+position = Vector2(375, 70.5)
 shape = SubResource("RectangleShape2D_hhfj6")
 
 [node name="Original" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="Original"]
 modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)
@@ -122,6 +122,7 @@ text = "My Dear,"
 vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="Original"]
+modulate = Color(0.9459776, 0.9459776, 0.8752831, 0.99215686)
 z_index = 50
 offset_left = 410.0
 offset_top = 137.0
