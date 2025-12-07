@@ -10,7 +10,7 @@ shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
 shader_parameter/line_thickness = 1.322000062795
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfj6"]
-size = Vector2(16, 45)
+size = Vector2(16, 37)
 
 [node name="Paper" type="Node2D"]
 z_index = 50
@@ -28,7 +28,7 @@ region_rect = Rect2(192, 110, 17, 18)
 position = Vector2(-41, -17)
 
 [node name="PaperCollision" type="CollisionShape2D" parent="PaperArea"]
-position = Vector2(375, 74.5)
+position = Vector2(375, 70.5)
 shape = SubResource("RectangleShape2D_hhfj6")
 
 [connection signal="body_entered" from="PaperArea" to="." method="_on_paper_entered"]

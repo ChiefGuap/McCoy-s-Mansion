@@ -1,37 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfai6ujtxibqq"]
+[gd_scene load_steps=6 format=3 uid="uid://4x6bite8rdum"]
 
-[ext_resource type="Script" uid="uid://c15rupbmvqnqu" path="res://scripts/bedroom/bottom_red_couch.gd" id="1_kfl6e"]
+[ext_resource type="Script" uid="uid://8co5q80loyyg" path="res://scripts/bedroom/bottom_red_couch.gd" id="1_kfl6e"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_abgw7"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ax3dk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3r0x"]
 shader = ExtResource("2_abgw7")
 shader_parameter/line_color = Color(1, 0.34509805, 0, 1)
 shader_parameter/line_thickness = 1.322000062795
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q2dsb"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5xqnf"]
 load_path = "res://.godot/imported/fancy_mansion_furnitureset.png-d23b050a7caff2f4379cc297a38e3e1a.ctex"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3r0x"]
-size = Vector2(58, 36)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_una4e"]
+size = Vector2(57, 40)
 
 [node name="BottomRedCouch" type="Node2D"]
-z_index = 50
 script = ExtResource("1_kfl6e")
 
 [node name="BottomRedCouchSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_ax3dk")
-position = Vector2(104, 37)
-rotation = 6.2831855
-texture = SubResource("CompressedTexture2D_q2dsb")
+material = SubResource("ShaderMaterial_p3r0x")
+position = Vector2(-34, 264)
+texture = SubResource("CompressedTexture2D_5xqnf")
 flip_h = true
 region_enabled = true
-region_rect = Rect2(321, 284.085, 57, 39)
+region_rect = Rect2(321, 284.5, 60, 37)
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-152, 217)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(103, 37)
-shape = SubResource("RectangleShape2D_p3r0x")
+position = Vector2(118.5, 47)
+shape = SubResource("RectangleShape2D_una4e")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_bottomredcouch_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_bottomredcouch_exited"]

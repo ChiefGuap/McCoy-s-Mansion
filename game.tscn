@@ -179,7 +179,7 @@ zoom = Vector2(5, 5)
 limit_left = 0
 limit_top = 0
 limit_right = 415
-limit_bottom = 256
+limit_bottom = 279
 script = ExtResource("6_cam_ctrl")
 
 [node name="UI_Layer" type="CanvasLayer" parent="."]
