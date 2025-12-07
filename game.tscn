@@ -461,6 +461,9 @@ script = ExtResource("6_cam_ctrl")
 [node name="UI_Layer" parent="." instance=ExtResource("8_mfdv2")]
 unique_name_in_owner = true
 
+[node name="HotbarLabel" parent="UI_Layer" index="5"]
+anchors_preset = 2
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_eow3j")
@@ -493,7 +496,9 @@ position = Vector2(1, 250)
 tile_map_data = PackedByteArray("AAAAAAAAAQABAAgAAAABAAAAAQABAAgAAAACAAAAAQABAAgAAAADAAAAAQABAAgAAAAEAAAAAQABAAgAAAAFAAAAAQABAAgAAAAGAAAAAQABAAgAAAAHAAAAAQABAAgAAAAIAAAAAQABAAgAAAAJAAAAAQABAAgAAAAKAAAAAQABAAgAAAALAAAAAQABAAgAAAAMAAAAAQABAAgAAAANAAAAAQABAAgAAAAOAAAAAQABAAgAAAAPAAAAAQABAAgAAAAQAAAAAQABAAgAAAARAAAAAQABAAgAAAASAAAAAQABAAgAAAATAAAAAQABAAgAAAAUAAAAAQABAAgAAAAVAAAAAQABAAgAAAAWAAAAAQABAAgAAAD//wEAAQABAAgAAAD+/wEAAQABAAgAAAD9/wEAAQABAAgAAAD8/wEAAQABAAgAAAD7/wEAAQABAAgAAAD6/wEAAQABAAgAAAD5/wEAAQABAAgAAAD4/wEAAQABAAgAAAAAAAEAAQABAAgAAAD3/wEAAQABAAgAAAD3/wAAAQABAAgAAAD3////AQABAAgAAAD3//7/AQABAAgAAAD3//3/AQABAAgAAAD3//z/AQABAAgAAAD3//v/AQABAAgAAAD3//r/AQABAAgAAAD3//n/AQABAAgAAAD3//j/AQABAAgAAAD3//f/AQABAAgAAAD3//b/AQABAAgAAAD3//X/AQABAAgAAAA=")
 tile_set = SubResource("TileSet_7sc4i")
 
+[connection signal="timeout" from="UI_Layer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Door_to_Level2" to="Player/Camera2D" method="_on_diningRoomDoor_body_entered"]
 [connection signal="body_entered" from="Door_to_Level3" to="Player/Camera2D" method="_on_bedRoom_body_entered"]
 
 [editable path="Player/DialougeBox"]
+[editable path="UI_Layer"]

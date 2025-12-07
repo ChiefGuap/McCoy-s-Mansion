@@ -69,7 +69,9 @@ func get_held_item() -> Node2D:
 	return items[holding]
 
 func remove_from_hotbar(item: Node2D) -> void:
-	items.erase(item)
+	var idx = items.find(item)
+	slots[idx].get_child(0).texture = null
+	items[idx] = null
 	regenerate_hotbar_label()
 
 func regenerate_hotbar_label() -> void:
