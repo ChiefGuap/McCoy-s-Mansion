@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyaxxarxf271r"]
+[gd_scene load_steps=9 format=3 uid="uid://cyaxxarxf271r"]
 
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="1_7hbps"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="2_mldx5"]
+[ext_resource type="Texture2D" uid="uid://qeo0ok723kpn" path="res://assets/jumpscares/jumpscare2.jpeg" id="3_epwpb"]
+[ext_resource type="AudioStream" uid="uid://dtqwpycu6otmw" path="res://assets/jumpscares/jumpscare2.wav" id="4_1lg72"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wo48x"]
 resource_local_to_scene = true
@@ -54,3 +56,17 @@ shape = SubResource("RectangleShape2D_eqxsl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_7hbps")
+
+[node name="ChairJumpscareLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ScaryFace" type="TextureRect" parent="ChairJumpscareLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_epwpb")
+
+[node name="ChairScream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1lg72")

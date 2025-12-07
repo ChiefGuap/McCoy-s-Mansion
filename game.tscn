@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7s4msybe76uy" path="res://scenes/level_2.tscn" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://dfruiga03ayob" path="res://scripts/cameraControl.gd" id="6_cam_ctrl"]
 [ext_resource type="PackedScene" uid="uid://c32asmo0ve12k" path="res://scenes/DialogueBox.tscn" id="6_vef74"]
-[ext_resource type="PackedScene" path="res://ui_layer.tscn" id="8_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://btgyqt25ysr0x" path="res://ui_layer.tscn" id="8_mfdv2"]
 [ext_resource type="Script" uid="uid://cy16rhrbhu81y" path="res://scripts/cutscene.gd" id="9_vef74"]
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="10_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://c136y2m87miip" path="res://assets/IntroWoods/McCoySprite/Assets.png" id="11_iotsf"]
@@ -460,6 +460,21 @@ script = ExtResource("6_cam_ctrl")
 
 [node name="UI_Layer" parent="." instance=ExtResource("8_mfdv2")]
 unique_name_in_owner = true
+
+[node name="Slot1" parent="UI_Layer/Hotbar" index="0"]
+visible = false
+
+[node name="Slot2" parent="UI_Layer/Hotbar" index="1"]
+visible = false
+
+[node name="Slot3" parent="UI_Layer/Hotbar" index="2"]
+visible = false
+
+[node name="Slot4" parent="UI_Layer/Hotbar" index="3"]
+visible = false
+
+[node name="Slot5" parent="UI_Layer/Hotbar" index="4"]
+visible = false
 
 [node name="HotbarLabel" parent="UI_Layer" index="5"]
 anchors_preset = 2

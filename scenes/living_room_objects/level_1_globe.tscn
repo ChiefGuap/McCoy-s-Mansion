@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://kills875olin"]
+[gd_scene load_steps=8 format=3 uid="uid://kills875olin"]
 
 [ext_resource type="Script" uid="uid://cgicnfu5lreug" path="res://scripts/living_room/level_1_globe.gd" id="1_pgawg"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_q5fb6"]
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="1_vqoj6"]
+[ext_resource type="Texture2D" uid="uid://cu77olmwqmgox" path="res://assets/FancyMansion_Furniture/globe_drinks.png" id="4_gsava"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pgawg"]
 shader = ExtResource("1_vqoj6")
@@ -35,6 +36,11 @@ shape = SubResource("CircleShape2D_q5fb6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_q5fb6")
+
+[node name="DrinksSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(39, 211)
+texture = ExtResource("4_gsava")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
