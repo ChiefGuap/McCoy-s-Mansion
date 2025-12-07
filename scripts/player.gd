@@ -57,8 +57,11 @@ func _process(delta: float) -> void:
 			regenerate_interact_label()
 	
 	if Input.is_action_just_pressed("interact"):
-		if (collisions.size() > 1):
+		print("Iteractions")
+		if (collisions.size() > 0):
+			print("found here")
 			var body = collisions[collision_idx]
+			print("yeah ", body)
 			body.interact()
 	
 	_apply_movement()
@@ -118,7 +121,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	
 	collisions.erase(body)
 	body.turn_off_outline()
-	print("Removing outline to ", body, " len ", collisions.size())
+	print("Removing node from collisions ", body, " len ", collisions.size())
 	
 	# ensure target gets passed if the current one was just removed
 	if (collisions.size() > 0):

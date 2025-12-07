@@ -1,4 +1,5 @@
 extends Interactable
+class_name Vase
 
 
 func _ready() -> void:
