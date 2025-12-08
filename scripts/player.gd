@@ -57,12 +57,10 @@ func _process(delta: float) -> void:
 			regenerate_interact_label()
 	
 	if Input.is_action_just_pressed("interact"):
-		print("Iteractions")
 		if (collisions.size() > 0):
-			print("found here")
 			var body = collisions[collision_idx]
-			print("yeah ", body)
-			body.interact()
+			if body._interactable:
+				body.interact()
 	
 	_apply_movement()
 
@@ -94,6 +92,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	
 	# outline this new target, clear prev outlines
 	if (body is Interactable or body is InteractableV2) and body._interactable:
+		print(body, " is interactable ", body._interactable)
 		collisions.append(body)
 		
 		if (collisions.size() > 1):
