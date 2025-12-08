@@ -8,6 +8,7 @@ extends Node
 
 # --- NEW: Drag your SuccessLabel here in the Inspector ---
 @export var success_label: Label 
+@export var hint_label: Label
 
 # --- PUZZLE OBJECTS ---
 @onready var table1 = $Table1
@@ -34,6 +35,9 @@ func _ready() -> void:
 	if success_label:
 		success_label.visible = false
 	
+	if hint_label:
+		hint_label.visible = false
+	
 	# Connect signals from tables/vases
 	if table1: table1.connect("add_vase", Callable(self, "add_vase_to_dict"))
 	if table2: table2.connect("add_vase", Callable(self, "add_vase_to_dict"))
@@ -42,6 +46,13 @@ func _ready() -> void:
 	if vase1: vase1.connect("remove_vase", Callable(self, "remove_vase_from_dict"))
 	if vase2: vase2.connect("remove_vase", Callable(self, "remove_vase_from_dict"))
 	if vase3: vase3.connect("remove_vase", Callable(self, "remove_vase_from_dict"))
+
+func enter_level() -> void:
+	if hint_label:
+		hint_label.visible = true
+		hint_label.text = "HMMM, WHICH OF THESE CHAIRS COULD BE MCCOY'S?"
+		# Hide after 5 seconds
+		get_tree().create_timer(5.0).timeout.connect(func(): hint_label.visible = false)
 
 func add_vase_to_dict(table: Node2D, vase: Node2D) -> void:
 	vases_dict[table] = vase

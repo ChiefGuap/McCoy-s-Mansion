@@ -85,3 +85,16 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("1_ibxbq")
+
+[node name="LevelHintLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_right = 35.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_ibxbq")
+text = "Hint Test"
+horizontal_alignment = 1
+vertical_alignment = 1
