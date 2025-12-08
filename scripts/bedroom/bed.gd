@@ -13,12 +13,16 @@ var popup_available: bool = false
 # 🌟 NEW STATE FLAG: Tracks if the item is currently open
 var popup_is_open: bool = false
 
+# 🌟 JUMPSCARE NODES - ASSUMING 'JumpscareLayer' and 'ScreamSound' are children of this node
+@onready var jumpscare_layer: CanvasLayer = $JumpscareLayer
+@onready var scream_sound: AudioStreamPlayer2D = $ScreamSound
+
 
 func _ready():
 	turn_on_interactable()
 	popup.visible = false
 	# Optional: Ensure the popup has a high Z-index or is on a CanvasLayer to appear over everything
-	# popup.z_index = 100 
+	# popup.z_index = 100
 
 func interact() -> void:
 	# This function is not used in your current setup, but included for completeness
@@ -49,13 +53,27 @@ func _process(delta):
 				box.visible = true
 				label.visible = true
 				label.text = "Looks Comfy"
-				await get_tree().create_timer(2.0).timeout 
+				await get_tree().create_timer(2.0).timeout
 				box.visible = false
 				label.visible = false
 				return
 			else:
 				#jumpscare
-				print("Add jumpscare here")
+				# Jumpscare Logic Start
+				player.lock_player()
+				hotbar.visible = false
+				jumpscare_layer.visible = true
+				scream_sound.play()
+				
+				await get_tree().create_timer(0.2).timeout
+				
+				jumpscare_layer.visible = false
+				
+				await get_tree().create_timer(0.3).timeout # Wait for the visual part to finish
+
+				player.unlock_player()
+				hotbar.visible = true
+				# Jumpscare Logic End
 				return
 		
 		if popup_available:
@@ -81,8 +99,7 @@ func _process(delta):
 			label.modulate = Color(0, 0, 0, 1)
 
 			label.text = "Something's here!"
-			
-			await get_tree().create_timer(2.0).timeout 
+			await get_tree().create_timer(2.0).timeout
 			box.visible = false
 			label.visible = false
 			
@@ -92,7 +109,6 @@ func _process(delta):
 			toggle_popup_display() # Show the popup immediately
 			
 			# NOTE: Player remains locked until they press 'E' again to close the popup.
-			
 		else:
 			# --- Empty Dialogue ---
 			box.visible = true
@@ -102,12 +118,11 @@ func _process(delta):
 			label.modulate = Color(0, 0, 0, 1)
 
 			label.text = "Nothing's here!"
-			
 			await get_tree().create_timer(2.0).timeout
 			box.visible = false
 			label.visible = false
 			player.unlock_player() # Unlock immediately since nothing was found
-
+			
 # -----------------------------------------------
 # 🌟 NEW TOGGLE FUNCTION
 # -----------------------------------------------

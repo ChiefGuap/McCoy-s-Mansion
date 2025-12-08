@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgu3lgen43e1b"]
+[gd_scene load_steps=10 format=3 uid="uid://dgu3lgen43e1b"]
 
 [ext_resource type="Script" uid="uid://dlgqsnjrv1mp1" path="res://scripts/bedroom/clock.gd" id="1_y58p0"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_eptq3"]
 [ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="3_6omhm"]
+[ext_resource type="Texture2D" uid="uid://cu6briigd2swb" path="res://assets/jumpscares/jumpscare7.png" id="4_17baa"]
+[ext_resource type="AudioStream" uid="uid://dtqwpycu6otmw" path="res://assets/jumpscares/jumpscare2.wav" id="5_u874b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ha73p"]
 shader = ExtResource("2_eptq3")
@@ -214,6 +216,20 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "My Dear,"
 vertical_alignment = 1
+
+[node name="JumpscareLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ScaryFace" type="TextureRect" parent="JumpscareLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_17baa")
+
+[node name="ScreamSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_u874b")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_clock_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_clock_exited"]

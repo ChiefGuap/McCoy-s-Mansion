@@ -19,6 +19,10 @@ var player_in_area: bool = false # Tracks if player is inside the interaction zo
 # placed at the same level as the $CanvasLayer used for input.
 @onready var note_popup_layer: CanvasLayer = $note
 
+# 🌟 JUMPSCARE NODES
+@onready var jumpscare_layer: CanvasLayer = $JumpscareLayer
+@onready var scream_sound: AudioStreamPlayer2D = $ScreamSound
+
 # Time/State Variables
 var current_time: String = "06:09" 
 var waiting_for_input: bool = false # Flag for time entry interaction state
@@ -56,7 +60,21 @@ func _process(delta: float):
 				return
 			else:
 				#jumpscare
-				print("Add jumpscare here")
+				# Jumpscare Logic Start
+				player.lock_player()
+				hotbar.visible = false
+				jumpscare_layer.visible = true
+				scream_sound.play()
+				
+				await get_tree().create_timer(0.2).timeout
+				
+				jumpscare_layer.visible = false
+				
+				await get_tree().create_timer(0.3).timeout # Wait for the visual part to finish
+
+				player.unlock_player()
+				hotbar.visible = true
+				# Jumpscare Logic End
 				return
 		
 		# 1. If the note is already unlocked, hitting E toggles the note
@@ -175,7 +193,6 @@ func end_input_interaction():
 	player.unlock_player()
 	hotbar.visible = true
 	# If the note IS unlocked, the player stays locked until they interact again to view/dismiss the note.
-	
 	# 3. Reset state flag
 	waiting_for_input = false
 
