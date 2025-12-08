@@ -87,7 +87,7 @@ func update_label():
 		else:
 			label.text = "The fire is too hot, have to find something to extinguish it..."
 	else:
-		label.text = "The dining room door clicks open..."
+		label.text = "The dining room door on the bottom right clicks open..."
 
 func close_popup():
 	popup_layer.visible = false
