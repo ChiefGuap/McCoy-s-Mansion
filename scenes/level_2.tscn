@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://c5j7umtb4gq5j" path="res://scripts/dining_room/tables/table_2.gd" id="11_fldb1"]
 [ext_resource type="Script" uid="uid://ff6l5og5q8gw" path="res://scripts/dining_room/tables/table_3.gd" id="12_guvtl"]
 [ext_resource type="Texture2D" uid="uid://clx1bsa30ijpd" path="res://assets/jumpscares/jumpscare3.png" id="15_igmy8"]
-[ext_resource type="Script" uid="uid://8tmoou7gpfwg" path="res://scripts/dining_room/key.gd" id="16_k22d5"]
+[ext_resource type="Script" path="res://scripts/dining_room/key.gd" id="16_k22d5"]
 [ext_resource type="AudioStream" uid="uid://c63aw7myakebx" path="res://assets/jumpscares/jumpscare3.wav" id="16_wdtqu"]
 [ext_resource type="Texture2D" uid="uid://b876xe2i4wv0j" path="res://assets/LineAcross2dMegaAssetsPack/key.png" id="17_k6a82"]
 
@@ -2264,7 +2264,7 @@ tile_set = SubResource("TileSet_7dov7")
 [node name="Paintings" type="TileMapLayer" parent="."]
 z_index = 7
 position = Vector2(415, 64)
-tile_map_data = PackedByteArray("AAACAAIAAAAKAAUAAAACAAEAAAAKAAQAAAADAAIAAAALAAUAAAADAAEAAAALAAQAAAARAAEAAAALAAQAAAARAAIAAAALAAUAAAAQAAIAAAAKAAUAAAAQAAEAAAAKAAQAAAAJAAIAAAAMAAUAAAAKAAIAAAANAAUAAAAKAAEAAAANAAQAAAAJAAEAAAAMAAQAAAA=")
+tile_map_data = PackedByteArray("AAACAAIAAAAKAAUAAAACAAEAAAAKAAQAAAADAAIAAAALAAUAAAADAAEAAAALAAQAAAAJAAIAAAAMAAUAAAAKAAIAAAANAAUAAAAKAAEAAAANAAQAAAAJAAEAAAAMAAQAAAAQAAEAAAAIAAQAAAARAAEAAAAJAAQAAAAQAAIAAAAIAAUAAAARAAIAAAAJAAUAAAA=")
 tile_set = SubResource("TileSet_1y8me")
 
 [node name="TablesZUp" type="TileMapLayer" parent="."]

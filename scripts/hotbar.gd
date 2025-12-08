@@ -70,7 +70,7 @@ func create_selector():
 	selector.size = Vector2(30, 30) # Match your slot size
 	selector.z_index = 60           # Make sure it draws ON TOP of icons
 	
-	# Create the Purple Style
+	# Create the Purple Styled
 	var style = StyleBoxFlat.new()
 	style.draw_center = false       # Transparent inside
 	style.border_width_left = 3

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d28dvof80y8wo"]
 
-[ext_resource type="Script" uid="uid://n6wql0ddlp4l" path="res://scripts/dining_room/note.gd" id="1_bafk3"]
+[ext_resource type="Script" path="res://scripts/dining_room/note.gd" id="1_bafk3"]
 [ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="1_efprq"]
 
 [node name="Note" type="Node2D"]
@@ -47,9 +47,10 @@ theme_override_font_sizes/font_size = 20
 text = "If you are reading this, my
 vases need your care.
 
-First, tend to the one who
-keeps eternal company—
-a bloom that knows no withering.
+First, tend to the vessel draped 
+in the color of the midday sky—
+a shade of calm above to keep
+the bloom that knows no withering.
 
 Then seek the pair who 
 stand together, one bright as the sun, 
@@ -57,8 +58,7 @@ the other pale as dawn.
 
 Last, seek the silent sentinel,
 keeping watch beside
- the place of drink and rest—
-"
+the place of drink and rest—"
 horizontal_alignment = 1
 vertical_alignment = 1
 
