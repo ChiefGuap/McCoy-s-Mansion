@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://luo0ou7epray"]
+[gd_scene load_steps=9 format=3 uid="uid://luo0ou7epray"]
 
 [ext_resource type="Script" uid="uid://c15rupbmvqnqu" path="res://scripts/bedroom/chair.gd" id="1_tg4xm"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_abgw7"]
@@ -15,6 +15,8 @@ load_path = "res://.godot/imported/fancy_mansion_furnitureset.png-d23b050a7caff2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfl6e"]
 size = Vector2(26.5, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udkfv"]
 
 [node name="Chair" type="Node2D"]
 z_index = 50
@@ -33,6 +35,7 @@ region_rect = Rect2(355, 133.5, 27, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(104.75, 46)
+scale = Vector2(2.175621, 1.2400049)
 shape = SubResource("RectangleShape2D_kfl6e")
 
 [node name="JumpscareLayer" type="CanvasLayer" parent="."]
@@ -48,6 +51,13 @@ texture = ExtResource("3_udkfv")
 
 [node name="ScreamSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_tfv13")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(103.99999, 38.000004)
+scale = Vector2(1.1973222, 1.48)
+shape = SubResource("RectangleShape2D_udkfv")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_chair_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_chair_exited"]

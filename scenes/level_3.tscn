@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://ciuide3jybsyu"]
+[gd_scene load_steps=26 format=4 uid="uid://ciuide3jybsyu"]
 
 [ext_resource type="Texture2D" uid="uid://soh8g5h3wq8g" path="res://assets/FancyMansion_Furniture/fancy_mansion_room_door_tiles.png" id="1_h23n6"]
 [ext_resource type="Script" uid="uid://bqoqfrv2gbf20" path="res://scripts/level_3.gd" id="1_q2dsb"]
@@ -1136,6 +1136,10 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
 metadata/_snap_enabled = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax3dk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2dsb"]
+
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_q2dsb")
 
@@ -1170,6 +1174,7 @@ position = Vector2(-280, 64)
 
 [node name="Clock" parent="." instance=ExtResource("6_56dhn")]
 position = Vector2(-281, -8)
+scale = Vector2(0.99920064, 1)
 
 [node name="Torch" parent="." instance=ExtResource("7_ha73p")]
 position = Vector2(-280, 226)
@@ -1181,6 +1186,7 @@ script = ExtResource("3_uwxec")
 
 [node name="Bed" parent="." instance=ExtResource("8_vcx5n")]
 position = Vector2(-310, 85)
+scale = Vector2(1.0006791, 1.0010723)
 
 [node name="Vase" parent="." instance=ExtResource("9_56dhn")]
 position = Vector2(-209, -75)
@@ -1189,3 +1195,24 @@ position = Vector2(-209, -75)
 position = Vector2(-145, -23)
 
 [node name="BottomRedCouch" parent="." instance=ExtResource("12_ax3dk")]
+
+[node name="BottleDrawerCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottleDrawerCollision"]
+position = Vector2(-234, 46)
+scale = Vector2(1, 2.4400005)
+shape = SubResource("RectangleShape2D_ax3dk")
+
+[node name="BedCouchCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BedCouchCollision"]
+position = Vector2(-145, 130)
+scale = Vector2(1.3199999, 3.3200002)
+shape = SubResource("RectangleShape2D_q2dsb")
+
+[node name="CandleDrawerCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CandleDrawerCollision"]
+position = Vector2(-234, 206)
+scale = Vector2(1, 2.4400005)
+shape = SubResource("RectangleShape2D_ax3dk")

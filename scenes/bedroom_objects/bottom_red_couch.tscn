@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://4x6bite8rdum"]
+[gd_scene load_steps=9 format=3 uid="uid://4x6bite8rdum"]
 
 [ext_resource type="Script" uid="uid://8co5q80loyyg" path="res://scripts/bedroom/bottom_red_couch.gd" id="1_kfl6e"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_abgw7"]
@@ -16,6 +16,8 @@ load_path = "res://.godot/imported/fancy_mansion_furnitureset.png-d23b050a7caff2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_una4e"]
 size = Vector2(57, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbt75"]
+
 [node name="BottomRedCouch" type="Node2D"]
 script = ExtResource("1_kfl6e")
 
@@ -32,6 +34,7 @@ position = Vector2(-152, 217)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(118.5, 47)
+scale = Vector2(1.6800001, 1.7199805)
 shape = SubResource("RectangleShape2D_una4e")
 
 [node name="JumpscareLayer" type="CanvasLayer" parent="."]
@@ -48,6 +51,13 @@ texture = ExtResource("3_kbt75")
 [node name="ScreamSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 1)
 stream = ExtResource("4_bwkn2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-33, 265)
+scale = Vector2(2.72243, 1.76)
+shape = SubResource("RectangleShape2D_kbt75")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_bottomredcouch_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_bottomredcouch_exited"]
