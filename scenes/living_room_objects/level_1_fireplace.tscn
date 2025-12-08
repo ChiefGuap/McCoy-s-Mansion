@@ -100,7 +100,6 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_7ara4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 5

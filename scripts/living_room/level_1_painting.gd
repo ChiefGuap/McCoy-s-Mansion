@@ -1,45 +1,31 @@
-extends Node2D
+# - Adapted to extend Interactable
+extends Interactable
 
-@onready var sprite = $Sprite2D
-@onready var popup_layer = $CanvasLayer # Reference to the UI we just made
+# 'sprite' is already defined in Interactable, so we don't need to redeclare it.
+@onready var popup_layer = $CanvasLayer 
 @onready var hotbar = $"../../UI_Layer/Hotbar"
 
-
-var player_in_range = false
+signal painting_switched
 
 func _ready():
-	# Ensure the outline is invisible (thickness 0) when the game starts
-	(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
-	# Ensure popup is hidden
-	# hey
-	popup_layer.visible = false
+	# Allow the player to detect this object
+	_interactable = true
 
-func _input(event):
-	# Check if the "interact" key (E) was pressed
-	if event.is_action_pressed("interact"):
-		# If player is near, toggle the popup
-		if player_in_range:
-			popup_layer.visible = not popup_layer.visible
-			if (popup_layer.visible):
-				hotbar.visible = false
-			else:
-				hotbar.visible = true
+# Called by player.gd when 'E' is pressed on this object
+func interact() -> void:
+	popup_layer.visible = not popup_layer.visible
+	
+	# Toggle hotbar visibility based on popup
+	if popup_layer.visible:
+		hotbar.visible = false
+	else:
+		hotbar.visible = true
 		
-		# Optional: If the popup is open and we press E again, close it (handled by toggle above)
-		# But if you want 'Esc' to close it too, you can add that logic here.
+	emit_signal("painting_switched")
 
-func _on_area_2d_body_entered(body):
-	if body.name == "Player":
-		# Turn outline on
-		(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 1.0)
-		player_in_range = true
-
+# We keep this to auto-close the menu if the player walks away.
+# The outline logic is removed because player.gd handles it now.
 func _on_area_2d_body_exited(body):
 	if body.name == "Player":
-		# Turn outline off
-		(sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 0.0)
-		player_in_range = false
-		
-		# Force close the popup if the player walks away
 		popup_layer.visible = false
 		hotbar.visible = true
