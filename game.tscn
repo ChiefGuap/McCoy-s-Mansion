@@ -468,7 +468,7 @@ position = Vector2(1, 0)
 level3_barrier = NodePath("../Level3Block")
 
 [node name="Level3" parent="." instance=ExtResource("4_ryrav")]
-position = Vector2(-28, 21)
+position = Vector2(0, -5)
 
 [node name="Player" parent="." instance=ExtResource("3_feb5d")]
 z_index = 50
@@ -511,16 +511,6 @@ visible = false
 
 [node name="BlackScreen" parent="UI_Layer" index="3"]
 visible = false
-
-[node name="HotbarLabel" parent="UI_Layer" index="5"]
-anchors_preset = 2
-
-[node name="Label" type="Label" parent="UI_Layer"]
-offset_left = -75.0
-offset_top = -86.0
-offset_right = -21.0
-offset_bottom = -63.0
-text = "Level 1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

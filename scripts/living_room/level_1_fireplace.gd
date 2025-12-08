@@ -53,6 +53,12 @@ func has_drinks() -> bool:
 	return false
 
 func extinguish_fire():
+	# --- NEW: Remove the drinks from the hotbar ---
+	var current_item = hotbar.get_held_item()
+	if current_item:
+		hotbar.remove_from_hotbar(current_item)
+	# ----------------------------------------------
+
 	is_fire_lit = false
 	
 	# Update Popup Visuals
@@ -68,17 +74,11 @@ func extinguish_fire():
 	# Apply outline to the new visible sprite
 	(world_extinguished_sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 1.0)
 	
-	# --- NEW: Logic to remove the barrier ---
+	# Remove the barrier
 	if door_barrier:
-		# Option A: Delete the barrier entirely (Simple)
 		door_barrier.queue_free()
-		
-		# Option B: Just disable collision if you want to keep the object
-		# door_barrier.process_mode = Node.PROCESS_MODE_DISABLED
-		# door_barrier.visible = false
 	else:
 		print("Warning: Door barrier not assigned in Inspector!")
-	# ----------------------------------------
 
 func update_label():
 	if is_fire_lit:

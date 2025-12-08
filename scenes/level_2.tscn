@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://b7s4msybe76uy"]
+[gd_scene load_steps=53 format=4 uid="uid://b7s4msybe76uy"]
 
 [ext_resource type="Script" uid="uid://i55ovgbe3hmp" path="res://scripts/level_2.gd" id="1_guvtl"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_nmjpi"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://8tmoou7gpfwg" path="res://scripts/dining_room/key.gd" id="16_k22d5"]
 [ext_resource type="AudioStream" uid="uid://c63aw7myakebx" path="res://assets/jumpscares/jumpscare3.wav" id="16_wdtqu"]
 [ext_resource type="Texture2D" uid="uid://b876xe2i4wv0j" path="res://assets/LineAcross2dMegaAssetsPack/key.png" id="17_k6a82"]
+[ext_resource type="FontFile" uid="uid://tnqspq8suf2l" path="res://assets/world_scene/shadow_of_the_deads/Shadow of the Deads.ttf" id="21_k6a82"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7j8ne"]
 texture = ExtResource("1_nmjpi")
@@ -2253,8 +2254,9 @@ shader_parameter/line_thickness = 0.0
 radius = 20.566376
 height = 50.014465
 
-[node name="DiningRoom" type="Node2D"]
+[node name="DiningRoom" type="Node2D" node_paths=PackedStringArray("success_label")]
 script = ExtResource("1_guvtl")
+success_label = NodePath("UI/SuccessLabel")
 
 [node name="TableToppersZUp" type="TileMapLayer" parent="."]
 z_index = 53
@@ -2523,5 +2525,23 @@ texture = ExtResource("15_igmy8")
 
 [node name="ScreamSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_wdtqu")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SuccessLabel" type="Label" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -24.5
+offset_right = 97.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("21_k6a82")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [editable path="ChairLeftFacing2"]

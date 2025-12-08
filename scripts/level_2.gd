@@ -6,19 +6,22 @@ extends Node
 
 @export var level3_barrier: Node2D
 
+# --- NEW: Drag your SuccessLabel here in the Inspector ---
+@export var success_label: Label 
+
 # --- PUZZLE OBJECTS ---
 @onready var table1 = $Table1
 @onready var table2 = $Table2
 @onready var table3 = $Table3
 
-@onready var vase1 = $VaseBlue
-@onready var vase2 = $VaseGolden
-@onready var vase3 = $VaseWhite
+@onready var vase1 = %VaseBlue
+@onready var vase2 = %VaseGolden
+@onready var vase3 = %VaseWhite
 
 var vases_dict = {}
 var is_scaring = false
 
-# Custom signals (if you are emitting them from children)
+# Custom signals
 signal add_vase(tableNode, vaseNode)
 signal remove_vase(vaseNode)
 
@@ -27,8 +30,11 @@ func _ready() -> void:
 	if jumpscare_layer:
 		jumpscare_layer.visible = false
 	
+	# Ensure success label is hidden at start (safety check)
+	if success_label:
+		success_label.visible = false
+	
 	# Connect signals from tables/vases
-	# (Assuming your child nodes emit these signals up to this script)
 	if table1: table1.connect("add_vase", Callable(self, "add_vase_to_dict"))
 	if table2: table2.connect("add_vase", Callable(self, "add_vase_to_dict"))
 	if table3: table3.connect("add_vase", Callable(self, "add_vase_to_dict"))
@@ -50,7 +56,6 @@ func remove_vase_from_dict(vase: Node2D) -> void:
 	for table in vases_dict.keys():
 		if vases_dict[table] == vase:
 			vases_dict.erase(table)
-			# Assuming table has a 'vase' property to clear
 			if "vase" in table:
 				table.vase = null
 			break
@@ -69,14 +74,23 @@ func check_puzzle_solution():
 	
 	if is_correct:
 		print("✅ LEVEL 2 COMPLETE")
-		# Add code here to open the door or transition level
-		# --- NEW: Unlock Level 3 ---
+		
+		# --- NEW: Show the Success Label ---
+		if success_label:
+			success_label.visible = true
+			success_label.text = "THE BED ROOM DOOR CLICKS OPEN, ACROSS THE LIVING ROOM..."
+			# Optional: Hide it after 4 seconds
+			await get_tree().create_timer(4.0).timeout
+			success_label.visible = false
+		# -----------------------------------
+
+		# Unlock Level 3
 		if level3_barrier:
 			level3_barrier.queue_free()
 			print("🔓 Level 3 Barrier Removed!")
 		else:
 			print("Warning: Level 3 barrier not assigned!")
-		# ---------------------------
+			
 	else:
 		print("❌ WRONG ORDER! TRIGGERING JUMPSCARE...")
 		trigger_jumpscare()
@@ -85,8 +99,9 @@ func trigger_jumpscare() -> void:
 	if is_scaring: return
 	is_scaring = true
 	
-	# 1. Apply Penalty (Optional)
-	get_tree().call_group("game_manager", "apply_jumpscare_penalty")
+	# 1. Apply Penalty
+	if get_tree().has_group("game_manager"):
+		get_tree().call_group("game_manager", "apply_jumpscare_penalty")
 	
 	# 2. Play Sound
 	if scream_sound:
@@ -94,18 +109,15 @@ func trigger_jumpscare() -> void:
 	
 	# 3. Visual Strobe Effect
 	if jumpscare_layer:
-		# Flash 5 times quickly
 		for i in range(5): 
 			jumpscare_layer.visible = true
 			await get_tree().create_timer(0.05).timeout
 			jumpscare_layer.visible = false
 			await get_tree().create_timer(0.05).timeout
 		
-		# Hold face on screen
 		jumpscare_layer.visible = true
 		await get_tree().create_timer(1.5).timeout
 		jumpscare_layer.visible = false
 	
-	# 4. Reset Logic (Optional: Knock vases off tables?)
 	is_scaring = false
 	print("Jumpscare finished. Try again.")
