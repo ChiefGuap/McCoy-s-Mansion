@@ -96,7 +96,7 @@ func _process(delta):
 		self.position += PUSHED_IN_POSITION # Move the entire Chair node (and its children)
 		
 		await get_tree().create_timer(2).timeout # Short wait for player to read the message 
-		
+		get_tree().change_scene_to_file("res://WinScreen.tscn")
 		label.text = "A door opened!"
 		await get_tree().create_timer(2).timeout # Short wait for player to read the message 
 		
