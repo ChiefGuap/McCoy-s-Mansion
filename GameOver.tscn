@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjdavyhn0hrbm"]
+[gd_scene load_steps=5 format=3 uid="uid://bjdavyhn0hrbm"]
 
 [ext_resource type="FontFile" uid="uid://tnqspq8suf2l" path="res://assets/world_scene/shadow_of_the_deads/Shadow of the Deads.ttf" id="1_40baj"]
 [ext_resource type="Script" uid="uid://dxq7xhghe2wmv" path="res://game_over.gd" id="1_eksk4"]
 [ext_resource type="FontFile" uid="uid://b40lp7jroh8ux" path="res://assets/world_scene/Ithaca-LVB75.ttf" id="3_xl4ts"]
+[ext_resource type="Texture2D" uid="uid://qeo0ok723kpn" path="res://assets/jumpscares/jumpscare2.jpeg" id="4_xl4ts"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -51,3 +52,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_xl4ts")
 theme_override_font_sizes/font_size = 40
 text = "QUIT GAME"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.90588236)
+z_index = -1
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+texture = ExtResource("4_xl4ts")
