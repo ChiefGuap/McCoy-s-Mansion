@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d28dvof80y8wo"]
 
-[ext_resource type="Script" path="res://scripts/dining_room/note.gd" id="1_bafk3"]
+[ext_resource type="Script" uid="uid://n6wql0ddlp4l" path="res://scripts/dining_room/note.gd" id="1_bafk3"]
 [ext_resource type="Texture2D" uid="uid://cx5upe7u18new" path="res://assets/world_scene/text-box.png" id="1_efprq"]
 
 [node name="Note" type="Node2D"]
@@ -8,6 +8,7 @@ visible = false
 script = ExtResource("1_bafk3")
 
 [node name="Original" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="Original"]
 modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgu3lgen43e1b"]
+[gd_scene load_steps=11 format=3 uid="uid://dgu3lgen43e1b"]
 
 [ext_resource type="Script" uid="uid://dlgqsnjrv1mp1" path="res://scripts/bedroom/clock.gd" id="1_y58p0"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_eptq3"]
@@ -20,6 +20,9 @@ size = Vector2(23.75, 74.5)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6omhm"]
 load_path = "res://.godot/imported/text-box.png-81613166858c95bc029821cb60ff3c73.ctex"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17baa"]
+size = Vector2(22, 61)
+
 [node name="Clock" type="Node2D"]
 z_index = 50
 script = ExtResource("1_y58p0")
@@ -35,6 +38,7 @@ region_rect = Rect2(4, 320.973, 24, 65)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(47.125, -27.25)
+scale = Vector2(1.9200038, 1.2)
 shape = SubResource("RectangleShape2D_ha73p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -231,6 +235,12 @@ texture = ExtResource("4_17baa")
 
 [node name="ScreamSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_u874b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(47, -33.5)
+shape = SubResource("RectangleShape2D_17baa")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_clock_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_clock_exited"]

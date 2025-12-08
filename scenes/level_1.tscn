@@ -442,7 +442,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAMAAcAAAAAAAEAAAAMAAgAAAAAAAIAAAAFAAg
 tile_set = SubResource("TileSet_feb5d")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.049776644, 0.049776644, 0.049776636, 1)
 
 [node name="McCoyPainting" parent="." instance=ExtResource("3_rus8k")]
@@ -453,6 +452,7 @@ position = Vector2(200, 56)
 door_barrier = NodePath("../Level2Block")
 
 [node name="Level1Globe" parent="." instance=ExtResource("8_15mv3")]
+z_index = 51
 position = Vector2(24, 224)
 
 [node name="Painting" parent="." instance=ExtResource("9_e3sih")]
