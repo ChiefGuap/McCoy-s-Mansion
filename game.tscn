@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cxtto0t64w1nr"]
+[gd_scene load_steps=22 format=4 uid="uid://cxtto0t64w1nr"]
 
 [ext_resource type="Script" uid="uid://b4433purhoief" path="res://scripts/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dmq6nvcat2li" path="res://scenes/level_1.tscn" id="2_7jktm"]
@@ -455,14 +455,17 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_lc2xo")
 sources/1 = SubResource("TileSetAtlasSource_215e1")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fc0e3")
 
 [node name="Level1" parent="." instance=ExtResource("2_7jktm")]
 position = Vector2(-1, -4)
 
-[node name="Level2" parent="." instance=ExtResource("5_7jktm")]
+[node name="Level2" parent="." node_paths=PackedStringArray("level3_barrier") instance=ExtResource("5_7jktm")]
 position = Vector2(1, 0)
+level3_barrier = NodePath("../Level3Block")
 
 [node name="Level3" parent="." instance=ExtResource("4_ryrav")]
 
@@ -539,6 +542,13 @@ z_index = -1
 position = Vector2(1, 250)
 tile_map_data = PackedByteArray("AAAAAAAAAQABAAgAAAABAAAAAQABAAgAAAACAAAAAQABAAgAAAADAAAAAQABAAgAAAAEAAAAAQABAAgAAAAFAAAAAQABAAgAAAAGAAAAAQABAAgAAAAHAAAAAQABAAgAAAAIAAAAAQABAAgAAAAJAAAAAQABAAgAAAAKAAAAAQABAAgAAAALAAAAAQABAAgAAAAMAAAAAQABAAgAAAANAAAAAQABAAgAAAAOAAAAAQABAAgAAAAPAAAAAQABAAgAAAAQAAAAAQABAAgAAAARAAAAAQABAAgAAAASAAAAAQABAAgAAAATAAAAAQABAAgAAAAUAAAAAQABAAgAAAAVAAAAAQABAAgAAAAWAAAAAQABAAgAAAD//wEAAQABAAgAAAD+/wEAAQABAAgAAAD9/wEAAQABAAgAAAD8/wEAAQABAAgAAAD7/wEAAQABAAgAAAD6/wEAAQABAAgAAAD5/wEAAQABAAgAAAD4/wEAAQABAAgAAAAAAAEAAQABAAgAAAD3/wEAAQABAAgAAAD3/wAAAQABAAgAAAD3////AQABAAgAAAD3//7/AQABAAgAAAD3//3/AQABAAgAAAD3//z/AQABAAgAAAD3//v/AQABAAgAAAD3//r/AQABAAgAAAD3//n/AQABAAgAAAD3//j/AQABAAgAAAD3//f/AQABAAgAAAD3//b/AQABAAgAAAD3//X/AQABAAgAAAA=")
 tile_set = SubResource("TileSet_7sc4i")
+
+[node name="Level3Block" type="StaticBody2D" parent="."]
+position = Vector2(0, 176)
+scale = Vector2(1, 1.9599903)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level3Block"]
+shape = SubResource("RectangleShape2D_mfdv2")
 
 [connection signal="timeout" from="UI_Layer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Door_to_Level2" to="Player/Camera2D" method="_on_diningRoomDoor_body_entered"]

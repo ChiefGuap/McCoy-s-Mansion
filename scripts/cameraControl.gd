@@ -2,11 +2,15 @@ extends Camera2D
 
 var currCameraPos:int = 1
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass 
 
 func _on_diningRoomDoor_body_entered(body: PhysicsBody2D) -> void:
+	# --- NEW: Check if the body is the Player ---
+	if body.name != "Player":
+		return
+	# --------------------------------------------
+
 	var parent = get_parent()
 	
 	if (currCameraPos == 1):
@@ -23,10 +27,13 @@ func _on_diningRoomDoor_body_entered(body: PhysicsBody2D) -> void:
 		limit_bottom = 276
 		currCameraPos = 1
 		parent.position = Vector2(380, 170)
-		
-
 
 func _on_bedRoom_body_entered(body: PhysicsBody2D) -> void:
+	# --- NEW: Add the check here too just in case ---
+	if body.name != "Player":
+		return
+	# ------------------------------------------------
+
 	var parent = get_parent()
 
 	if currCameraPos == 1:

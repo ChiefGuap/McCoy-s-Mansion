@@ -4,6 +4,8 @@ extends Node
 @onready var jumpscare_layer = $JumpscareLayer
 @onready var scream_sound = $ScreamSound
 
+@export var level3_barrier: Node2D
+
 # --- PUZZLE OBJECTS ---
 @onready var table1 = $Table1
 @onready var table2 = $Table2
@@ -68,6 +70,13 @@ func check_puzzle_solution():
 	if is_correct:
 		print("✅ LEVEL 2 COMPLETE")
 		# Add code here to open the door or transition level
+		# --- NEW: Unlock Level 3 ---
+		if level3_barrier:
+			level3_barrier.queue_free()
+			print("🔓 Level 3 Barrier Removed!")
+		else:
+			print("Warning: Level 3 barrier not assigned!")
+		# ---------------------------
 	else:
 		print("❌ WRONG ORDER! TRIGGERING JUMPSCARE...")
 		trigger_jumpscare()

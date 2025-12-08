@@ -5,6 +5,7 @@ extends Node2D
 @onready var hotbar = $"../../UI_Layer/Hotbar"
 @onready var point_light = $PointLight2D
 
+@export var door_barrier: StaticBody2D
 # Visual References
 @onready var anim_sprite = $CanvasLayer/AnimatedSprite2D
 @onready var extinguished_sprite = $CanvasLayer/ExtinguishedSprite
@@ -57,17 +58,27 @@ func extinguish_fire():
 	# Update Popup Visuals
 	anim_sprite.visible = false
 	extinguished_sprite.visible = true
-	update_label() # Update the text to the "Door clicks open" message
+	update_label() 
 	
 	# Update World Visuals
 	sprite.visible = false
 	world_extinguished_sprite.visible = true
-	point_light.enabled = false # Turn off the light
+	point_light.enabled = false 
 	
-	# Apply outline to the new visible sprite if player is still looking at it
+	# Apply outline to the new visible sprite
 	(world_extinguished_sprite.material as ShaderMaterial).set_shader_parameter("line_thickness", 1.0)
 	
-	# TODO: Add your logic here to actually open the physical door node!
+	# --- NEW: Logic to remove the barrier ---
+	if door_barrier:
+		# Option A: Delete the barrier entirely (Simple)
+		door_barrier.queue_free()
+		
+		# Option B: Just disable collision if you want to keep the object
+		# door_barrier.process_mode = Node.PROCESS_MODE_DISABLED
+		# door_barrier.visible = false
+	else:
+		print("Warning: Door barrier not assigned in Inspector!")
+	# ----------------------------------------
 
 func update_label():
 	if is_fire_lit:

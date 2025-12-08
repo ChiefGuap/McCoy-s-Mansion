@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dmq6nvcat2li"]
+[gd_scene load_steps=17 format=4 uid="uid://dmq6nvcat2li"]
 
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="1_wwpf4"]
 [ext_resource type="Script" uid="uid://qf10fuw5ufoa" path="res://scripts/living_room/level1_candle_light_1.gd" id="2_4nkto"]
@@ -400,6 +400,8 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_15mv3")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3sih"]
+
 [node name="Level1" type="Node2D"]
 
 [node name="FurnitureLayer1" type="TileMapLayer" parent="."]
@@ -440,16 +442,25 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAMAAcAAAAAAAEAAAAMAAgAAAAAAAIAAAAFAAg
 tile_set = SubResource("TileSet_feb5d")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.049776644, 0.049776644, 0.049776636, 1)
 
 [node name="McCoyPainting" parent="." instance=ExtResource("3_rus8k")]
 position = Vector2(344, 24)
 
-[node name="Level1Fireplace" parent="." instance=ExtResource("4_5xbjy")]
+[node name="Level1Fireplace" parent="." node_paths=PackedStringArray("door_barrier") instance=ExtResource("4_5xbjy")]
 position = Vector2(200, 56)
+door_barrier = NodePath("../Level2Block")
 
 [node name="Level1Globe" parent="." instance=ExtResource("8_15mv3")]
 position = Vector2(24, 224)
 
 [node name="Painting" parent="." instance=ExtResource("9_e3sih")]
 position = Vector2(312, 24)
+
+[node name="Level2Block" type="StaticBody2D" parent="."]
+position = Vector2(414, 176)
+scale = Vector2(1, 1.72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2Block"]
+shape = SubResource("RectangleShape2D_e3sih")
