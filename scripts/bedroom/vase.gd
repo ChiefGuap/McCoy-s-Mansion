@@ -12,6 +12,10 @@ var player_in_area: bool = false # Tracks if player is inside the interaction zo
 # 🌟 ASSUMED: This node holds your hidden clue image/text UI
 @onready var popup = $Original
 
+# 🌟 JUMPSCARE NODES
+@onready var jumpscare_layer: CanvasLayer = $JumpscareLayer
+@onready var scream_sound: AudioStreamPlayer2D = $ScreamSound
+
 # State Flags
 var vase_broken: bool = false # Tracks if the vase has been destroyed (first interaction)
 var clue_is_open: bool = false # Tracks if the clue popup is currently visible
@@ -22,7 +26,6 @@ func _ready():
 	turn_on_interactable()
 	popup.visible = false
 	# Optional: If you have an Area2D that handles the detection, you might want to disable it later.
-	
 
 func interact() -> void:
 	# Not used in this _process-based interaction style
@@ -63,7 +66,21 @@ func _process(delta):
 				return
 			else:
 				#jumpscare
-				print("Add jumpscare here")
+				# Jumpscare Logic Start
+				player.lock_player()
+				hotbar.visible = false
+				jumpscare_layer.visible = true
+				scream_sound.play()
+				
+				await get_tree().create_timer(0.2).timeout
+				
+				jumpscare_layer.visible = false
+				
+				await get_tree().create_timer(0.3).timeout # Wait for the visual part to finish
+
+				player.unlock_player()
+				hotbar.visible = true
+				# Jumpscare Logic End
 				return
 			
 		if vase_broken:
@@ -86,7 +103,6 @@ func _process(delta):
 		label.modulate = Color(0, 0, 0, 1)
 
 		label.text = "You hit the vase!"
-		
 		# VASE BREAKS
 		vase_broken = true
 		Level3.vase_done = true
@@ -111,7 +127,6 @@ func _process(delta):
 		# --- Show Clue Popup ---
 		toggle_clue_display() # Show the clue immediately
 		# NOTE: Player remains locked until they press 'E' again to close the popup.
-		
 		# Optional: Queue the vase node for deletion if you don't need it anymore
 		# queue_free() 
 

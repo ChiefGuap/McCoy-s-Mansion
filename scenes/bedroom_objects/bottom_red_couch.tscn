@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://4x6bite8rdum"]
+[gd_scene load_steps=8 format=3 uid="uid://4x6bite8rdum"]
 
 [ext_resource type="Script" uid="uid://8co5q80loyyg" path="res://scripts/bedroom/bottom_red_couch.gd" id="1_kfl6e"]
 [ext_resource type="Shader" uid="uid://co5gqgupj2yu7" path="res://shaders/level_1_painting.gdshader" id="2_abgw7"]
+[ext_resource type="Texture2D" uid="uid://db6bkqjfde3yd" path="res://assets/jumpscares/jumpscare5.png" id="3_kbt75"]
+[ext_resource type="AudioStream" uid="uid://dtqwpycu6otmw" path="res://assets/jumpscares/jumpscare2.wav" id="4_bwkn2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p3r0x"]
 shader = ExtResource("2_abgw7")
@@ -31,6 +33,21 @@ position = Vector2(-152, 217)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(118.5, 47)
 shape = SubResource("RectangleShape2D_una4e")
+
+[node name="JumpscareLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ScaryFace" type="TextureRect" parent="JumpscareLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kbt75")
+
+[node name="ScreamSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+stream = ExtResource("4_bwkn2")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_bottomredcouch_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_bottomredcouch_exited"]

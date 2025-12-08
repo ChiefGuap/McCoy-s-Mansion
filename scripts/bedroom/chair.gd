@@ -10,6 +10,10 @@ extends Interactable
 # Chair Sprite/Position
 @onready var chair_sprite: Sprite2D = $ChairSprite # Assuming the visual part is a Sprite2D
 
+# 🌟 JUMPSCARE NODES
+@onready var jumpscare_layer: CanvasLayer = $JumpscareLayer
+@onready var scream_sound: AudioStreamPlayer2D = $ScreamSound
+
 # State Flags
 var player_in_area: bool = false
 var chair_pushed_in: bool = false # Tracks if the puzzle is solved
@@ -46,7 +50,21 @@ func _process(delta):
 				return
 			else:
 				#jumpscare
-				print("Add jumpscare here")
+				# Jumpscare Logic Start
+				player.lock_player()
+				hotbar.visible = false
+				jumpscare_layer.visible = true
+				scream_sound.play()
+				
+				await get_tree().create_timer(0.2).timeout
+				
+				jumpscare_layer.visible = false
+				
+				await get_tree().create_timer(0.3).timeout # Wait for the visual part to finish
+
+				player.unlock_player()
+				hotbar.visible = true
+				# Jumpscare Logic End
 				return
 			
 		# If the chair is already pushed in, do nothing (or show a simple message)
@@ -69,7 +87,6 @@ func _process(delta):
 		label.modulate = Color(0, 0, 0, 1)
 
 		label.text = "Pushed the chair!"
-		
 		# --- PERFORM THE PUSH ACTION ---
 		Level3.chair_done = true
 		chair_pushed_in = true
@@ -78,7 +95,6 @@ func _process(delta):
 		await get_tree().create_timer(2).timeout # Short wait for player to read the message 
 		
 		label.text = "A door opened!"
-		
 		await get_tree().create_timer(2).timeout # Short wait for player to read the message 
 		
 		# --- CLEANUP ---
