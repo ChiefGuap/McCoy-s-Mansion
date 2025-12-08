@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://doo8y4es3kghu"]
+[gd_scene load_steps=4 format=3 uid="uid://doo8y4es3kghu"]
 
 [ext_resource type="Script" uid="uid://b5bemps7fppgn" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="FontFile" uid="uid://cqiyl0nn4fhkb" path="res://assets/world_scene/70SdiscopersonaluseBold-w14z2.otf" id="2_fu7sn"]
 [ext_resource type="FontFile" uid="uid://b40lp7jroh8ux" path="res://assets/world_scene/Ithaca-LVB75.ttf" id="3_jix8l"]
-[ext_resource type="Texture2D" uid="uid://bljwk2gocludn" path="res://assets/jumpscares/Gemini_Generated_Image_v7883ev7883ev788.png" id="4_jix8l"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,6 +12,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.008202022, 0.008202025, 0.008202025, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -47,15 +55,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jix8l")
 theme_override_font_sizes/font_size = 30
 text = "How to Play"
-
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1.4687854, 1.4687854, 1.4687854, 0.44705883)
-z_index = -1
-layout_mode = 0
-offset_right = 2720.0
-offset_bottom = 1568.0
-scale = Vector2(0.42331782, 0.41605985)
-texture = ExtResource("4_jix8l")
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
