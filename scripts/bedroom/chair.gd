@@ -56,11 +56,14 @@ func _process(delta):
 				jumpscare_layer.visible = true
 				scream_sound.play()
 				
-				await get_tree().create_timer(0.2).timeout
-				
-				jumpscare_layer.visible = false
-				
-				await get_tree().create_timer(0.3).timeout # Wait for the visual part to finish
+				for i in 5:
+					await get_tree().create_timer(0.05).timeout
+					jumpscare_layer.visible = false
+					await get_tree().create_timer(0.05).timeout
+					jumpscare_layer.visible = true
+					
+				await get_tree().create_timer(1.5).timeout # Wait for the visual part to finish
+				jumpscare_layer.visible = false # Wait for the visual part to finish
 
 				player.unlock_player()
 				hotbar.visible = true
