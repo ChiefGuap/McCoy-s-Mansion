@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://fkhnlm7womh1"]
+
+[ext_resource type="Script" uid="uid://jvwannu3k235" path="res://WinScreen.gd" id="1_0eiwq"]
+[ext_resource type="Texture2D" uid="uid://c1xlcy8ih25dn" path="res://assets/world_scene/Gemini_Generated_Image_40hm2t40hm2t40hm (1).png" id="2_cx6km"]
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0083923, 0.25123757)
+script = ExtResource("1_0eiwq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = 1120.0
+offset_bottom = 1244.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.50925726, 0.34377155)
+mouse_filter = 2
+texture = ExtResource("2_cx6km")
+
+[node name="ReplayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 791.35864
+offset_top = 1830.9363
+offset_right = 799.35864
+offset_bottom = 1838.9363
+scale = Vector2(35.863472, 27.718836)
+flat = true
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 790.36694
+offset_top = 2213.045
+offset_right = 798.36694
+offset_bottom = 2221.045
+scale = Vector2(35.897682, 27.922174)
+flat = true
