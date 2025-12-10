@@ -74,11 +74,11 @@ Although my main role was user interface and input, my team was also required to
 [Chair](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L54-56), 
 [Clock](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L44-45), 
 [Vase](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L77-78)
-- **Dynamic Dialogue Formatting:** Implemented dynamic adjustments to the dialogue box size, font size, and color to distinguish between simple flavor text and critical discovery moments.[Bed](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L86-90), 
+- **Dynamic Dialogue Formatting:** Implemented dynamic adjustments to the dialogue box size, font size, and color to distinguish between simple flavor text and critical discovery moments. [Bed](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L86-90), 
 [Chair](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L72-76), 
 [Clock](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L113-116), 
 [Vase](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L79-82)
-- **Clue and Item Popups:** Created the logic to toggle the visibility of special UI popups ($Original or note) when an item or clue is discovered, such as the note from the clock or the hidden paper clue, and included logic to ensure the popup automatically closes if the player leaves the interaction area (_on_*_exited function).[Bed](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L108-118), 
+- **Clue and Item Popups:** Created the logic to toggle the visibility of special UI popups ($Original or note) when an item or clue is discovered, such as the note from the clock or the hidden paper clue, and included logic to ensure the popup automatically closes if the player leaves the interaction area (_on_*_exited function). [Bed](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L108-118), 
 [Paper](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/paper.gd#L39), 
 [Clock](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L66-82), 
 [Vase](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L101-111)
