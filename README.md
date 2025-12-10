@@ -64,24 +64,33 @@ Add addition contributions int he Other Contributions section.
 ### Main Role - User Interface and Input
 Although my main role was user interface and input, my team was also required to work with user interaction since we divided up the work and implemented different levels of the game. Since this was my main role, we decided that I'd be in charge of the user interface and input for the largest portion of the game (Level 3). Here are my contributions relevant to this aspect of the game:
 
-- **Interaction Input System:** Implemented the primary interaction mechanism (Input.is_action_just_pressed("interact")) to manage all object interactions, including displaying dialogue, checking puzzle conditions, and toggling UI elements. [Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L38)
-[Couch Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bottom_red_couch.gd#L35)
-[Chair Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L49)
-[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L40)
+- **Interaction Input System:** Implemented the primary interaction mechanism (Input.is_action_just_pressed("interact")) to manage all object interactions, including displaying dialogue, checking puzzle conditions, and toggling UI elements. [Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L38), 
+[Couch Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bottom_red_couch.gd#L35), 
+[Chair Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L49), 
+[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L40), 
 [Vase Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L46)
-- **Dialogue Box Management:** Developed the logic for displaying and hiding a common dialogue box (DialougeBox) and text label (DialougeText) to provide immediate feedback to the player upon interaction.[Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L44-46)
-[Couch Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bottom_red_couch.gd#L38-40)
-[Chair Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L54-56)
-[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L44-45)
+- **Dialogue Box Management:** Developed the logic for displaying and hiding a common dialogue box (DialougeBox) and text label (DialougeText) to provide immediate feedback to the player upon interaction. [Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L44-46), 
+[Couch Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bottom_red_couch.gd#L38-40), 
+[Chair Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L54-56), 
+[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L44-45), 
 [Vase Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L77-78)
-- **Dynamic Dialogue Formatting:** Implemented dynamic adjustments to the dialogue box size, font size, and color to distinguish between simple flavor text and critical discovery moments.[Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L86-90)
-[Chair Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L72-76)
-[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L113-116)
+- **Dynamic Dialogue Formatting:** Implemented dynamic adjustments to the dialogue box size, font size, and color to distinguish between simple flavor text and critical discovery moments.[Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L86-90), 
+[Chair Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L72-76), 
+[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L113-116), 
 [Vase Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L79-82)
-- **Clue and Item Popups:** Created the logic to toggle the visibility of special UI popups ($Original or note) when an item or clue is discovered, such as the note from the clock or the hidden paper clue, and included logic to ensure the popup automatically closes if the player leaves the interaction area (_on_*_exited function).
-- **Time Input UI:** Created and integrated a dedicated CanvasLayer UI with a LineEdit for the clock puzzle, connecting the text_submitted signal to a function (_on_time_input_submitted) to validate the user's HHMM time input. This system handles input validation and error messaging (e.g., "Invalid format. Use HHMM") before setting the time.
-- **Inventory (Hotbar) Integration:** Managed the visibility of the player's hotbar UI, hiding it during dialogues, jumpscares, or when a puzzle-specific UI (like the clock input or a discovered note) is open to enforce player focus.
-- **Collectible Item Logic:** Implemented the core mechanics for the Bottle and Torch items, allowing them to be added to and removed from the Hotbar, and controlling their visibility and global position after collection.
+- **Clue and Item Popups:** Created the logic to toggle the visibility of special UI popups ($Original or note) when an item or clue is discovered, such as the note from the clock or the hidden paper clue, and included logic to ensure the popup automatically closes if the player leaves the interaction area (_on_*_exited function).[Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L108-118), 
+[Paper Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/paper.gd#L39), 
+[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L66-82), 
+[Vase Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L101-111)
+- **Time Input UI:** Created and integrated a dedicated CanvasLayer UI with a LineEdit for the clock puzzle, connecting the text_submitted signal to a function (_on_time_input_submitted) to validate the user's HHMM time input. This system handles input validation and error messaging (e.g., "Invalid format. Use HHMM") before setting the time. [Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L17-19),
+- **Inventory (Hotbar) Integration:** Managed the visibility of the player's hotbar UI, hiding it during dialogues, jumpscares, or when a puzzle-specific UI (like the clock input or a discovered note) is open to enforce player focus. [Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L57), 
+[Chair Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L64), 
+[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L52), 
+[Vase Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L75)
+- **Collectible Item Logic:** Implemented the core mechanics for the Bottle and Torch items, allowing them to be added to and removed from the Hotbar, and controlling their visibility and global position after collection. [Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/bed.gd#L57), 
+[Chair Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L64), 
+[Clock Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/clock.gd#L52), 
+[Vase Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/vase.gd#L75)
 
 
 ### Sub-Role - Game Feel
