@@ -7,8 +7,11 @@ This is an escape-room horror game where the player must navigate through a seri
 ## Project Resources
 
 [Play the Game](https://ripetomato3.itch.io/mccoys-mansion)
+
 [Trailer](https://www.youtube.com/watch?v=IYF02bDhPTo)
+
 [Press Kit](https://dopresskit.com/)  
+
 [Initial Plan/Proposal](https://docs.google.com/document/d/1sA2XxWCMnUcR5FnoEW7Uw0EvomDNiPJk1OjwOKdOJOg/edit?usp=sharing)  
 
 ## Gameplay Explanation ##
@@ -16,17 +19,16 @@ This is an escape-room horror game where the player must navigate through a seri
 The player can move around the rooms using either WASD or the arrow keys, letting them explore every corner as they search for clues. Interacting with items is simple. Just press E on the keyboard. Certain objects can be picked up, and anything the player collects will appear in their hotbar. If the player picks up more than one item, they can press the number key that corresponds to that item’s position in the hotbar to focus on it. From there, they can choose to use the item whenever they’re ready. This system lets players quickly switch between tools and clues as they work their way through the puzzles and dangers of each room. The optimal strategy to win the game is to read between the lines of each clue and then survey the environment for objects that relate to the clue and interact with those objects.
 
 
-**Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
-
 # External Code, Ideas, and Structure #
 
-If your project contains code that: 1) your team did not write, and 2) does not fit cleanly into a role, please document it in this section. Please include the author of the code, where to find the code, and note which scripts, folders, or other files that comprise the external contribution. Additionally, include the license for the external code that permits you to use it. You do not need to include the license for code provided by the instruction team.
-
-If you used tutorials or other intellectual guidance to create aspects of your project, include reference to that information as well.
+Although we did take inspriration from some other games, we didn't use any external code or structure to build the game. Everything you see is authored by us. 
 
 # Team Member Contributions
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
+
+## Om Patki
+### Main Role - 
 
 The general structures is 
 ```
