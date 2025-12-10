@@ -121,6 +121,38 @@ I had a major role in coming up with the puzzles and implementing them. Here are
 - **Game-Winning Mechanic (Chair):** Created the final, game-ending interaction with the Chair, where the character pushes it into a new position (self.position += PUSHED_IN_POSITION) and immediately triggers the WinScreen.tscn. [Final push](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bedroom/chair.gd#L82-84)
 - **Level State Management:** Implemented state flags in global Level3 (e.g., Level3.bed_done, Level3.clock_done, Level3.vase_done, Level3.paper_done, Level3.chair_done) to gate interactions, ensuring puzzles are completed in sequence or preventing repeat discovery events. [Flag for progression](https://github.com/ChiefGuap/McCoy-s-Mansion/blob/main/scripts/level_3.gd#L3-7)
 
+
+## Raquib Alam (rmalam@ucdavis.edu): 
+
+### Main Role - Gameplay Programmer and Systems Architect
+##### original role: Data & Analytics Engineer
+Reflective Statement: At the beginning of the quarter, my intended role was to be a Data and Analytics Engineer. My goal was basically to focus on the backend telemetry and user pathing analysis. However, as the development progressed, I found a critical role and need to fill for our grpup/project to bridge the gap between the assets and the game loop. I then realized that I needed to pivot and I pivoted my role to be a Gameplay Programmer, focusing on the texhnical and visual implementation of narrative events, stage management, and also interactions of the user systems (hotbar, main menu screen, how to play screen, end screen for examples). While I maintained a strong focus on "improving the user experience" (this was my intended original goal), I achieved this through direct systems engineering rather than the passive data analysis.
+
+- **Cinematic Sequencer and the State Management:** I engineered the game's narrative flow and control system. This involved creating a custom CutsceneManager that synchronizes AnimationPlayer tracks with GDScript logic (Tweens, Signals). I also implemented a "Player Lock" state pattern (modifying _input and _physics_process) to ensure narrative events—such as the opening sequence in the woods—could play out without user interference, fulfilling the course requirement for Finite State Machines (FSM). [Link to scripts/intro_woods.gd]()
+
+- **Probabilistic Event System RNG:** To meet the "replaybility" code/goal of the game, I made sure to design a randomized jumpscare system for the third level of the game. I wrote a modular script to basically extend the base interaction class the uses the randf() to calculate a 40% probability of triggering a "haunt" event vs a standard interaction. EVen though the jumpscare idea was a whole group idea, I took the charge and implemented the jumpscares on every level. I made sure to work with my team members who were specifvslly working on that level to implement the jumpscares on certain objects that they wanted and also learned and implemented toggle ability on those objects as well. This required me to manage the audio streams, the visual overlays (The CanvasLayers) and also communicating with the global game state to apply the time penalties. Every object that was intractable with the game has the jumpscare function instilled within the code with the randf and this demonstrates practical application of Random Number Generation in game design. [example to one of the scripts of scripts/bedroom/bed.gd]()
+  
+- **Game Loop and Signal Architecture:** I took the main ownership of the global game loop controller (Game.gd). I implemented the 7-minute countdown timer that basically enforces the win/lose condition. The only time that the data engineer side of the job came through here where I logged players (students) playing the game and then I figured out the perfect time for the game would be. By testing this game over 34 students, I was able to see patterns on how they moved throughout the game and timestamped them every time thyey finished the level and on average they finished the game at 6:23 seconds so I decided to put 7 minutes. Furthermore, I decoupled the timer initialization from the scene load by creating a custom signal (cutscene_finished) ensuring the gameplay timer only will begin after the narrative intro concludes. The seperation of concerns is a principle, a key principle, of Game Architecture [Link to scripts/game.gd]
+
+- **Dynamic UI and Inventory Feedback:** Building upon the inventory system developed by my teammate Sreya, I enhanced the user feedback loop by developing a procedural script for the hotbar. This system instantiates and positions a "Selector Box" node in real-time based on the player's active item slot. This replaced static assets with dynamic code, allowing for a flexible UI that adapts to the grid layout automatically and ensures items remain centered. [Link to scripts/hotbar.gd]
+
+### Sub-Role - Gameplay Testing
+Confidence: 5/5 Explanation. This sub-role remianed consistent with the original projectv plan proposal. As the person who was integrating the cutscenes, making the cutscenes and doing the same for the jumpscares, I was the primary tester for the "game Feel". I took a lot of time to really hone/lock in to test the collision logic for the "vase puzzle" in level 2 and the timing windows for the jumpscares to make sure that they felt fair but also a bit startling at the same time. I identifies and also fixed the critical bugs regarding the player state (The player getting stuck ion a locked state when the cutscene was skipped) and I also ensured that the UI was scaled correctly across the different resolutions, especially when the game was pushed.
+
+- **Audio Visual Shock System for Jumpscares:** I engineered a reusable "Shock" sequence to create immediate tension: Input Locking: Overriding the player's input loop (player.is_locked = true) and hiding the hotbar to force focus on the event. Audio Feedback: Triggering instantaneous, high-priority audio streams (scream_sound.play()) synchronized with visual effects. Visual Strobing: Implementing a coroutine-based strobe effect that toggles the jumpscare layer visibility multiple times with micro-delays (await get_tree().create_timer(0.05).timeout) to create a jarring, disorienting visual. State Restoration: Automatically unlocking the player and restoring UI elements once the sequence concludes.
+- **Game Pacing and Control of the Cinematics:** I utilized await timers extensively to control the narrative flow. This mechanism pauses script execution while keeping the game loop running, allowing for timed dialogue delivery and suspenseful pauses before item reveals or scares. This ensures the player cannot skip critical narrative beats.
+[Evidence in Intro Woods]() [Evidence in Bed Interaction]()
+
+### Other Contributions
+- **Shader Implementation:** Integrated a custom GLSL shader (dizzy_blur.gdshader) for the intro sequence to simulate the protagonist waking up. [Link to shaders/dizzy_blur.gdshader]
+- **Camera Logic: Configured:** Camera2D limits and zoom levels across multiple scenes to ensure immersion.
+- **Menu Flow:** Designed and scripted the logic for the Main Menu and "How to Play" screens, including scene transitions.
+
+
+
+
+
+
 # Main Roles
 
 
