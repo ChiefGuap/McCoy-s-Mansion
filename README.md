@@ -60,7 +60,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 Add addition contributions int he Other Contributions section.
 
-## Om Patki
+## Om Patki (oypatki@ucdavis.edu)
 ### Main Role - User Interface and Input
 Although my main role was user interface and input, my team was also required to work with user interaction since we divided up the work and implemented different levels of the game. Since this was my main role, we decided that I'd be in charge of the user interface and input for the largest portion of the game (Level 3). Here are my contributions relevant to this aspect of the game:
 
