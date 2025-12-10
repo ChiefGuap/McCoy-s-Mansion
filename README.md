@@ -60,9 +60,49 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 Add addition contributions int he Other Contributions section.
 
-# Om Patki (oypatki@ucdavis.edu)
-## Main Role - User Interface and Input
+## Om Patki
+### Main Role - User Interface and Input
+Although my main role was user interface and input, my team was also required to work with user interaction since we divided up the work and implemented different levels of the game. Since this was my main role, we decided that I'd be in charge of the user interface and input for the largest portion of the game (Level 3). Here are my contributions relevant to this aspect of the game:
 
-## Sub-Role - Game Feel
+- **Interaction Input System:** Implemented the primary interaction mechanism (Input.is_action_just_pressed("interact")) to manage all object interactions, including displaying dialogue, checking puzzle conditions, and toggling UI elements. [Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bed.gd#L38)
+[Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bed.gd#L38)
+[Bed Script](https://github.com/ChiefGuap/McCoy-s-Mansion/tree/main/scripts/bed.gd#L38) 
+- **Dialogue Box Management:** Developed the logic for displaying and hiding a common dialogue box (DialougeBox) and text label (DialougeText) to provide immediate feedback to the player upon interaction.
+- **Dynamic Dialogue Formatting:** Implemented dynamic adjustments to the dialogue box size, font size, and color to distinguish between simple flavor text and critical discovery moments.
+- **Clue and Item Popups:** Created the logic to toggle the visibility of special UI popups ($Original or note) when an item or clue is discovered, such as the note from the clock or the hidden paper clue, and included logic to ensure the popup automatically closes if the player leaves the interaction area (_on_*_exited function).
+- **Time Input UI:** Created and integrated a dedicated CanvasLayer UI with a LineEdit for the clock puzzle, connecting the text_submitted signal to a function (_on_time_input_submitted) to validate the user's HHMM time input. This system handles input validation and error messaging (e.g., "Invalid format. Use HHMM") before setting the time.
+- **Inventory (Hotbar) Integration:** Managed the visibility of the player's hotbar UI, hiding it during dialogues, jumpscares, or when a puzzle-specific UI (like the clock input or a discovered note) is open to enforce player focus.
+- **Collectible Item Logic:** Implemented the core mechanics for the Bottle and Torch items, allowing them to be added to and removed from the Hotbar, and controlling their visibility and global position after collection.
 
-## Other Contributions 
+
+### Sub-Role - Game Feel
+Here is the game feel items I added to level 3 to improve user experience and make the player more immersed in the game.
+
+- **Jumpscare Implementation:** A dedicated, randomized jumpscare mechanic was implemented across five interactable objects (bed.gd, bottom_red_couch.gd, chair.gd, clock.gd, vase.gd), giving the player a 40% chance (randf() < .60 in the negative case) of triggering a scare.
+- **Audio-Visual Shock:** This mechanic involved:
+    - Locking player movement (player.lock_player()) and hiding the hotbar.
+    - Instantly playing a scare sound (scream_sound.play()).
+    - Flashing the dedicated jumpscare image/layer (jumpscare_layer.visible) multiple times using timed delays (await get_tree().create_timer(0.05).timeout) for a brief, jarring visual effect.
+    - Unlocking the player once the scare sequence finishes.
+- **Pacing and Cinematic Control:** Used the await get_tree().create_timer(duration).timeout mechanism extensively to pause game flow, ensuring the player is locked in place while reading dialogue or viewing an item discovery event.
+- **Player State Control:** Used player.lock_player() and player.unlock_player() functions to completely disable player movement during critical moments like dialogue display, puzzle input, or when a UI/clue is actively open, thus ensuring a focused and controlled experience.
+
+### Other Contributions
+I had a major role in coming up with the puzzles and implementing them. Here are some of my other contributions that don't relate to my 2 assigned roles.
+
+- **Paper Clue Combination Puzzle:** Created a multi-step interaction puzzle for the Paper object:
+- **Using the Bottle item** (presumably cleaning fluid) on the paper reveals the underlying clue by setting a dirty overlay to invisible.
+- **Using the Torch item** (presumably UV/blacklight) after cleaning the paper reveals a final blue ink message by making a blue overlay invisible, which marks the puzzle as complete (Level3.paper_done = true).
+- **Hidden Item Discovery:** Implemented a spatial puzzle where a hidden item under the bed is only discovered if the player interacts while standing within a very specific coordinate range (player.position.y > 90 and player.position.y < 120 and player.position.x > -240 and player.position.x < -220).
+- **Vase Break Mechanic:** Implemented a one-time destruction mechanic for the Vase (vase_broken = true), which unlocks the clue hidden inside and updates the game state (Level3.vase_done = true).
+- **Clock Puzzle Win Condition:** Wrote the logic to check for the successful completion of the clock puzzle, which requires the player to input the exact time "0607" via the UI to set current_time to "06:07" and trigger the appearance of a final note (note_unlocked = true).
+- **Game-Winning Mechanic (Chair):** Created the final, game-ending interaction with the Chair, where the character pushes it into a new position (self.position += PUSHED_IN_POSITION) and immediately triggers the WinScreen.tscn.
+- **Level State Management:** Implemented state flags in global Level3 (e.g., Level3.bed_done, Level3.clock_done, Level3.vase_done, Level3.paper_done, Level3.chair_done) to gate interactions, ensuring puzzles are completed in sequence or preventing repeat discovery events.
+
+# Main Roles
+
+
+# Sub-Roles
+
+
+# Other Contributions 
