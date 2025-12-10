@@ -27,9 +27,6 @@ Although we did take inspriration from some other games, we didn't use any exter
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
 
-## Om Patki
-### Main Role - 
-
 The general structures is 
 ```
 Team Member 1
@@ -63,8 +60,9 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 Add addition contributions int he Other Contributions section.
 
-## Main Roles ##
+# Om Patki (oypatki@ucdavis.edu)
+## Main Role - User Interface and Input
 
-## Sub-Roles ##
+## Sub-Role - Game Feel
 
-## Other Contributions ##
+## Other Contributions 
