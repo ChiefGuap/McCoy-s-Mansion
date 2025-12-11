@@ -25,31 +25,6 @@ offset_bottom = 535.0
 scale = Vector2(2, 2)
 script = ExtResource("3_dkc04")
 
-[node name="Slot1" type="TextureRect" parent="Hotbar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Slot2" type="TextureRect" parent="Hotbar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Slot3" type="TextureRect" parent="Hotbar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Slot4" type="TextureRect" parent="Hotbar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Slot5" type="TextureRect" parent="Hotbar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="BlackScreen" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 1)
 anchors_preset = 15

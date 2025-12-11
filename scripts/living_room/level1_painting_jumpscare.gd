@@ -1,4 +1,3 @@
-# - Adapted to extend Interactable
 extends Interactable
 
 # 'sprite' is inherited from Interactable
@@ -22,36 +21,34 @@ func interact() -> void:
 
 func trigger_jumpscare():
 	is_scaring = true
-	print("😱 JUMPSCARE TRIGGERED!")
 	
-	# Apply penalty once
+	# applying the time penalty once
 	if not penalty_applied:
 		var game = get_tree().current_scene
 		if game and game.has_method("apply_jumpscare_penalty"):
 			game.apply_jumpscare_penalty()
 		penalty_applied = true
 	
-	# 1. Play Sound
+	# playing the jumpscare sound withb the auido strewmam
 	if scream_sound:
 		scream_sound.play()
 	
-	# 2. Visual Strobe Effect
+	# the strobe effect (Gemini Helped with creating this strobe effect and how to go bout it)
 	if jumpscare_layer:
-		# Flash 5 times quickly
+		# for loop for the strobing thing
 		for i in range(5): 
 			jumpscare_layer.visible = true
 			await get_tree().create_timer(0.05).timeout
 			jumpscare_layer.visible = false
 			await get_tree().create_timer(0.05).timeout
 		
-		# Hold face
+		# making the jumpscare face appear
 		jumpscare_layer.visible = true
 		await get_tree().create_timer(1.0).timeout 
 		jumpscare_layer.visible = false
 	
 	is_scaring = false
 
-# Optional: Reset if player leaves range quickly
 func _on_area_2d_body_exited(body):
 	if body.name == "Player":
 		if jumpscare_layer:

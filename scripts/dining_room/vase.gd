@@ -3,12 +3,10 @@ class_name Vase
 
 signal remove_vase(vase_node)
 
+
 func _ready() -> void:
 	turn_on_interactable()
-	pass # Replace with function body.
 
-func _process(delta: float) -> void:
-	pass
 
 func interact() -> void:
 	turn_off_interactable()
@@ -17,6 +15,7 @@ func interact() -> void:
 	global_position = Vector2(1000, 1000)
 	self.visible = false
 	emit_signal("remove_vase", self)
+
 
 func use_item() -> void:
 	turn_on_interactable()

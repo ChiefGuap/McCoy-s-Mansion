@@ -1,44 +1,30 @@
 extends Node
 
-# --- CONNECTIONS ---
+@export var success_label: Label
+@export var hint_label: Label
+@export var level3_barrier: Node2D
+
 @onready var jumpscare_layer = $JumpscareLayer
 @onready var scream_sound = $ScreamSound
 
-@export var level3_barrier: Node2D
-
-# --- NEW: Drag your SuccessLabel here in the Inspector ---
-@export var success_label: Label 
-@export var hint_label: Label
-
-# --- PUZZLE OBJECTS ---
 @onready var table1 = $Table1
 @onready var table2 = $Table2
 @onready var table3 = $Table3
-
 @onready var vase1 = %VaseBlue
 @onready var vase2 = %VaseGolden
 @onready var vase3 = %VaseWhite
 
-var vases_dict = {}
-var is_scaring = false
+@onready var player = $"../Player"
 
-# Custom signals
-signal add_vase(tableNode, vaseNode)
-signal remove_vase(vaseNode)
+
+var vases_dict = {}
+
 
 func _ready() -> void:
-	# Ensure jumpscare is hidden at start
-	if jumpscare_layer:
-		jumpscare_layer.visible = false
+	jumpscare_layer.visible = false
+	success_label.visible = false
+	hint_label.visible = false
 	
-	# Ensure success label is hidden at start (safety check)
-	if success_label:
-		success_label.visible = false
-	
-	if hint_label:
-		hint_label.visible = false
-	
-	# Connect signals from tables/vases
 	if table1: table1.connect("add_vase", Callable(self, "add_vase_to_dict"))
 	if table2: table2.connect("add_vase", Callable(self, "add_vase_to_dict"))
 	if table3: table3.connect("add_vase", Callable(self, "add_vase_to_dict"))
@@ -47,88 +33,67 @@ func _ready() -> void:
 	if vase2: vase2.connect("remove_vase", Callable(self, "remove_vase_from_dict"))
 	if vase3: vase3.connect("remove_vase", Callable(self, "remove_vase_from_dict"))
 
+
 func enter_level() -> void:
-	if hint_label:
-		hint_label.visible = true
-		hint_label.text = "HMMM, WHICH OF THESE CHAIRS COULD BE MCCOY'S?"
-		# Hide after 5 seconds
-		get_tree().create_timer(5.0).timeout.connect(func(): hint_label.visible = false)
+	hint_label.visible = true
+	hint_label.text = "HMMM, WHICH OF THESE CHAIRS COULD BE MCCOY'S?"
+	get_tree().create_timer(5.0).timeout.connect(func(): hint_label.visible = false)
+
 
 func add_vase_to_dict(table: Node2D, vase: Node2D) -> void:
 	vases_dict[table] = vase
-	print("Vase placed. Total on tables: ", vases_dict.size())
 	
-	# Check if all 3 tables are full
 	if vases_dict.size() == 3:
 		check_puzzle_solution()
 
+
 func remove_vase_from_dict(vase: Node2D) -> void:
-	print("Vase removed")
 	for table in vases_dict.keys():
 		if vases_dict[table] == vase:
 			vases_dict.erase(table)
-			if "vase" in table:
-				table.vase = null
+			table.vase = null
 			break
 
+
 func check_puzzle_solution():
-	# WIN CONDITION:
-	# VaseBlue (vase1) on Table1
-	# VaseGolden (vase2) on Table2
-	# VaseWhite (vase3) on Table3
-	
 	var is_correct = true
 	
-	if vases_dict.get(table1) != vase1: is_correct = false
-	if vases_dict.get(table2) != vase2: is_correct = false
-	if vases_dict.get(table3) != vase3: is_correct = false
+	if vases_dict.get(table1) != vase1:
+		is_correct = false
+	if vases_dict.get(table2) != vase2:
+		is_correct = false
+	if vases_dict.get(table3) != vase3:
+		is_correct = false
 	
 	if is_correct:
-		print("✅ LEVEL 2 COMPLETE")
+		success_label.visible = true
+		success_label.text = "THE BED ROOM DOOR CLICKS OPEN, ACROSS THE LIVING ROOM..."
 		
-		# --- NEW: Show the Success Label ---
-		if success_label:
-			success_label.visible = true
-			success_label.text = "THE BED ROOM DOOR CLICKS OPEN, ACROSS THE LIVING ROOM..."
-			# Optional: Hide it after 4 seconds
-			await get_tree().create_timer(4.0).timeout
-			success_label.visible = false
-		# -----------------------------------
-
-		# Unlock Level 3
-		if level3_barrier:
-			level3_barrier.queue_free()
-			print("🔓 Level 3 Barrier Removed!")
-		else:
-			print("Warning: Level 3 barrier not assigned!")
-			
+		await get_tree().create_timer(4.0).timeout
+		success_label.visible = false
+		
+		level3_barrier.queue_free()
 	else:
-		print("❌ WRONG ORDER! TRIGGERING JUMPSCARE...")
 		trigger_jumpscare()
 
+
 func trigger_jumpscare() -> void:
-	if is_scaring: return
-	is_scaring = true
+	player.lock_player()
 	
-	# 1. Apply Penalty
-	if get_tree().has_group("game_manager"):
-		get_tree().call_group("game_manager", "apply_jumpscare_penalty")
+	# Call game_manager's timer penalty function
+	get_tree().call_group("game_manager", "apply_jumpscare_penalty")
 	
-	# 2. Play Sound
-	if scream_sound:
-		scream_sound.play()
+	scream_sound.play()
 	
-	# 3. Visual Strobe Effect
-	if jumpscare_layer:
-		for i in range(5): 
-			jumpscare_layer.visible = true
-			await get_tree().create_timer(0.05).timeout
-			jumpscare_layer.visible = false
-			await get_tree().create_timer(0.05).timeout
-		
+	# Visual Strobe Effect
+	for i in range(5): 
 		jumpscare_layer.visible = true
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(0.05).timeout
 		jumpscare_layer.visible = false
+		await get_tree().create_timer(0.05).timeout
+		
+	jumpscare_layer.visible = true
+	await get_tree().create_timer(1.5).timeout
+	jumpscare_layer.visible = false
 	
-	is_scaring = false
-	print("Jumpscare finished. Try again.")
+	player.unlock_player()
