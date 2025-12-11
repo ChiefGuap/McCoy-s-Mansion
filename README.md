@@ -211,7 +211,24 @@ I worked on honing in the game feel of Level 2. I worked with feedback from my t
 
 - **Collisions in Level 2:** I put attention to detail on the collisions and zIndex of the dining room tiles to create a room that made sense physically and increased the difficulty of the puzzle, due to the cluttering of chairs which narrowed the space of movement to the user.
 
+## Andy Tran (anctran@ucdavis.edu): orangethree
 
+### Main Role - Level and World Designer
+I worked on designing the levels and sourcing assets for the world of our game. I also redesigned some assets and created animations to better fit the needs we had for our game. I first layed out the design of each level on paper to give our team good direction when implementing. I then designed how level 1 and 2 logic would work in a way that was intuitive for the player. I worked on laying out level 1 with the assets I found, and then helped my teammates to then implement the other levels. 
+
+- **Creation of Fireplace Animation** I created the pixel art animation for the fireplace. I used the asset as a base and drew on top of it in order to create the animation. [Fireplace scene]([https://github.com/ChiefGuap/McCoy-s-Mansion/blob/ec6940347d3eeb94f061487074bea20f5bae3ce1/scenes/level_1.tscn](https://github.com/ChiefGuap/McCoy-s-Mansion/blob/ec166d2694e50236457517d0ba740de1b904a35c/scenes/living_room_objects/level_1_fireplace.tscn))
+- **Edited Globe for Continuity** The globe asset we found only had 2 phases: closed or open. I wanted a third phase that was open and empty, so I edited the existing asset to create a new one that fit our need. [Globe](https://github.com/ChiefGuap/McCoy-s-Mansion/blob/145fd17146d3e439acae64786250cda134394fd2/scenes/living_room_objects/level_1_globe.tscn)
+- **Lerp Light for Ambience** I created this script that served as the template for all ambient lights in the game, making it have a "flicker" effect as a nice touch. [Light script](https://github.com/ChiefGuap/McCoy-s-Mansion/blob/ec6940347d3eeb94f061487074bea20f5bae3ce1/scripts/living_room/fireplace_light_2d.gd)
+- **Level 1 Puzzle Design** I designed and implemented the puzzle flow for level 1, allowing the player to choose the flow with which they want to look through the level. [Level 1](https://github.com/ChiefGuap/McCoy-s-Mansion/blob/51a46fed06cd13cd59bbab6b6a88419a15078672/scenes/level_1.tscn) 
+
+### Sub Role - Narrative Design
+I created the narrative world that the game was contained within. There is not much to point to within the scene tree for this, so I will just explain my process. When we had chosen to create a puzzle/escape room type of game set in a mansion, I set out to look for assets online that we could use to create our world. The assets that I found fueled the direction in which we created the story. The paintings we used inspired our idea of "McCoy's Mansion", as the main painting somewhat resembled our professor. The globe asset that we found seemed like a great opportunity to use as a clue in our puzzle. I used the assets to inspire my narrative design of the game.
+
+### Other Contributions
+I created some scripts/shaders that were used for the basis of some other scenes in our project.
+
+- **Shader for outlining interactables** I created this shader that our team used to create outlines around the objects in our game that could be interacted. This provided clarity for the player about what they could or could not interact with. [Shader](https://github.com/ChiefGuap/McCoy-s-Mansion/blob/145fd17146d3e439acae64786250cda134394fd2/shaders/level_1_painting.gdshader)
+- **Area2D interaction to trigger outline** I first implemented the painting script that initialized the outline on the painting once the player entered within range of the painting. This was then adapted for most other interactables in our game. [Painting script](https://github.com/ChiefGuap/McCoy-s-Mansion/blob/145fd17146d3e439acae64786250cda134394fd2/scripts/living_room/level_1_painting.gd)
 
 # Main Roles
 
