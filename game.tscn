@@ -463,10 +463,9 @@ script = ExtResource("1_fc0e3")
 [node name="Level1" parent="." instance=ExtResource("2_7jktm")]
 position = Vector2(-1, -4)
 
-[node name="Level2" parent="." node_paths=PackedStringArray("level3_barrier", "hint_label") instance=ExtResource("5_7jktm")]
+[node name="Level2" parent="." node_paths=PackedStringArray("level3_barrier") instance=ExtResource("5_7jktm")]
 position = Vector2(1, 0)
 level3_barrier = NodePath("../Level3Block")
-hint_label = NodePath("../UI_Layer/LevelHintLabel")
 
 [node name="Level3" parent="." node_paths=PackedStringArray("hint_label") instance=ExtResource("4_ryrav")]
 position = Vector2(0, -5)

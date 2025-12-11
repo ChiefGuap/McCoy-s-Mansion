@@ -2310,21 +2310,27 @@ material = SubResource("ShaderMaterial_k22d5")
 
 [node name="ChairFrontFacing" parent="." instance=ExtResource("4_y0kc7")]
 position = Vector2(527, 150)
+script = null
 
 [node name="ChairFrontFacing2" parent="." instance=ExtResource("4_y0kc7")]
 position = Vector2(559, 150)
+script = null
 
 [node name="ChairFrontFacing3" parent="." instance=ExtResource("4_y0kc7")]
 position = Vector2(623, 150)
+script = null
 
 [node name="ChairUpFacing" parent="." instance=ExtResource("5_ne2mo")]
 position = Vector2(519, 211)
+script = null
 
 [node name="ChairUpFacing2" parent="." instance=ExtResource("5_ne2mo")]
 position = Vector2(567, 211)
+script = null
 
 [node name="ChairUpFacing3" parent="." instance=ExtResource("5_ne2mo")]
 position = Vector2(615, 211)
+script = null
 
 [node name="Drawer" type="Node2D" parent="."]
 position = Vector2(439, 235)
