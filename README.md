@@ -148,7 +148,40 @@ Confidence: 5/5 Explanation. This sub-role remianed consistent with the original
 - **Camera Logic: Configured:** Camera2D limits and zoom levels across multiple scenes to ensure immersion.
 - **Menu Flow:** Designed and scripted the logic for the Main Menu and "How to Play" screens, including scene transitions.
 
+## Aarav Jain (apjain@ucdavis.edu)
 
+### Main Role – Game Systems & Win/Lose Flow
+
+
+- **Global Horror Timer System** – Implemented the core countdown timer that drives the game’s pressure and pacing. The timer is initialized to 6 minutes and persists as a global system that updates once per second, formats time as mm:ss, and lives in game.gd. I used Godot’s scene tree and signal system (_on_timer_timeout) to integrate the timer into the main game loop, and applied course ideas around game state and win/lose conditions. The timer controls when the player loses (time reaching zero) and also feeds directly into the game feel systems (color changes and pulse).
+(Evidence: scripts/game.gd in the root scene game.tscn.)
+
+- **Dynamic Timer Feedback & Visual Game Feel** – Extended the basic timer into a readable and expressive UI element that reflects urgency. When the remaining time falls below 3 minutes, the timer label turns yellow; below 1 minute, it turns red and begins a subtle “haunted” pulse effect by scaling with a sine wave over time. This uses concepts from class about feedback loops and player-facing state representation—turning raw state into visual tension cues.
+(Evidence: color and scaling logic in update_timer_label() and _process() in scripts/game.gd.)
+
+- **Jumpscare Time Penalty Integration** – Designed and implemented a reusable function apply_jumpscare_penalty() in game.gd that subtracts 30 seconds from the global timer whenever any jumpscare triggers. This function is called by multiple jumpscare scripts across different levels, decoupling the scare logic from the time system while still tying them together through a shared interface. This follows the separation of concerns and modular design emphasized in the course.
+(Evidence: apply_jumpscare_penalty() in scripts/game.gd, called from jumpscare interaction scripts such as the bedroom/level jumpscare controllers.)
+
+- **Game Over Flow (Lose Screen)** – Implemented the full “time’s up” game over pipeline. When the timer reaches zero, the game transitions to a dedicated GameOver scene that displays a stylized game over UI with two options: Retry and Quit. I wired the buttons via signals so Retry reloads Level 1, while Quit returns the player to the main menu. This work ties into scene management and UI control from the course—using change_scene_to_file() and Control-node based menus to implement a clean lose condition.
+(Evidence: game_over.tscn and game_over.gd handling Retry → res://game.tscn and Quit → res://main_menu.tscn.)
+
+- **Win Screen & Ending Flow** – Created and integrated the winning screen that appears when the player successfully escapes the mansion. The win screen presents an AI-generated image of McCoy and gives the player options to either Replay (send them back to Level 1) or Quit (back to main menu). This mirrors the game over flow but for the win condition, and demonstrates how the same scene-transition tools can be used to close the loop on a full game experience.
+(Evidence: WinScreen.tscn and associated script that routes Replay to game.tscn and Quit to main_menu.tscn.)
+
+### Sub-Role – Audio & Game Feel Support
+
+- **Global Background Music System** – Implemented a reusable background music manager (MusicManager.gd) that plays a looping horror ambience track across the game. The system uses an AudioStreamPlayer attached to a manager node (or autoload) to avoid restarting music on every scene change, reflecting ideas from the course about persistent systems and singletons. I also configured the looping, volume, and placement of the MP3 (res://assets/world_scene/horror-background-atmosphere-for-suspense-166944.mp3) so the audio continuously supports the horror atmosphere.
+(Evidence: MusicManager.gd and scene where the audio player is created and added to the tree.)
+
+- **Jumpscare Collaboration & Integration** – Worked closely with Raquib on the jumpscare system to ensure each scare not only showed visuals and played sounds but also correctly affected global game state. I helped hook up the jumpscare scripts to call the shared apply_jumpscare_penalty() function and made sure the timer UI updated immediately after each scare. This ties into the course’s focus on coordinating multiple systems (UI, audio, and core gameplay state) through a central controller.
+(Evidence: jumpscare interaction scripts (e.g., bed/room scare scripts) calling into game.gd’s penalty function; coordination with player lock/hotbar visibility.)
+
+### Other Contributions
+
+- **Menu & Flow Polish** – Assisted with testing and debugging transitions between main menu, Level 1, Level 2, Level 3, the win screen, and the game over screen, ensuring that the timer, music, and UI reset or persist correctly depending on the context. This involved iterating on scene paths, button callbacks, and checking that the player always returns to the intended starting state when replaying.
+(Evidence: Scene transition logic between main_menu.tscn, game.tscn, GameOver.tscn, and WinScreen.tscn.)
+
+- **General Integration & Bug Fixing** – Helped teammates debug issues around timer behavior, scene loading, and jumpscare interactions (such as making sure scares did not soft-lock the player and that time penalties couldn’t take the timer negative). This collaborative work contributed to making the final build feel cohesive and stable rather than a collection of disconnected scenes.
 
 
 
