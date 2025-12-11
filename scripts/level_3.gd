@@ -15,5 +15,4 @@ func enter_level() -> void:
 	if hint_label:
 		hint_label.visible = true
 		hint_label.text = "I SHOULD CHECK IF MCCOY WROTE ANYTHING THAT COULD HELP ME..."
-		# Hide after 5 seconds
 		get_tree().create_timer(5.0).timeout.connect(func(): hint_label.visible = false)
