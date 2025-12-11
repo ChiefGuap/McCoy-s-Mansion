@@ -4,7 +4,6 @@ const DEFAULT_MOVE_VELOCITY = 150
 var movement_speed = DEFAULT_MOVE_VELOCITY
 var collisions: Array[Node] = []
 var collision_idx: int = 0
-# 🔒 Control flag to lock movement
 var is_locked: bool = false 
 
 
@@ -15,8 +14,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	
-	# 🌟 Only allow movement input processing if the player is NOT locked
 	if not is_locked:
 		velocity = Vector2.ZERO
 		
@@ -35,10 +32,7 @@ func _process(delta: float) -> void:
 			velocity = velocity.normalized() * movement_speed
 			$AnimatedSprite2D.animation = "run"
 		else:
-			# Ensure animation is "default" if input is released and player is not locked
-			$AnimatedSprite2D.animation = "default"
-	
-	# 🛑 If locked, ensure velocity is zero and set to idle animation
+			$AnimatedSprite2D.animation = "default"	
 	else:
 		velocity = Vector2.ZERO
 		$AnimatedSprite2D.animation = "default"
@@ -68,42 +62,32 @@ func _process(delta: float) -> void:
 func _apply_movement() -> void:
 	move_and_slide()
 
-# -----------------
-# LOCK/UNLOCK FUNCTIONS
-# -----------------
 
 func lock_player() -> void:
 	is_locked = true
-	# Immediately stop any current movement
 	velocity = Vector2.ZERO
 	$AnimatedSprite2D.animation = "default"
-	print("Player locked.")
 
 func unlock_player() -> void:
 	is_locked = false
-	print("Player unlocked.")
 
-# -----------------
-# INTERACTABLE COLLISION FUNCTIONS
-# -----------------
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var body: Node2D = area.get_parent()
 	
 	# outline this new target, clear prev outlines
 	if (body is Interactable or body is InteractableV2) and body._interactable:
-		print(body, " is interactable ", body._interactable)
 		collisions.append(body)
 		
 		if (collisions.size() > 1):
 			var prev_body = collisions[collision_idx]
 			prev_body.turn_off_outline()
-			print("Removing outline to ", prev_body, " len ", collisions.size())
 		
 		body.turn_on_outline()
 		collision_idx = collisions.size() - 1 
-		print("Adding outline to ", body, " len ", collisions.size())
+		
 		regenerate_interact_label()
+
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	var body = area.get_parent()
@@ -120,13 +104,13 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	
 	collisions.erase(body)
 	body.turn_off_outline()
-	print("Removing node from collisions ", body, " len ", collisions.size())
 	
-	# ensure target gets passed if the current one was just removed
+	# ensure target selection gets passed to a diff object if the current one was just removed
 	if (collisions.size() > 0):
 		var target = collisions[collision_idx]
 		target.turn_on_outline()
 	regenerate_interact_label()
+
 
 func regenerate_interact_label() -> void:
 	var label = get_tree().root.find_child("InteractLabel", true, false)

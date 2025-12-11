@@ -5,41 +5,39 @@ var items: Array[Node2D] = []
 var maxItems = 5
 var holding: int = 0
 var slots: Array[ColorRect] = []
-var selector: Panel # Reference to the purple highlight box
+var selector: Panel # purple highlight box
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var start_pos = Vector2(100, 220)
 	var spacing = 80
 	
-	# 1. Create the Slots
+	# Dynamically create and place the inventory slots
 	for i in range(5):
 		var slot = ColorRect.new()
 		slot.color = Color.GRAY
-		slot.custom_minimum_size = Vector2(30, 30)  # size of slot
+		slot.custom_minimum_size = Vector2(30, 30)
 		
+		# Init icon whose texture will be swapped with sprites of items added to inventory
 		var icon = TextureRect.new()
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		icon.z_index = 50
 		icon.z_as_relative = true
-		icon.custom_minimum_size = Vector2(30, 30) # Ensure icon fits slot
+		icon.custom_minimum_size = Vector2(30, 30)
 		
 		slot.position = start_pos + Vector2(i * spacing, 0)
 		slot.add_child(icon)
+		
 		add_child(slot)
+		
 		slots.append(slot)
 	
 	for i in range(maxItems):
 		items.append(null)
 		
-	# 2. Create the Purple Selector Box
+	# Create the Purple Selector outline
 	create_selector()
-	
-	# 3. Move it to the start position
-	update_selector()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var changed_slot = false
 	
@@ -59,57 +57,68 @@ func _process(delta: float) -> void:
 		holding = 4
 		changed_slot = true
 	
-	# Only update visuals if we actually switched slots
+	# If any of the above inputs were pressed
 	if changed_slot:
 		regenerate_hotbar_label()
-		update_selector() # <--- Moves the purple box!
+		update_selector()
 
-# --- NEW FUNCTION: Creates the visual box via code ---
+
 func create_selector():
 	selector = Panel.new()
-	selector.size = Vector2(30, 30) # Match your slot size
-	selector.z_index = 60           # Make sure it draws ON TOP of icons
+	selector.size = Vector2(30, 30)
+	selector.z_index = 60 
 	
-	# Create the Purple Styled
 	var style = StyleBoxFlat.new()
-	style.draw_center = false       # Transparent inside
+	style.draw_center = false
 	style.border_width_left = 3
 	style.border_width_top = 3
 	style.border_width_right = 3
 	style.border_width_bottom = 3
-	style.border_color = Color(0.6, 0.2, 1.0) # Bright Purple
+	style.border_color = Color(0.6, 0.2, 1.0)
 	style.corner_radius_top_left = 2
 	style.corner_radius_top_right = 2
 	style.corner_radius_bottom_right = 2
 	style.corner_radius_bottom_left = 2
 	
-	# Apply style and add to scene
 	selector.add_theme_stylebox_override("panel", style)
+	
+	# Initially place it on our first slot
+	selector.position = slots[0].position
+	
 	add_child(selector)
 
-# --- NEW FUNCTION: Moves the box to the held slot ---
+
 func update_selector():
 	if slots.size() > holding:
-		# Snap the selector to the exact position of the current slot
 		selector.position = slots[holding].position
 
+
 func add_to_hotbar(item: Node2D) -> void:
-	var idx: int = 0;
+	var idx: int = -1;
+	
 	for i in range(maxItems):
 		if items[i] == null:
 			idx = i
 			break
-	var sprite: Sprite2D = item.get_node("Sprite2D")
+	
 	items[idx] = item
-	var tex := sprite.texture
+	
+	var sprite: Sprite2D = item.get_node("Sprite2D")
+	
+	var icon_texture = sprite.texture
+	
 	if sprite.region_enabled:
-		var atlas_tex = AtlasTexture.new()
-		atlas_tex.atlas = tex
-		atlas_tex.region = sprite.region_rect
-		slots[idx].get_child(0).texture = atlas_tex
+		#  If the sprite used by the item was cropped from an AtlasTexture ("region_enabled"), 
+				# create a new Atlas Texture with only the cropped region
+		var atlas_texture = AtlasTexture.new()
+		atlas_texture.atlas = icon_texture
+		atlas_texture.region = sprite.region_rect
+		slots[idx].get_child(0).texture = atlas_texture
 	else:
-		slots[idx].get_child(0).texture = tex
+		slots[idx].get_child(0).texture = icon_texture
+	
 	regenerate_hotbar_label()
+
 
 func add_to_hotbarv2(item: Node2D, sprite_name: String) -> void:
 	var idx: int = 0;
@@ -117,20 +126,27 @@ func add_to_hotbarv2(item: Node2D, sprite_name: String) -> void:
 		if items[i] == null:
 			idx = i
 			break
-	var sprite: Sprite2D = item.get_node(sprite_name)
+	
 	items[idx] = item
-	var tex := sprite.texture
+	
+	var sprite: Sprite2D = item.get_node(sprite_name)
+	
+	var icon_texture := sprite.texture
+	
 	if sprite.region_enabled:
-		var atlas_tex = AtlasTexture.new()
-		atlas_tex.atlas = tex
-		atlas_tex.region = sprite.region_rect
-		slots[idx].get_child(0).texture = atlas_tex
+		var atlas_texture = AtlasTexture.new()
+		atlas_texture.atlas = icon_texture
+		atlas_texture.region = sprite.region_rect
+		slots[idx].get_child(0).texture = atlas_texture
 	else:
-		slots[idx].get_child(0).texture = tex
+		slots[idx].get_child(0).texture = icon_texture
+	
 	regenerate_hotbar_label()
+
 
 func get_held_item() -> Node2D:
 	return items[holding]
+
 
 func remove_from_hotbar(item: Node2D) -> void:
 	var idx = items.find(item)
@@ -138,11 +154,10 @@ func remove_from_hotbar(item: Node2D) -> void:
 	items[idx] = null
 	regenerate_hotbar_label()
 
+
 func regenerate_hotbar_label() -> void:
 	var text = ""
 	if items[holding] != null:
 		text += "Holding " + items[holding].name
 	
-	# Use a safer check in case the label doesn't exist in some scenes
-	if has_node("%HotbarLabel"):
-		%HotbarLabel.text = text
+	%HotbarLabel.text = text

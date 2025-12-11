@@ -513,6 +513,10 @@ visible = false
 [node name="BlackScreen" parent="UI_Layer" index="3"]
 visible = false
 
+[node name="InteractLabel" parent="UI_Layer" index="4"]
+offset_top = -98.0
+offset_bottom = -75.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_eow3j")
