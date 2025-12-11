@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgglxgt3ij7v5"]
+[gd_scene load_steps=6 format=3 uid="uid://cgglxgt3ij7v5"]
 
-[ext_resource type="Script" uid="uid://c325rwrkbmfr1" path="res://scripts/dining_room/chair.gd" id="1_po3j7"]
 [ext_resource type="Shader" uid="uid://c2rttnvwojfax" path="res://shaders/shader.gdshader" id="1_yjucm"]
 [ext_resource type="Texture2D" uid="uid://mmijjq8pb6ma" path="res://assets/FancyMansion_Furniture/fancy_mansion_furnitureset_withshadow.png" id="2_5b2dk"]
 
@@ -18,7 +17,6 @@ size = Vector2(18, 24)
 radius = 19.026299
 
 [node name="ChairFrontFacing" type="Node2D"]
-script = ExtResource("1_po3j7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 51

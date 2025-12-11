@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Level3="*res://scripts/level_3.gd"
 MusicManager="*res://MusicManager.gd"
+DiningRoomDialouge="*res://scripts/dining_room/dining_room_dialouge.gd"
 
 [display]
 

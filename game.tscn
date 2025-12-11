@@ -495,27 +495,15 @@ script = ExtResource("6_cam_ctrl")
 [node name="UI_Layer" parent="." instance=ExtResource("8_mfdv2")]
 unique_name_in_owner = true
 
-[node name="Slot1" parent="UI_Layer/Hotbar" index="0"]
-visible = false
-
-[node name="Slot2" parent="UI_Layer/Hotbar" index="1"]
-visible = false
-
-[node name="Slot3" parent="UI_Layer/Hotbar" index="2"]
-visible = false
-
-[node name="Slot4" parent="UI_Layer/Hotbar" index="3"]
-visible = false
-
-[node name="Slot5" parent="UI_Layer/Hotbar" index="4"]
-visible = false
-
 [node name="BlackScreen" parent="UI_Layer" index="3"]
 visible = false
 
 [node name="InteractLabel" parent="UI_Layer" index="4"]
 offset_top = -98.0
 offset_bottom = -75.0
+
+[node name="LevelHintLabel" parent="UI_Layer" index="7"]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

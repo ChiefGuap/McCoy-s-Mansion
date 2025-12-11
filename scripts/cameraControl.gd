@@ -12,6 +12,9 @@ func _ready() -> void:
 
 
 func _on_diningRoomDoor_body_entered(body: PhysicsBody2D) -> void:
+	if body.name != "Player":
+		return
+
 	var parent = get_parent()
 	
 	if (currCameraPos == 1):
@@ -34,6 +37,9 @@ func _on_diningRoomDoor_body_entered(body: PhysicsBody2D) -> void:
 		
 
 func _on_bedRoom_body_entered(body: PhysicsBody2D) -> void:
+	if body.name != "Player":
+		return
+	
 	var parent = get_parent()
 	
 	if currCameraPos == 1:
@@ -44,8 +50,7 @@ func _on_bedRoom_body_entered(body: PhysicsBody2D) -> void:
 		currCameraPos = 3
 		parent.position = Vector2(-30, 170)
 		update_level_display("BED ROOM")
-		if level3_node and level3_node.has_method("enter_level"):
-			level3_node.enter_level()
+		level3_node.enter_level()
 	else: # Moving from dining room to living room
 		limit_left = 0
 		limit_top = 0

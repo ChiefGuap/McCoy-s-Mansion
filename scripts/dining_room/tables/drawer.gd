@@ -23,13 +23,13 @@ func interact() -> void:
 	var hotbar = get_tree().root.find_child("Hotbar", true, false)
 	var item: Node2D = hotbar.get_held_item()
 	if (item != null and item is Key):
-		DisplayDialouge.new().display_dialouge("A note.")
+		DiningRoomDialouge.display_dialouge("A note.")
 		displaying_note = true
 		note.make_visible()
 		hotbar.remove_from_hotbar(item)
 		unlocked = true
 	else:
-		DisplayDialouge.new().display_dialouge("This drawer \nis locked")
+		DiningRoomDialouge.display_dialouge("This drawer \nis locked")
 
 
 # Extend turn_off_outline so when you walk away from the drawer collision, the note disappears

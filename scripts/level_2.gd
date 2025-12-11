@@ -1,6 +1,7 @@
 extends Node
 
-@export var success_label: Label 
+@export var success_label: Label
+@export var hint_label: Label
 @export var level3_barrier: Node2D
 
 @onready var jumpscare_layer = $JumpscareLayer
@@ -15,7 +16,6 @@ extends Node
 
 @onready var player = $"../Player"
 
-var hint_label: Label
 
 var vases_dict = {}
 
@@ -23,7 +23,6 @@ var vases_dict = {}
 func _ready() -> void:
 	jumpscare_layer.visible = false
 	success_label.visible = false
-	hint_label = get_tree().root.find_child("LevelHintLabel", true, false)
 	hint_label.visible = false
 	
 	if table1: table1.connect("add_vase", Callable(self, "add_vase_to_dict"))
@@ -36,10 +35,9 @@ func _ready() -> void:
 
 
 func enter_level() -> void:
-	if hint_label:
-		hint_label.visible = true
-		hint_label.text = "HMMM, WHICH OF THESE CHAIRS COULD BE MCCOY'S?"
-		get_tree().create_timer(5.0).timeout.connect(func(): hint_label.visible = false)
+	hint_label.visible = true
+	hint_label.text = "HMMM, WHICH OF THESE CHAIRS COULD BE MCCOY'S?"
+	get_tree().create_timer(5.0).timeout.connect(func(): hint_label.visible = false)
 
 
 func add_vase_to_dict(table: Node2D, vase: Node2D) -> void:

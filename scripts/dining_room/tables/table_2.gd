@@ -21,8 +21,8 @@ func interact() -> void:
 			item.z_index = 6
 			emit_signal("add_vase", self, item)
 		else:
-			DisplayDialouge.new().display_dialouge("There's already \na vase there")
+			DiningRoomDialouge.display_dialouge("There's already \na vase there")
 	elif vase == null:
-		DisplayDialouge.new().display_dialouge("Something's \nmissing")
+		DiningRoomDialouge.display_dialouge("Something's \nmissing")
 	else: # Player had already placed a vase and now interacting with the table
-		DisplayDialouge.new().display_dialouge("A perfect place \nfor a vase!")
+		DiningRoomDialouge.display_dialouge("A perfect place \nfor a vase!")
