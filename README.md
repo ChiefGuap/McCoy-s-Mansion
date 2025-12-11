@@ -8,9 +8,7 @@ This is an escape-room horror game where the player must navigate through a seri
 
 [Play the Game](https://ripetomato3.itch.io/mccoys-mansion)
 
-[Trailer](https://www.youtube.com/watch?v=IYF02bDhPTo)
-
-[Press Kit](https://dopresskit.com/)  
+[Trailer](https://www.youtube.com/watch?v=IYF02bDhPTo) 
 
 [Initial Plan/Proposal](https://docs.google.com/document/d/1sA2XxWCMnUcR5FnoEW7Uw0EvomDNiPJk1OjwOKdOJOg/edit?usp=sharing)  
 
