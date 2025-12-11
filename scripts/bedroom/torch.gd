@@ -2,10 +2,7 @@ extends Interactable
 
 func _ready() -> void:
 	turn_on_interactable()
-	pass # Replace with function body.
-
-func _process(delta: float) -> void:
-	pass
+	pass 
 
 func interact() -> void:
 	turn_off_interactable()
@@ -17,4 +14,3 @@ func interact() -> void:
 func use_item() -> void:
 	turn_on_interactable()
 	self.visible = true
-	

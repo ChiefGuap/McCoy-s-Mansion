@@ -34,6 +34,7 @@ position = Vector2(375, 70.5)
 shape = SubResource("RectangleShape2D_hhfj6")
 
 [node name="Original" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="Original"]
 modulate = Color(0.20511743, 0.20511743, 0.20511743, 1)

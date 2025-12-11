@@ -7,7 +7,6 @@ extends Node2D
 @export var chair_done = false
 @export var hint_label: Label
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if hint_label:
 		hint_label.visible = false
@@ -18,7 +17,3 @@ func enter_level() -> void:
 		hint_label.text = "I SHOULD CHECK IF MCCOY WROTE ANYTHING THAT COULD HELP ME..."
 		# Hide after 5 seconds
 		get_tree().create_timer(5.0).timeout.connect(func(): hint_label.visible = false)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

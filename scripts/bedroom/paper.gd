@@ -1,7 +1,7 @@
 extends Interactable
 
 @onready var paper = $PaperSprite
-var player_in_area = false  # Tracks if player is inside the interaction zone
+var player_in_area = false  
 @onready var popup_layer = $Original
 @onready var hotbar = $"../../UI_Layer/Hotbar"
 @onready var bottle = $"../Bottle"
@@ -11,21 +11,15 @@ var player_in_area = false  # Tracks if player is inside the interaction zone
 
 var checked = false
 
-
 func _ready():
-	# Ensure the outline is invisible (thickness 0) when the game starts
 	popup_layer.visible = false
 	turn_on_interactable()
-	
 
 func interact() -> void:
 	pass
 
 func _input(event):
-	# Check if the "interact" key (E) was pressed
 	if event.is_action_pressed("interact") and player_in_area:
-		# If player is near, toggle the popup
-		
 		var item = hotbar.get_held_item()
 		print(item)
 		if item == bottle:
@@ -35,19 +29,16 @@ func _input(event):
 			blue.visible = false
 			checked = true
 			Level3.paper_done = true
-		
 		if player_in_area:
 			popup_layer.visible = not popup_layer.visible
 			if (popup_layer.visible):
 				hotbar.visible = false
 			else:
 				hotbar.visible = true
-			
 
 func _on_paper_entered(body):
 	if body.name == "Player":
 		player_in_area = true
-		
 
 func _on_paper_exited(body):
 	if body.name == "Player":
