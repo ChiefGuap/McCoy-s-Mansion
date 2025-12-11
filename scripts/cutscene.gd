@@ -1,6 +1,5 @@
 extends Node
 
-# --- CONNECTIONS ---
 @export var player: Node2D
 @export var animation_player: AnimationPlayer
 @export var dialogue_box: Control 
@@ -11,31 +10,22 @@ var pacing_tween: Tween
 #test
 
 func play_intro_cutscene():
-	print("🎬 CUTSCENE STARTED")
-	
-	# 1. LOCK PLAYER
+	# 1. locking the player
 	if player:
 		player.lock_player()
 	
-	# 2. PLAY ANIMATION (0s -> 7s)
+	# 2. playing the animation
 	if animation_player:
-		print("▶️ Playing animation timeline...")
 		animation_player.play("intro_cutscene")
-		# Wait for the timeline to finish (7.0 seconds)
+		# waiting for the timeline to finish (7.0 seconds)
 		await animation_player.animation_finished
-	
-	print("✅ Animation finished. Starting Part 2...")
-	
-	# ---------------------------------------------------------
-	# 3. START PACING (The Nervous Walk)
-	# ---------------------------------------------------------
 	start_pacing()
 	
-	# 4. SHOW TEXT SEQUENCE
+	# 3. showing the text sequernce
 	if dialogue_box:
 		dialogue_box.visible = true
 	
-	# --- DIALOGUE LINE 1 ---
+	# dialouge line number one 
 	if dialogue_label:
 		dialogue_label.add_theme_font_size_override("font_size", 7)
 		dialogue_label.text = "I need to escape"
@@ -46,77 +36,69 @@ func play_intro_cutscene():
 		dialogue_label.visible = true 
 		dialogue_label.modulate = Color(1, 1, 1, 1) 
 	
-	# Wait 2 seconds for line 1
+	# Waiting then two seconds for the line one to finish
 	await get_tree().create_timer(2.0).timeout
 
-	# --- DIALOGUE LINE 2 ---
+	# -the second dialouge line
 	if dialogue_label:
 		dialogue_label.text = "Maybe..."
 	
-	# Wait 2 seconds for line 2
+	# then wait another three seconds
 	await get_tree().create_timer(3.0).timeout
 	
 	if dialogue_label:
 		dialogue_label.text = "I should check"
 		
 	await get_tree().create_timer(2.0).timeout
-	# --- DIALOGUE LINE 3 ---
 	if dialogue_label:
 		dialogue_label.text = "Who owns this!?"
-	# Wait 3 seconds for line 3
+	# then wait two seconds
 	await get_tree().create_timer(2.0).timeout
 	
 	if dialogue_label:
 		dialogue_label.text = "MANSION"
-	# Wait 3 seconds for line 3
+	# then we have to wait one second
 	await get_tree().create_timer(1.0).timeout
-	# 5. STOP PACING & HIDE TEXT
 	stop_pacing()
 	
 	if dialogue_box:
 		dialogue_box.visible = false
 	
-	# 6. UNLOCK PLAYER
+	# unlock the player
 	if player:
 		player.unlock_player()
 	
-	print("🏁 CUTSCENE FINISHED")
 
-# --- HELPER FUNCTIONS FOR PACING ---
-
+# these are the helper functions
 func start_pacing():
 	if not player: return
-	print("🚶 Pacing started...")
 	
-	# A. Get the sprite so we can animate the legs
+	# Getting the sprite so we can animate the legs
 	var sprite = player.get_node_or_null("AnimatedSprite2D")
 	if sprite:
-		sprite.play("run") # Make sure your player has a "run" animation!
+		sprite.play("run") 
 	
-	# B. Create the Movement Loop
+	# creating the movement loop back and forth
 	# .set_loops() makes it run forever until we kill it
 	if pacing_tween: pacing_tween.kill()
 	pacing_tween = create_tween().set_loops()
 	
 	var start_x = player.position.x
 	
-	# Step 1: Walk Right (0.5 seconds)
+	# the forst movment part is walk Right (0.5 seconds)
 	pacing_tween.tween_property(player, "position:x", start_x + 30, 0.5)
-	# Callback: Flip sprite to face Left
+	# then it is flipping the sprite to walk back
 	pacing_tween.tween_callback(func(): if sprite: sprite.flip_h = true)
 	
-	# Step 2: Walk Left (0.5 seconds)
+	# then it iis walk Left (0.5 seconds)
 	pacing_tween.tween_property(player, "position:x", start_x, 0.5)
-	# Callback: Flip sprite to face Right
+	# flipping the sptiyr to walk back agaiuabn
 	pacing_tween.tween_callback(func(): if sprite: sprite.flip_h = false)
 
 func stop_pacing():
-	print("🛑 Pacing stopped.")
-	# Kill the movement tween
 	if pacing_tween:
 		pacing_tween.kill()
 	
-	# Reset sprite to Idle
 	if player:
 		var sprite = player.get_node_or_null("AnimatedSprite2D")
 		if sprite:
